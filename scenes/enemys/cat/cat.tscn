@@ -1,0 +1,116 @@
+[gd_scene load_steps=14 format=3 uid="uid://ctls4fuoxikdh"]
+
+[ext_resource type="Script" path="res://scenes/enemys/cat/cat.gd" id="1_qq22p"]
+[ext_resource type="Texture2D" uid="uid://dw41gyt80vv7c" path="res://placeholders/cat/car_torso.png" id="1_twuj7"]
+[ext_resource type="Texture2D" uid="uid://dl3jpdc6eqlfh" path="res://placeholders/cat/car_right_arm.png" id="2_0y7b7"]
+[ext_resource type="Texture2D" uid="uid://bpujtt6b0nk3s" path="res://placeholders/cat/car_right_leg_wound.png" id="2_a8pwu"]
+[ext_resource type="Texture2D" uid="uid://cf0v2d4q3l3am" path="res://placeholders/cat/car_left_arm.png" id="3_kj340"]
+[ext_resource type="Script" path="res://scenes/enemys/cat/member.gd" id="3_vo7la"]
+[ext_resource type="Texture2D" uid="uid://cpo5ay6qewy4j" path="res://placeholders/cat/car_right_leg.png" id="4_f4kcs"]
+[ext_resource type="Texture2D" uid="uid://biqsk5fckvbx5" path="res://placeholders/cat/car_head.png" id="5_6rsdx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_miqyt"]
+radius = 164.754
+height = 465.025
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6yq8y"]
+radius = 60.4449
+height = 288.978
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cf5kp"]
+radius = 73.3123
+height = 249.822
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2onun"]
+radius = 62.1569
+height = 327.64
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d0t2j"]
+radius = 167.012
+
+[node name="Cat" type="Node2D"]
+script = ExtResource("1_qq22p")
+right_leg_wound_texture = ExtResource("2_a8pwu")
+
+[node name="torso" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_twuj7")
+
+[node name="Area2D" type="Area2D" parent="torso" node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_vo7la")
+body_part = "torso"
+enemy = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="torso/Area2D"]
+position = Vector2(76, -65)
+rotation = -2.56454
+shape = SubResource("CapsuleShape2D_miqyt")
+
+[node name="right_arm" type="Sprite2D" parent="."]
+z_index = 2
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_0y7b7")
+
+[node name="Area2D" type="Area2D" parent="right_arm" node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_vo7la")
+body_part = "right_arm"
+enemy = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_arm/Area2D"]
+position = Vector2(81, 252)
+rotation = 0.622885
+shape = SubResource("CapsuleShape2D_6yq8y")
+
+[node name="left_arm" type="Sprite2D" parent="."]
+z_index = 2
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_kj340")
+
+[node name="Area2D" type="Area2D" parent="left_arm" node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_vo7la")
+body_part = "left_arm"
+enemy = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left_arm/Area2D"]
+position = Vector2(-216, 302)
+rotation = 5.88976
+shape = SubResource("CapsuleShape2D_cf5kp")
+
+[node name="right_leg" type="Sprite2D" parent="."]
+z_index = 2
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_f4kcs")
+
+[node name="Area2D" type="Area2D" parent="right_leg" node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_vo7la")
+body_part = "right_leg"
+enemy = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_leg/Area2D"]
+position = Vector2(308, 66)
+rotation = -0.174446
+shape = SubResource("CapsuleShape2D_2onun")
+
+[node name="head" type="Sprite2D" parent="."]
+z_index = 3
+position = Vector2(10, 4)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_6rsdx")
+
+[node name="Area2D" type="Area2D" parent="head" node_paths=PackedStringArray("enemy")]
+z_index = 2
+script = ExtResource("3_vo7la")
+body_part = "head"
+enemy = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="head/Area2D"]
+z_index = 2
+position = Vector2(-69, 122)
+shape = SubResource("CircleShape2D_d0t2j")
+
+[connection signal="input_event" from="torso/Area2D" to="torso/Area2D" method="_on_input_event"]
+[connection signal="input_event" from="right_arm/Area2D" to="right_arm/Area2D" method="_on_input_event"]
+[connection signal="input_event" from="left_arm/Area2D" to="left_arm/Area2D" method="_on_input_event"]
+[connection signal="input_event" from="right_leg/Area2D" to="right_leg/Area2D" method="_on_input_event"]
+[connection signal="input_event" from="head/Area2D" to="head/Area2D" method="_on_input_event"]

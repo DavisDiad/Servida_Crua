@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyl30kecp6emh"]
+
+[ext_resource type="Texture2D" uid="uid://fjpi541cxhl6" path="res://placeholders/walkcycle_FINAL.png" id="1_glw06"]
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_w1yh1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5ldxa"]
+radius = 9.0
+height = 68.0
+
+[node name="player" type="CharacterBody2D"]
+scale = Vector2(4, 4)
+script = ExtResource("1_w1yh1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_glw06")
+hframes = 26
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 0)
+shape = SubResource("CapsuleShape2D_5ldxa")
