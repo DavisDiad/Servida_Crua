@@ -114,3 +114,4 @@ texture = ExtResource("4_bv1ih")
 
 [connection signal="attacking" from="." to="Cat" method="_on_fight_attacking"]
 [connection signal="pressed" from="UI/ActionsPanel/Actions/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="UI/ActionsPanel/Actions/Defend" to="." method="_on_defend_pressed"]

@@ -8,7 +8,9 @@ func _ready() -> void:
 	
 	$UI/ActionsPanel.hide() #a cena começa com os botoes escondidos
 	$UI/TextBox.show() #a cena começa com o texto a aparecer
+	PlayerHealth.add_wound("left_arm")
 	$UI.update_wound_display()
+	
 	
 	display_text("Um gato estranho bufa ao sentir a tua presença.") #chama a função que mostra texto
 	
@@ -44,3 +46,7 @@ func set_health():
 	pass
 
 	
+
+
+func _on_defend_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/scene1.tscn")

@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+func _ready() -> void:
+	update_wound_display()
+
 func update_wound_display():
 	for part in PlayerHealth.wounds.keys():
 		var label = $WoundsPanel.get_node(part + "_label")
