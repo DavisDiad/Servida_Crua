@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cofg4e1bbi23e"]
+
+[ext_resource type="Script" path="res://scenes/fight/fight.gd" id="1_4se71"]
+[ext_resource type="PackedScene" uid="uid://ctls4fuoxikdh" path="res://scenes/enemys/cat/cat.tscn" id="2_cubfr"]
+[ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui.tscn" id="3_63nu4"]
+[ext_resource type="Texture2D" uid="uid://b5cyg7hfck87d" path="res://placeholders/rascunho_batalha1.png" id="4_bv1ih"]
+
+[node name="Fight" type="Node2D"]
+script = ExtResource("1_4se71")
+
+[node name="Cat" parent="." instance=ExtResource("2_cubfr")]
+z_index = 1
+position = Vector2(936, 430)
+
+[node name="UI" parent="." instance=ExtResource("3_63nu4")]
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 288.0
+offset_top = 39.0
+offset_right = 1637.0
+offset_bottom = 796.0
+texture = ExtResource("4_bv1ih")

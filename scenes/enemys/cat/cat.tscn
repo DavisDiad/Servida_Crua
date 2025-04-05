@@ -1,24 +1,24 @@
 [gd_scene load_steps=14 format=3 uid="uid://ctls4fuoxikdh"]
 
 [ext_resource type="Script" path="res://scenes/enemys/cat/cat.gd" id="1_qq22p"]
-[ext_resource type="Texture2D" uid="uid://dw41gyt80vv7c" path="res://placeholders/cat/car_torso.png" id="1_twuj7"]
-[ext_resource type="Texture2D" uid="uid://dl3jpdc6eqlfh" path="res://placeholders/cat/car_right_arm.png" id="2_0y7b7"]
-[ext_resource type="Texture2D" uid="uid://bpujtt6b0nk3s" path="res://placeholders/cat/car_right_leg_wound.png" id="2_a8pwu"]
-[ext_resource type="Texture2D" uid="uid://cf0v2d4q3l3am" path="res://placeholders/cat/car_left_arm.png" id="3_kj340"]
+[ext_resource type="Texture2D" uid="uid://cf1q2cttk47h4" path="res://scenes/enemys/cat/sprites/car_final_torso_head.png" id="3_8rdeq"]
 [ext_resource type="Script" path="res://scenes/enemys/cat/member.gd" id="3_vo7la"]
-[ext_resource type="Texture2D" uid="uid://cpo5ay6qewy4j" path="res://placeholders/cat/car_right_leg.png" id="4_f4kcs"]
-[ext_resource type="Texture2D" uid="uid://biqsk5fckvbx5" path="res://placeholders/cat/car_head.png" id="5_6rsdx"]
+[ext_resource type="Texture2D" uid="uid://jtl25fj63nwx" path="res://scenes/enemys/cat/sprites/car_final_right_arm.png" id="5_5d234"]
+[ext_resource type="Texture2D" uid="uid://cf851epusxi4l" path="res://scenes/enemys/cat/sprites/car_final_left_arm.png" id="6_1skua"]
+[ext_resource type="Texture2D" uid="uid://byjrgq81j5rco" path="res://scenes/enemys/cat/sprites/car_final_right_leg.png" id="7_lo3pc"]
+[ext_resource type="Texture2D" uid="uid://b0xa5e3depykq" path="res://scenes/enemys/cat/sprites/car_final_right_leg_wound.png" id="7_lykld"]
+[ext_resource type="Texture2D" uid="uid://dytmanl81c3fc" path="res://scenes/enemys/cat/sprites/car_final_eye.png" id="8_83k6w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_miqyt"]
-radius = 164.754
-height = 465.025
+radius = 141.387
+height = 579.581
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6yq8y"]
 radius = 60.4449
 height = 288.978
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cf5kp"]
-radius = 73.3123
+radius = 100.018
 height = 249.822
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2onun"]
@@ -26,16 +26,16 @@ radius = 62.1569
 height = 327.64
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d0t2j"]
-radius = 167.012
+radius = 82.5379
 
 [node name="Cat" type="Node2D"]
 script = ExtResource("1_qq22p")
-right_leg_wound_texture = ExtResource("2_a8pwu")
+right_leg_wound_texture = ExtResource("7_lykld")
 
 [node name="torso" type="Sprite2D" parent="."]
 z_index = 1
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("1_twuj7")
+texture = ExtResource("3_8rdeq")
 
 [node name="Area2D" type="Area2D" parent="torso" node_paths=PackedStringArray("enemy")]
 script = ExtResource("3_vo7la")
@@ -43,14 +43,14 @@ body_part = "torso"
 enemy = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="torso/Area2D"]
-position = Vector2(76, -65)
+position = Vector2(42.5, -2.5)
 rotation = -2.56454
 shape = SubResource("CapsuleShape2D_miqyt")
 
 [node name="right_arm" type="Sprite2D" parent="."]
 z_index = 2
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_0y7b7")
+texture = ExtResource("5_5d234")
 
 [node name="Area2D" type="Area2D" parent="right_arm" node_paths=PackedStringArray("enemy")]
 script = ExtResource("3_vo7la")
@@ -65,7 +65,7 @@ shape = SubResource("CapsuleShape2D_6yq8y")
 [node name="left_arm" type="Sprite2D" parent="."]
 z_index = 2
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("3_kj340")
+texture = ExtResource("6_1skua")
 
 [node name="Area2D" type="Area2D" parent="left_arm" node_paths=PackedStringArray("enemy")]
 script = ExtResource("3_vo7la")
@@ -73,16 +73,17 @@ body_part = "left_arm"
 enemy = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="left_arm/Area2D"]
-position = Vector2(-216, 302)
-rotation = 5.88976
+position = Vector2(-177.5, 300)
+rotation = 6.2921
 shape = SubResource("CapsuleShape2D_cf5kp")
 
 [node name="right_leg" type="Sprite2D" parent="."]
 z_index = 2
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("4_f4kcs")
+texture = ExtResource("7_lo3pc")
 
 [node name="Area2D" type="Area2D" parent="right_leg" node_paths=PackedStringArray("enemy")]
+position = Vector2(-30, 5)
 script = ExtResource("3_vo7la")
 body_part = "right_leg"
 enemy = NodePath("../..")
@@ -92,25 +93,25 @@ position = Vector2(308, 66)
 rotation = -0.174446
 shape = SubResource("CapsuleShape2D_2onun")
 
-[node name="head" type="Sprite2D" parent="."]
+[node name="eye" type="Sprite2D" parent="."]
 z_index = 3
 position = Vector2(10, 4)
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("5_6rsdx")
+texture = ExtResource("8_83k6w")
 
-[node name="Area2D" type="Area2D" parent="head" node_paths=PackedStringArray("enemy")]
+[node name="Area2D" type="Area2D" parent="eye" node_paths=PackedStringArray("enemy")]
 z_index = 2
 script = ExtResource("3_vo7la")
-body_part = "head"
+body_part = "eye"
 enemy = NodePath("../..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="head/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="eye/Area2D"]
 z_index = 2
-position = Vector2(-69, 122)
+position = Vector2(-162.5, 135)
 shape = SubResource("CircleShape2D_d0t2j")
 
 [connection signal="input_event" from="torso/Area2D" to="torso/Area2D" method="_on_input_event"]
 [connection signal="input_event" from="right_arm/Area2D" to="right_arm/Area2D" method="_on_input_event"]
 [connection signal="input_event" from="left_arm/Area2D" to="left_arm/Area2D" method="_on_input_event"]
 [connection signal="input_event" from="right_leg/Area2D" to="right_leg/Area2D" method="_on_input_event"]
-[connection signal="input_event" from="head/Area2D" to="head/Area2D" method="_on_input_event"]
+[connection signal="input_event" from="eye/Area2D" to="eye/Area2D" method="_on_input_event"]

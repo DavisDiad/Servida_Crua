@@ -4,7 +4,7 @@ extends Node2D
 
 # Dictionary to store the wounds of each body part
 var wounds = {
-	"head": 0,
+	"eye": 0,
 	"torso": 0,
 	"left_arm": 0,
 	"right_arm": 0,
@@ -13,11 +13,11 @@ var wounds = {
 
 # Wound limits before a body part is dismembered
 var wound_limits = {
-	"head": 3,
+	"eye": 3,
 	"torso": 4,
-	"left_arm": 2,
+	"left_arm": 3,
 	"right_arm": 2,
-	"right_leg": 3
+	"right_leg": 2
 }
 
 # Function called when a body part takes damage
@@ -47,7 +47,7 @@ func change_right_leg_texture(sprite):
 
 # Function to hide all body parts
 func hide_all_body_parts():
-	var body_parts = ["head", "torso", "left_arm", "right_arm", "right_leg"]
+	var body_parts = ["eye", "torso", "left_arm", "right_arm", "right_leg"]
 	for part in body_parts:
 		var sprite = get_node(part)
 		if sprite:
