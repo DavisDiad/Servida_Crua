@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://ctls4fuoxikdh"]
+[gd_scene load_steps=15 format=3 uid="uid://ctls4fuoxikdh"]
 
 [ext_resource type="Script" path="res://scenes/enemys/cat/cat.gd" id="1_qq22p"]
 [ext_resource type="Texture2D" uid="uid://cf1q2cttk47h4" path="res://scenes/enemys/cat/sprites/car_final_torso_head.png" id="3_8rdeq"]
+[ext_resource type="Resource" uid="uid://bw1kjdf7raugs" path="res://scenes/enemys/cat.tres" id="3_ii32b"]
 [ext_resource type="Script" path="res://scenes/enemys/cat/member.gd" id="3_vo7la"]
 [ext_resource type="Texture2D" uid="uid://jtl25fj63nwx" path="res://scenes/enemys/cat/sprites/car_final_right_arm.png" id="5_5d234"]
 [ext_resource type="Texture2D" uid="uid://cf851epusxi4l" path="res://scenes/enemys/cat/sprites/car_final_left_arm.png" id="6_1skua"]
@@ -31,6 +32,7 @@ radius = 82.5379
 [node name="Cat" type="Node2D"]
 script = ExtResource("1_qq22p")
 right_leg_wound_texture = ExtResource("7_lykld")
+enemy_data = ExtResource("3_ii32b")
 
 [node name="torso" type="Sprite2D" parent="."]
 z_index = 1
@@ -47,25 +49,10 @@ position = Vector2(42.5, -2.5)
 rotation = -2.56454
 shape = SubResource("CapsuleShape2D_miqyt")
 
-[node name="right_arm" type="Sprite2D" parent="."]
-z_index = 2
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("5_5d234")
-
-[node name="Area2D" type="Area2D" parent="right_arm" node_paths=PackedStringArray("enemy")]
-script = ExtResource("3_vo7la")
-body_part = "right_arm"
-enemy = NodePath("../..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="right_arm/Area2D"]
-position = Vector2(81, 252)
-rotation = 0.622885
-shape = SubResource("CapsuleShape2D_6yq8y")
-
 [node name="left_arm" type="Sprite2D" parent="."]
 z_index = 2
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("6_1skua")
+texture = ExtResource("5_5d234")
 
 [node name="Area2D" type="Area2D" parent="left_arm" node_paths=PackedStringArray("enemy")]
 script = ExtResource("3_vo7la")
@@ -73,6 +60,21 @@ body_part = "left_arm"
 enemy = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="left_arm/Area2D"]
+position = Vector2(81, 252)
+rotation = 0.622885
+shape = SubResource("CapsuleShape2D_6yq8y")
+
+[node name="right_arm" type="Sprite2D" parent="."]
+z_index = 2
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("6_1skua")
+
+[node name="Area2D" type="Area2D" parent="right_arm" node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_vo7la")
+body_part = "right_arm"
+enemy = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_arm/Area2D"]
 position = Vector2(-177.5, 300)
 rotation = 6.2921
 shape = SubResource("CapsuleShape2D_cf5kp")
@@ -111,7 +113,7 @@ position = Vector2(-162.5, 135)
 shape = SubResource("CircleShape2D_d0t2j")
 
 [connection signal="input_event" from="torso/Area2D" to="torso/Area2D" method="_on_input_event"]
-[connection signal="input_event" from="right_arm/Area2D" to="right_arm/Area2D" method="_on_input_event"]
 [connection signal="input_event" from="left_arm/Area2D" to="left_arm/Area2D" method="_on_input_event"]
+[connection signal="input_event" from="right_arm/Area2D" to="right_arm/Area2D" method="_on_input_event"]
 [connection signal="input_event" from="right_leg/Area2D" to="right_leg/Area2D" method="_on_input_event"]
 [connection signal="input_event" from="eye/Area2D" to="eye/Area2D" method="_on_input_event"]

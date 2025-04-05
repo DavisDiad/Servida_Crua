@@ -14,6 +14,10 @@ config/name="Servida_Crua"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PlayerHealth="*res://scenes/player/PlayerHealth.gd"
+
 [display]
 
 window/size/viewport_width=1920

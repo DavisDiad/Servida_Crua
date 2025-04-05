@@ -1,6 +1,5 @@
 extends Area2D
 
-var is_mouse_over = false
 
 @export var body_part: String  # Body part name (configured in the Inspector)
 @export var enemy: Node  # Reference to the enemy in the Inspector

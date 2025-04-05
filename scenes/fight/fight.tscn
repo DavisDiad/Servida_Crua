@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://cofg4e1bbi23e"]
+[gd_scene load_steps=8 format=3 uid="uid://cofg4e1bbi23e"]
 
 [ext_resource type="Script" path="res://scenes/fight/fight.gd" id="1_4se71"]
 [ext_resource type="PackedScene" uid="uid://ctls4fuoxikdh" path="res://scenes/enemys/cat/cat.tscn" id="2_cubfr"]
-[ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui.tscn" id="3_63nu4"]
+[ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="3_63nu4"]
 [ext_resource type="Texture2D" uid="uid://b5cyg7hfck87d" path="res://placeholders/rascunho_batalha1.png" id="4_bv1ih"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jmy8o"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5lci"]
+bg_color = Color(0.639216, 0.607843, 0.27451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kobb"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="Fight" type="Node2D"]
 script = ExtResource("1_4se71")
@@ -14,9 +23,94 @@ position = Vector2(936, 430)
 
 [node name="UI" parent="." instance=ExtResource("3_63nu4")]
 
+[node name="ActionsPanel" type="Panel" parent="UI"]
+z_index = 2
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 538.0
+offset_top = -255.0
+offset_right = -295.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_jmy8o")
+
+[node name="Actions" type="HBoxContainer" parent="UI/ActionsPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 60.0
+offset_right = -30.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Attack" type="Button" parent="UI/ActionsPanel/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxFlat_i5lci")
+text = "Atacar"
+
+[node name="Defend" type="Button" parent="UI/ActionsPanel/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxFlat_i5lci")
+text = "Defender"
+
+[node name="Talk" type="Button" parent="UI/ActionsPanel/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxFlat_i5lci")
+text = "Falar"
+
+[node name="TextBox" type="Panel" parent="UI"]
+z_index = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 538.0
+offset_top = -255.0
+offset_right = -295.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_3kobb")
+
+[node name="Label" type="Label" parent="UI/TextBox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "texto vai aqui"
+
 [node name="TextureRect2" type="TextureRect" parent="."]
 offset_left = 288.0
 offset_top = 39.0
 offset_right = 1637.0
 offset_bottom = 796.0
 texture = ExtResource("4_bv1ih")
+
+[connection signal="attacking" from="." to="Cat" method="_on_fight_attacking"]
+[connection signal="pressed" from="UI/ActionsPanel/Actions/Attack" to="." method="_on_attack_pressed"]
