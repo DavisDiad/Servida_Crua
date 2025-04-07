@@ -21,6 +21,6 @@ var wound_limits = {
 	"right_leg": 5
 }
 
-func add_wound(body_part: String):
+func add_wound(body_part: String, amount: int = 1):
 	if body_part in wounds:
-		wounds[body_part] += 1
+		wounds[body_part] += amount

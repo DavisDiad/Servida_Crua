@@ -2,21 +2,26 @@ extends Node2D
 
 signal textbox_closed #sinal que é emitido sempre que o texto é fechado
 signal attacking
+
 var can_attack = false
+
+var enemy_data: EnemyData
 
 func _ready() -> void:
 	
 	$UI/ActionsPanel.hide() #a cena começa com os botoes escondidos
 	$UI/TextBox.show() #a cena começa com o texto a aparecer
-	PlayerHealth.add_wound("left_arm")
-	$UI.update_wound_display()
-	
 	
 	display_text("Um gato estranho bufa ao sentir a tua presença.") #chama a função que mostra texto
 	
+	load_enemy("res://scenes/enemys/cat/cat.tres") #pode ser usado em qualquer lugar para chamar um inimigo diferente
 	
-	await textbox_closed #o jogo está a espera que este sinal seja emitido para processar o codigo embaixo
-	$UI/ActionsPanel.show() #quando o sinal é emitido, os botoes aparecem
+
+func load_enemy(enemy_path: String) -> void: #função usada para carregar o inimigo quando load_enemy() é chamado
+	var loaded_enemy = load(enemy_path)
+	if loaded_enemy:
+		enemy_data = loaded_enemy # Cria uma instância do resource EnemyData
+
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("left_click"): #ao clicar com o botão esquerdo com o texto ativo,
@@ -27,12 +32,15 @@ func display_text(text): #esta função serve para fazer o texto aparecer
 	$UI/ActionsPanel.hide()
 	$UI/TextBox.show()
 	$UI/TextBox/Label.text = text
+	
+	await textbox_closed #o jogo está a espera que este sinal seja emitido para processar o codigo embaixo
+	$UI/ActionsPanel.show() #quando o sinal é emitido, os botoes aparecem
 
 func _on_attack_pressed() -> void:
 	can_attack = true
 	attack()
 	
-
+	
 func attack():
 	if can_attack == true:
 		$UI/ActionsPanel.hide()
@@ -41,12 +49,7 @@ func attack():
 	else:
 		can_attack = false
 		return
-		
-func set_health():
-	pass
-
-	
 
 
 func _on_defend_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/scene1.tscn")
+	pass
