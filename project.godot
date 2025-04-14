@@ -16,7 +16,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-PlayerHealth="*res://scenes/player/PlayerHealth.gd"
+PlayerHealth="*res://autoloads/PlayerHealth.gd"
+CombatCalculator="*res://autoloads/CombatCalculator.gd"
 
 [display]
 

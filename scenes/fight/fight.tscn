@@ -66,7 +66,7 @@ size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 45
 theme_override_styles/normal = SubResource("StyleBoxFlat_i5lci")
-text = "Defender"
+text = "Proteger"
 
 [node name="Talk" type="Button" parent="UI/ActionsPanel/Actions"]
 layout_mode = 2
@@ -113,5 +113,6 @@ offset_bottom = 796.0
 texture = ExtResource("4_bv1ih")
 
 [connection signal="attacking" from="." to="Cat" method="_on_fight_attacking"]
+[connection signal="defending" from="." to="Cat" method="_on_fight_defending"]
 [connection signal="pressed" from="UI/ActionsPanel/Actions/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="UI/ActionsPanel/Actions/Defend" to="." method="_on_defend_pressed"]

@@ -2,6 +2,7 @@ extends Node2D
 
 signal textbox_closed #sinal que é emitido sempre que o texto é fechado
 signal attacking
+signal defending
 
 var can_attack = false
 
@@ -13,6 +14,8 @@ func _ready() -> void:
 	$UI/TextBox.show() #a cena começa com o texto a aparecer
 	
 	display_text("Um gato estranho bufa ao sentir a tua presença.") #chama a função que mostra texto
+	await textbox_closed
+	$UI/ActionsPanel.show()
 	
 	load_enemy("res://scenes/enemys/cat/cat.tres") #pode ser usado em qualquer lugar para chamar um inimigo diferente
 	
@@ -34,7 +37,7 @@ func display_text(text): #esta função serve para fazer o texto aparecer
 	$UI/TextBox/Label.text = text
 	
 	await textbox_closed #o jogo está a espera que este sinal seja emitido para processar o codigo embaixo
-	$UI/ActionsPanel.show() #quando o sinal é emitido, os botoes aparecem
+	 #quando o sinal é emitido, os botoes aparecem
 
 func _on_attack_pressed() -> void:
 	can_attack = true
@@ -52,4 +55,13 @@ func attack():
 
 
 func _on_defend_pressed() -> void:
-	pass
+	$UI/ActionsPanel.hide()
+	$UI/TextBox.show()
+	display_text("Assumes uma posição defensiva")
+	await textbox_closed
+	
+	
+	PlayerHealth.is_defending = true
+	emit_signal("defending")
+	
+	
