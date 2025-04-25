@@ -1,13 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://chfkcms6t6n7p"]
+[gd_scene load_steps=6 format=3 uid="uid://chfkcms6t6n7p"]
 
 [ext_resource type="PackedScene" uid="uid://cyl30kecp6emh" path="res://scenes/player/player.tscn" id="1_80qcc"]
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="2_wrc3t"]
 [ext_resource type="Texture2D" uid="uid://c2oqk1rlp518h" path="res://placeholders/487822751_690309623742518_8888194850570010313_n.jpg" id="3_qocxd"]
+[ext_resource type="Texture2D" uid="uid://b3veo2r33xywq" path="res://placeholders/Helena_Cut.png" id="4_h34uh"]
+[ext_resource type="Texture2D" uid="uid://c28ne3v3d54cr" path="res://placeholders/helena_teste_00.png" id="5_tg23r"]
 
 [node name="scene1" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_80qcc")]
 z_index = 1
+position = Vector2(638, 470)
 
 [node name="UI" parent="." instance=ExtResource("2_wrc3t")]
 
@@ -15,3 +18,14 @@ z_index = 1
 position = Vector2(959, 415)
 scale = Vector2(2.02537, 2)
 texture = ExtResource("3_qocxd")
+
+[node name="HelenaCut" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(455, 504)
+scale = Vector2(0.552966, 0.552966)
+texture = ExtResource("4_h34uh")
+
+[node name="HelenaTeste00" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(639, 505)
+texture = ExtResource("5_tg23r")

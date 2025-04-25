@@ -1,19 +1,44 @@
 extends CharacterBody2D
 
-@export var speed = 200 #velocidade da personagem
-var target_position: Vector2 = position #armaneza a posição do destino
+@export var speed = 200
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
-func _input(event: InputEvent) -> void: #é chamado quando há algum input de fora
-	if Input.is_action_just_pressed("left_click"):
-		target_position = get_global_mouse_position() #se o botão esquerdo do mouse for clicado, a posição do player passa a ser a posição atual do mouse
-		
-func _physics_process(delta: float) -> void: #é chamado a uma taxxa fixa de frames, para ter a certeza que a velocidade de movimentação do jogador é sempre a mesma, por exemplo.
-	var direction = target_position - position #calcula a direção para o alvo subtraindo a posição inicial com a sua posição final
+var target_position: Vector2 = Vector2.ZERO
+var idle_timer := 0.0
+var scared_interval := 20.0
+var is_playing_idle_scared := false
+
+func _ready():
+	target_position = position
+	anim.play("idle")
 	
-	if direction.length() > 2: # se a distância for maior que 2 pixels, continua a mover. Isso garante que o persongem pare no lugaar certo sem se tremer.
-		direction = direction.normalized() #garante que a personagem mova-se a uma velocidade constante, independentemente da distância
-		velocity = direction * speed #faz o personagem andar multiplicando a direção pela velocidade
+
+func _process(delta: float):
+	
+	if is_playing_idle_scared or velocity.length() > 0:
+		return # ignora se estiver assustado OU a mover-se
+
+	idle_timer += delta
+	if idle_timer >= scared_interval:
+		is_playing_idle_scared = true
+		idle_timer = 0.0
+		anim.play("idle_scared")
+		anim.connect("animation_finished", Callable(self, "_on_idle_scared_finished"), CONNECT_ONE_SHOT)
+
+
+func _on_idle_scared_finished():
+	anim.play("idle")
+	is_playing_idle_scared = false
+
+func _input(event: InputEvent):
+	if Input.is_action_just_pressed("left_click"):
+		target_position = get_global_mouse_position()
+
+func _physics_process(delta: float):
+	var direction = target_position - position
+	if direction.length() > 2:
+		direction = direction.normalized()
+		velocity = direction * speed
 	else:
-		velocity = Vector2.ZERO #a personagem para ao alcançar o destino
-		
-	move_and_slide() #serve para aplicar a velocidade e fazer o jogador mover-se
+		velocity = Vector2.ZERO
+	move_and_slide()
