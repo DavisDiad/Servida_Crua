@@ -2,12 +2,12 @@ extends CharacterBody2D
 
 @export var speed = 200
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@export var max_scale : float = 1.0
 
 var target_position: Vector2 = Vector2.ZERO
 var idle_timer := 0.0
-var scared_interval := 20.0
+var scared_interval := 15.0
 var is_playing_idle_scared := false
-
 func _ready():
 	target_position = position
 	anim.play("idle")
@@ -42,3 +42,11 @@ func _physics_process(delta: float):
 	else:
 		velocity = Vector2.ZERO
 	move_and_slide()
+#
+#var direction = target_position - position
+	#if direction.length() > 2:
+		#direction = direction.normalized()
+		#velocity = direction * speed
+	#else:
+		#velocity = Vector2.ZERO
+	#move_and_slide()

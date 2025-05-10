@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cofg4e1bbi23e"]
+[gd_scene load_steps=10 format=3 uid="uid://cofg4e1bbi23e"]
 
 [ext_resource type="Script" path="res://scenes/fight/fight.gd" id="1_4se71"]
 [ext_resource type="PackedScene" uid="uid://ctls4fuoxikdh" path="res://scenes/enemys/cat/cat.tscn" id="2_cubfr"]
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="3_63nu4"]
 [ext_resource type="Texture2D" uid="uid://b5cyg7hfck87d" path="res://placeholders/rascunho_batalha1.png" id="4_bv1ih"]
+[ext_resource type="Texture2D" uid="uid://pqhpjncq6pjd" path="res://placeholders/personagem_baattle2.png" id="5_8ew2v"]
+[ext_resource type="Texture2D" uid="uid://f2g6dcisimy6" path="res://placeholders/rule-of-third-940x626.png" id="6_aml7f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jmy8o"]
 bg_color = Color(0, 0, 0, 1)
@@ -19,7 +21,8 @@ script = ExtResource("1_4se71")
 
 [node name="Cat" parent="." instance=ExtResource("2_cubfr")]
 z_index = 1
-position = Vector2(936, 430)
+position = Vector2(937, 398)
+scale = Vector2(0.9, 0.9)
 
 [node name="UI" parent="." instance=ExtResource("3_63nu4")]
 
@@ -106,13 +109,28 @@ bbcode_enabled = true
 text = "texto vai aqui"
 
 [node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
 offset_left = 288.0
 offset_top = 39.0
 offset_right = 1637.0
 offset_bottom = 796.0
 texture = ExtResource("4_bv1ih")
 
+[node name="BattleRascunho" type="Sprite2D" parent="."]
+z_index = 4
+position = Vector2(481, 628)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_8ew2v")
+
+[node name="Rule-of-third-940x626" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(959, 409)
+scale = Vector2(1.47545, 1.23545)
+texture = ExtResource("6_aml7f")
+
 [connection signal="attacking" from="." to="Cat" method="_on_fight_attacking"]
 [connection signal="defending" from="." to="Cat" method="_on_fight_defending"]
+[connection signal="talked" from="." to="Cat" method="_on_fight_talked"]
 [connection signal="pressed" from="UI/ActionsPanel/Actions/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="UI/ActionsPanel/Actions/Defend" to="." method="_on_defend_pressed"]
+[connection signal="pressed" from="UI/ActionsPanel/Actions/Talk" to="." method="_on_talk_pressed"]

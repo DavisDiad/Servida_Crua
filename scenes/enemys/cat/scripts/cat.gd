@@ -12,14 +12,44 @@ var skill_requirements = { #é um dicionário que atribui as haabilidaades às p
 
 var wounds = {} #um dicionário que serve para armazenar o número de feridas do inimigo. ele será definido usando enemy_data.body_parts
 
+var interaction_step = 0
+var is_talking = false
+
 func _ready():
 	# para cada parte do corpo definida em enemy_data.body_parts (que é um array de recursos do tipo BodyPart) ele começaa a contar o número de feridas, começando em zero, para essa parte
 	for part in enemy_data.body_parts: #"part" é uma variavel temporaria criada automaticamente pelo loop for. ela percorre cada body_part dentro do enemy_data
 		wounds[part.name] = 0
+		
+func _input(event: InputEvent) -> void:
+	if is_talking == true and Input.is_action_just_pressed("left_click"): #ao clicar com o botão esquerdo com o texto ativo,
+		_on_fight_talked()
+
+func _on_fight_talked() -> void:
+	is_talking = true
+	match interaction_step:
+		0: 
+			get_node("/root/Fight/UI/ActionsPanel").hide()
+			get_node("/root/Fight/UI/TextBox").show()
+			get_node("/root/Fight/UI/TextBox/Label").text = "Tentas comunicar com o gato..."
+			interaction_step += 1
+
+		1: 
+			get_node("/root/Fight/UI/TextBox").show()
+			get_node("/root/Fight/UI/TextBox/Label").text = "Mas sem sucesso."
+			interaction_step += 1
+
+		2:
+			get_node("/root/Fight/UI/TextBox").hide()
+			is_talking = false # agora pode voltar a clicar normalmente
+			perform_attack()
+			interaction_step = 0
+
+
+
+
 
 func _on_fight_attacking() -> void: #esta função acontece quando o sinal attacking em fight é emitido.
 	can_take_damage = true #ela permite que o inimigo possa receber dano
-
 
 func take_damage(body_part_name: String):
 	if can_take_damage:
