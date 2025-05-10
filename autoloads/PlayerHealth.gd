@@ -5,6 +5,7 @@ var max_damage = 2
 var base_accuracy = 65
 
 var is_defending = false
+var can_move = true
 
 var evasion_per_part = {
 	"head": 15,

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cofg4e1bbi23e"]
+[gd_scene load_steps=11 format=3 uid="uid://cofg4e1bbi23e"]
 
 [ext_resource type="Script" path="res://scenes/fight/fight.gd" id="1_4se71"]
 [ext_resource type="PackedScene" uid="uid://ctls4fuoxikdh" path="res://scenes/enemys/cat/cat.tscn" id="2_cubfr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b5cyg7hfck87d" path="res://placeholders/rascunho_batalha1.png" id="4_bv1ih"]
 [ext_resource type="Texture2D" uid="uid://pqhpjncq6pjd" path="res://placeholders/personagem_baattle2.png" id="5_8ew2v"]
 [ext_resource type="Texture2D" uid="uid://f2g6dcisimy6" path="res://placeholders/rule-of-third-940x626.png" id="6_aml7f"]
+[ext_resource type="PackedScene" uid="uid://cyl30kecp6emh" path="res://scenes/player/player.tscn" id="7_ij3gj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jmy8o"]
 bg_color = Color(0, 0, 0, 1)
@@ -117,6 +118,7 @@ offset_bottom = 796.0
 texture = ExtResource("4_bv1ih")
 
 [node name="BattleRascunho" type="Sprite2D" parent="."]
+visible = false
 z_index = 4
 position = Vector2(481, 628)
 scale = Vector2(0.5, 0.5)
@@ -127,6 +129,9 @@ visible = false
 position = Vector2(959, 409)
 scale = Vector2(1.47545, 1.23545)
 texture = ExtResource("6_aml7f")
+
+[node name="player" parent="." instance=ExtResource("7_ij3gj")]
+position = Vector2(503, 645)
 
 [connection signal="attacking" from="." to="Cat" method="_on_fight_attacking"]
 [connection signal="defending" from="." to="Cat" method="_on_fight_defending"]

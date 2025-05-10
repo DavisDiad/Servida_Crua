@@ -12,6 +12,11 @@ var enemy_data: EnemyData
 
 func _ready() -> void:
 	
+	PlayerHealth.can_move = false
+	var player = get_node("player")
+	var anim = player.get_node("AnimatedSprite2D")
+	anim.play("idle_battle")
+	
 	$UI/ActionsPanel.hide() #a cena começa com os botoes escondidos
 	$UI/TextBox.show() #a cena começa com o texto a aparecer
 	

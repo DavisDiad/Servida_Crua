@@ -15,7 +15,14 @@ var wounds = {} #um dicionário que serve para armazenar o número de feridas do
 var interaction_step = 0
 var is_talking = false
 
+var player : Node = null
+var anim : AnimatedSprite2D = null
+
 func _ready():
+	
+	player = get_node("/root/Fight/player")
+	anim = player.get_node("AnimatedSprite2D")
+	
 	# para cada parte do corpo definida em enemy_data.body_parts (que é um array de recursos do tipo BodyPart) ele começaa a contar o número de feridas, começando em zero, para essa parte
 	for part in enemy_data.body_parts: #"part" é uma variavel temporaria criada automaticamente pelo loop for. ela percorre cada body_part dentro do enemy_data
 		wounds[part.name] = 0
@@ -45,14 +52,20 @@ func _on_fight_talked() -> void:
 			interaction_step = 0
 
 
-
-
-
 func _on_fight_attacking() -> void: #esta função acontece quando o sinal attacking em fight é emitido.
 	can_take_damage = true #ela permite que o inimigo possa receber dano
 
+func _on_attack_finished():
+	anim.play("idle_battle")
+
 func take_damage(body_part_name: String):
 	if can_take_damage:
+		anim.play("attack")
+		anim.connect("animation_finished", Callable(self, "_on_attack_finished"), CONNECT_ONE_SHOT)
+		
+		await anim.animation_finished
+		
+		
 		for part in enemy_data.body_parts:
 			if part.name == body_part_name:
 				var enemy_evasion = part.evasion
@@ -222,6 +235,10 @@ func perform_attack():
 		part_probabilities["left_leg"] = 0.2
 		part_probabilities["right_leg"] = 0.2
 
+	for part in body_parts:
+		if not available_parts.has(part):
+			part_probabilities.erase(part)
+
 	# Normaliza as probabilidades para garantir que somem 1
 	var total_probability = 0.0
 	for part in part_probabilities:
@@ -229,7 +246,21 @@ func perform_attack():
 	
 	for part in part_probabilities:
 		part_probabilities[part] /= total_probability
+		
+	# Filtra as partes que ainda podem ser atacadas
+	for part in part_probabilities.keys():
+		if not available_parts.has(part):
+			part_probabilities.erase(part)
 
+	# Renormaliza novamente após a filtragem
+	total_probability = 0.0
+	for value in part_probabilities.values():
+		total_probability += value
+
+	for part in part_probabilities:
+		part_probabilities[part] /= total_probability
+
+		
 	# Escolhe uma parte do corpo com base nas novas probabilidades
 	var attacked_part = null
 	var random_value_for_part = randf()
@@ -240,8 +271,7 @@ func perform_attack():
 			attacked_part = part
 			break
 
-	# Aguarda 0.5s (pode servir para animação ou delay do ataque)
-	await get_tree().create_timer(0.5).timeout
+
 	
 	# Aqui continuamos com a lógica de gerar o ataque e calcular o dano
 	var player_evasion = PlayerHealth.evasion_per_part.get(attacked_part, 0)
@@ -250,16 +280,21 @@ func perform_attack():
 
 	var attack_result_text = ""
 	
+	var hit = true
+	
 	if hit_quality >= 0:
+		hit = true
+		
 		var dano = int(lerp(skill.min_damage, skill.max_damage, hit_quality))
 		PlayerHealth.add_wound(attacked_part, dano)
 		
-
 		
 		var ferimento_texto = "ferimento" if dano == 1 else "ferimentos"
 		attack_result_text = "e causou [b]%d %s[/b]." % [dano, ferimento_texto]
 		print("Damage:", dano, "Quality:", hit_quality)
 	else:
+		hit = false
+		
 		attack_result_text = "mas o ataque errou!"
 		print("Attack missed, quality:", hit_quality)
 	
@@ -269,9 +304,17 @@ func perform_attack():
 		part_names_pt[attacked_part]
 	]
 	
+	if hit == true: 
+		await get_tree().create_timer(0.1).timeout
+		anim.play("attacked")
+		anim.connect("animation_finished", Callable(self, "_on_attack_finished"), CONNECT_ONE_SHOT)
+	else:
+		anim.connect("animation_finished", Callable(self, "_on_attack_finished"), CONNECT_ONE_SHOT)
+	
 	get_node("/root/Fight").display_text("%s %s" % [ataque_texto, attack_result_text])
 	await get_node("/root/Fight").textbox_closed
 	get_node("/root/Fight/UI/ActionsPanel").show()
+	
 	
 
 
