@@ -4,7 +4,6 @@ extends Area2D
 @export var body_part: String  # Body part name (configured in the Inspector)
 @export var enemy: Node  # Reference to the enemy in the Inspector
 
-
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if Input.is_action_just_pressed("left_click"):
 		var parameters: PhysicsPointQueryParameters2D = PhysicsPointQueryParameters2D.new()

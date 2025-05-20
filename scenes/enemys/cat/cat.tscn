@@ -1,33 +1,388 @@
-[gd_scene load_steps=15 format=3 uid="uid://ctls4fuoxikdh"]
+[gd_scene load_steps=37 format=3 uid="uid://ctls4fuoxikdh"]
 
 [ext_resource type="Script" path="res://scenes/enemys/cat/scripts/cat.gd" id="1_qq22p"]
-[ext_resource type="Texture2D" uid="uid://cf1q2cttk47h4" path="res://scenes/enemys/cat/sprites/car_final_torso_head.png" id="3_8rdeq"]
 [ext_resource type="Resource" uid="uid://bw1kjdf7raugs" path="res://scenes/enemys/cat/cat.tres" id="3_ii32b"]
 [ext_resource type="Script" path="res://scenes/enemys/cat/scripts/member.gd" id="3_vo7la"]
+[ext_resource type="Texture2D" uid="uid://b4pp0ekwl8cyw" path="res://scenes/enemys/cat/sprites/car_final_torso_head2.png" id="4_b56w7"]
 [ext_resource type="Texture2D" uid="uid://jtl25fj63nwx" path="res://scenes/enemys/cat/sprites/car_final_right_arm.png" id="5_5d234"]
 [ext_resource type="Texture2D" uid="uid://cf851epusxi4l" path="res://scenes/enemys/cat/sprites/car_final_left_arm.png" id="6_1skua"]
 [ext_resource type="Texture2D" uid="uid://byjrgq81j5rco" path="res://scenes/enemys/cat/sprites/car_final_right_leg.png" id="7_lo3pc"]
 [ext_resource type="Texture2D" uid="uid://b0xa5e3depykq" path="res://scenes/enemys/cat/sprites/car_final_right_leg_wound.png" id="7_lykld"]
 [ext_resource type="Texture2D" uid="uid://dytmanl81c3fc" path="res://scenes/enemys/cat/sprites/car_final_eye.png" id="8_83k6w"]
 
+[sub_resource type="Animation" id="Animation_l5s1d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("torso:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("left_arm:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7qpjo"]
+resource_name = "torso_over"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("torso:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.385493, 0.385492, 0.385492, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wt31c"]
+_data = {
+"RESET": SubResource("Animation_l5s1d"),
+"torso_over": SubResource("Animation_7qpjo")
+}
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_miqyt"]
-radius = 141.387
-height = 579.581
+radius = 126.187
+height = 468.496
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6yq8y"]
 radius = 60.4449
 height = 288.978
 
+[sub_resource type="Animation" id="Animation_qgj4d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_64ed5"]
+resource_name = "left_arm_over"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nkalp"]
+_data = {
+"RESET": SubResource("Animation_qgj4d"),
+"left_arm_over": SubResource("Animation_64ed5")
+}
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cf5kp"]
 radius = 100.018
 height = 249.822
+
+[sub_resource type="Animation" id="Animation_7m1d6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hnfj0"]
+resource_name = "right_arm_over"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tdu3p"]
+_data = {
+"RESET": SubResource("Animation_7m1d6"),
+"right_arm_over": SubResource("Animation_hnfj0")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2onun"]
 radius = 62.1569
 height = 327.64
 
+[sub_resource type="Animation" id="Animation_tucjr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_n6dp2"]
+resource_name = "right_leg_over"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_at2cj"]
+_data = {
+"RESET": SubResource("Animation_tucjr"),
+"right_leg_over": SubResource("Animation_n6dp2")
+}
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_d0t2j"]
 radius = 82.5379
+
+[sub_resource type="Animation" id="Animation_ru2q6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8062v"]
+resource_name = "eye_over"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5racy"]
+_data = {
+"RESET": SubResource("Animation_ru2q6"),
+"eye_over": SubResource("Animation_8062v")
+}
+
+[sub_resource type="Animation" id="Animation_t1gw5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("torso:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("left_arm:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("right_arm:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("right_leg:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("eye:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_a8rqf"]
+resource_name = "eye_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("eye:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_j5plx"]
+resource_name = "left_arm_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("left_arm:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e85xm"]
+resource_name = "right_arm_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("right_arm:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nafmu"]
+resource_name = "right_leg_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("right_leg:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_l4dwh"]
+resource_name = "torso_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("torso:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5eqte"]
+_data = {
+"RESET": SubResource("Animation_t1gw5"),
+"eye_damage": SubResource("Animation_a8rqf"),
+"left_arm_damage": SubResource("Animation_j5plx"),
+"right_arm_damage": SubResource("Animation_e85xm"),
+"right_leg_damage": SubResource("Animation_nafmu"),
+"torso_damage": SubResource("Animation_l4dwh")
+}
 
 [node name="Cat" type="Node2D"]
 script = ExtResource("1_qq22p")
@@ -37,15 +392,23 @@ enemy_data = ExtResource("3_ii32b")
 [node name="torso" type="Sprite2D" parent="."]
 z_index = 1
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("3_8rdeq")
+texture = ExtResource("4_b56w7")
 
-[node name="Area2D" type="Area2D" parent="torso" node_paths=PackedStringArray("enemy")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="torso"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_wt31c")
+}
+
+[node name="Area2D_torso" type="Area2D" parent="torso" node_paths=PackedStringArray("enemy")]
+z_index = 5
+position = Vector2(0, -32.5)
 script = ExtResource("3_vo7la")
 body_part = "torso"
 enemy = NodePath("../..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="torso/Area2D"]
-position = Vector2(42.5, -2.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="torso/Area2D_torso"]
+position = Vector2(75, -70)
 rotation = -2.56454
 shape = SubResource("CapsuleShape2D_miqyt")
 
@@ -54,46 +417,65 @@ z_index = 2
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("5_5d234")
 
-[node name="Area2D" type="Area2D" parent="left_arm" node_paths=PackedStringArray("enemy")]
+[node name="left_arm_Area2D" type="Area2D" parent="left_arm" node_paths=PackedStringArray("enemy")]
+z_index = 4
 script = ExtResource("3_vo7la")
 body_part = "left_arm"
 enemy = NodePath("../..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="left_arm/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left_arm/left_arm_Area2D"]
 position = Vector2(81, 252)
 rotation = 0.622885
 shape = SubResource("CapsuleShape2D_6yq8y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="left_arm"]
+libraries = {
+"": SubResource("AnimationLibrary_nkalp")
+}
 
 [node name="right_arm" type="Sprite2D" parent="."]
 z_index = 2
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("6_1skua")
 
-[node name="Area2D" type="Area2D" parent="right_arm" node_paths=PackedStringArray("enemy")]
+[node name="right_arm_Area2D" type="Area2D" parent="right_arm" node_paths=PackedStringArray("enemy")]
+z_index = 3
 script = ExtResource("3_vo7la")
 body_part = "right_arm"
 enemy = NodePath("../..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="right_arm/Area2D"]
-position = Vector2(-177.5, 300)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_arm/right_arm_Area2D"]
+position = Vector2(-177.5, 327.5)
 rotation = 6.2921
+scale = Vector2(1.34493, 0.808684)
 shape = SubResource("CapsuleShape2D_cf5kp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="right_arm"]
+libraries = {
+"": SubResource("AnimationLibrary_tdu3p")
+}
 
 [node name="right_leg" type="Sprite2D" parent="."]
 z_index = 2
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_lo3pc")
 
-[node name="Area2D" type="Area2D" parent="right_leg" node_paths=PackedStringArray("enemy")]
+[node name="right_leg_Area2D" type="Area2D" parent="right_leg" node_paths=PackedStringArray("enemy")]
+z_index = 2
 position = Vector2(-30, 5)
 script = ExtResource("3_vo7la")
 body_part = "right_leg"
 enemy = NodePath("../..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="right_leg/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_leg/right_leg_Area2D"]
 position = Vector2(308, 66)
 rotation = -0.174446
 shape = SubResource("CapsuleShape2D_2onun")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="right_leg"]
+libraries = {
+"": SubResource("AnimationLibrary_at2cj")
+}
 
 [node name="eye" type="Sprite2D" parent="."]
 z_index = 3
@@ -101,19 +483,49 @@ position = Vector2(10, 4)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("8_83k6w")
 
-[node name="Area2D" type="Area2D" parent="eye" node_paths=PackedStringArray("enemy")]
-z_index = 2
+[node name="eye_Area2D" type="Area2D" parent="eye" node_paths=PackedStringArray("enemy")]
+z_index = 10
 script = ExtResource("3_vo7la")
 body_part = "eye"
 enemy = NodePath("../..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="eye/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="eye/eye_Area2D"]
 z_index = 2
 position = Vector2(-162.5, 135)
 shape = SubResource("CircleShape2D_d0t2j")
 
-[connection signal="input_event" from="torso/Area2D" to="torso/Area2D" method="_on_input_event"]
-[connection signal="input_event" from="left_arm/Area2D" to="left_arm/Area2D" method="_on_input_event"]
-[connection signal="input_event" from="right_arm/Area2D" to="right_arm/Area2D" method="_on_input_event"]
-[connection signal="input_event" from="right_leg/Area2D" to="right_leg/Area2D" method="_on_input_event"]
-[connection signal="input_event" from="eye/Area2D" to="eye/Area2D" method="_on_input_event"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="eye"]
+libraries = {
+"": SubResource("AnimationLibrary_5racy")
+}
+
+[node name="DamageAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5eqte")
+}
+
+[connection signal="input_event" from="torso/Area2D_torso" to="torso/Area2D_torso" method="_on_input_event"]
+[connection signal="mouse_entered" from="torso/Area2D_torso" to="." method="_on_area_2d_torso_mouse_entered"]
+[connection signal="mouse_entered" from="torso/Area2D_torso" to="torso/Area2D_torso" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="torso/Area2D_torso" to="." method="_on_area_2d_torso_mouse_exited"]
+[connection signal="mouse_exited" from="torso/Area2D_torso" to="torso/Area2D_torso" method="_on_mouse_exited"]
+[connection signal="input_event" from="left_arm/left_arm_Area2D" to="left_arm/left_arm_Area2D" method="_on_input_event"]
+[connection signal="mouse_entered" from="left_arm/left_arm_Area2D" to="." method="_on_left_arm_area_2d_mouse_entered"]
+[connection signal="mouse_entered" from="left_arm/left_arm_Area2D" to="left_arm/left_arm_Area2D" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="left_arm/left_arm_Area2D" to="." method="_on_left_arm_area_2d_mouse_exited"]
+[connection signal="mouse_exited" from="left_arm/left_arm_Area2D" to="left_arm/left_arm_Area2D" method="_on_mouse_exited"]
+[connection signal="input_event" from="right_arm/right_arm_Area2D" to="right_arm/right_arm_Area2D" method="_on_input_event"]
+[connection signal="mouse_entered" from="right_arm/right_arm_Area2D" to="." method="_on_right_arm_area_2d_mouse_entered"]
+[connection signal="mouse_entered" from="right_arm/right_arm_Area2D" to="right_arm/right_arm_Area2D" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="right_arm/right_arm_Area2D" to="." method="_on_right_arm_area_2d_mouse_exited"]
+[connection signal="mouse_exited" from="right_arm/right_arm_Area2D" to="right_arm/right_arm_Area2D" method="_on_mouse_exited"]
+[connection signal="input_event" from="right_leg/right_leg_Area2D" to="right_leg/right_leg_Area2D" method="_on_input_event"]
+[connection signal="mouse_entered" from="right_leg/right_leg_Area2D" to="." method="_on_right_leg_area_2d_mouse_entered"]
+[connection signal="mouse_entered" from="right_leg/right_leg_Area2D" to="right_leg/right_leg_Area2D" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="right_leg/right_leg_Area2D" to="." method="_on_right_leg_area_2d_mouse_exited"]
+[connection signal="mouse_exited" from="right_leg/right_leg_Area2D" to="right_leg/right_leg_Area2D" method="_on_mouse_exited"]
+[connection signal="input_event" from="eye/eye_Area2D" to="eye/eye_Area2D" method="_on_input_event"]
+[connection signal="mouse_entered" from="eye/eye_Area2D" to="." method="_on_eye_area_2d_mouse_entered"]
+[connection signal="mouse_entered" from="eye/eye_Area2D" to="eye/eye_Area2D" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="eye/eye_Area2D" to="." method="_on_eye_area_2d_mouse_exited"]
+[connection signal="mouse_exited" from="eye/eye_Area2D" to="eye/eye_Area2D" method="_on_mouse_exited"]

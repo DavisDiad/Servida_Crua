@@ -9,7 +9,7 @@ resource_name = "torso"
 script = ExtResource("1_vx0jp")
 name = "torso"
 max_wounds = 3
-evasion = 15
+evasion = 20
 
 [sub_resource type="Resource" id="Resource_rdp0s"]
 resource_name = "eye"
@@ -36,7 +36,7 @@ evasion = 15
 resource_name = "right_leg"
 script = ExtResource("1_vx0jp")
 name = "right_leg"
-max_wounds = 2
+max_wounds = 1
 evasion = 5
 
 [sub_resource type="Resource" id="Resource_jmqqc"]
@@ -44,21 +44,21 @@ script = ExtResource("3_8p06u")
 name = "claw"
 min_damage = 1
 max_damage = 3
-accuracy = 55
+accuracy = 57
 
 [sub_resource type="Resource" id="Resource_tdjs3"]
 script = ExtResource("3_8p06u")
 name = "infected_claw"
 min_damage = 1
 max_damage = 4
-accuracy = 65
+accuracy = 67
 
 [sub_resource type="Resource" id="Resource_fph4k"]
 script = ExtResource("3_8p06u")
 name = "bite"
 min_damage = 1
 max_damage = 2
-accuracy = 60
+accuracy = 62
 
 [resource]
 script = ExtResource("2_cy7ws")

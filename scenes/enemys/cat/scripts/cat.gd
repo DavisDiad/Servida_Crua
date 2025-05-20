@@ -4,10 +4,19 @@ extends Node2D
 @export var enemy_data: EnemyData #exporta um tres do inimigo, que neste caso é o cat. esse tres esta conectado com o resource EnemyData, que contem todas as informações do inimigo
 
 var can_take_damage = false #serve para controlar quando o inimigo recebe dano
+var has_been_attacked = false
 
 var skill_requirements = { #é um dicionário que atribui as haabilidaades às partes do corpo necesárias para usá-la.
 	"claw": ["left_arm"],
 	"infected_claw": ["right_arm"],
+}
+
+var damage_animations = {
+	"torso": "torso_damage",
+	"left_arm": "left_arm_damage",
+	"right_arm": "right_arm_damage",
+	"right_leg": "right_leg_damage",
+	"eye": "eye_damage"
 }
 
 var wounds = {} #um dicionário que serve para armazenar o número de feridas do inimigo. ele será definido usando enemy_data.body_parts
@@ -18,6 +27,8 @@ var is_talking = false
 var player : Node = null
 var anim : AnimatedSprite2D = null
 
+var hand_cursor = preload("res://placeholders/icons8-cursor-50.png")
+
 func _ready():
 	
 	player = get_node("/root/Fight/player")
@@ -27,6 +38,16 @@ func _ready():
 	for part in enemy_data.body_parts: #"part" é uma variavel temporaria criada automaticamente pelo loop for. ela percorre cada body_part dentro do enemy_data
 		wounds[part.name] = 0
 		
+func _process(delta: float) -> void:
+	if has_been_attacked == true and can_take_damage == false:
+		$DamageAnimationPlayer.stop()
+		$eye/AnimationPlayer.stop()
+		$right_arm/AnimationPlayer.stop()
+		$left_arm/AnimationPlayer.stop()
+		$torso/AnimationPlayer.stop()
+		$right_leg/AnimationPlayer.stop()
+
+
 func _input(event: InputEvent) -> void:
 	if is_talking == true and Input.is_action_just_pressed("left_click"): #ao clicar com o botão esquerdo com o texto ativo,
 		_on_fight_talked()
@@ -54,12 +75,16 @@ func _on_fight_talked() -> void:
 
 func _on_fight_attacking() -> void: #esta função acontece quando o sinal attacking em fight é emitido.
 	can_take_damage = true #ela permite que o inimigo possa receber dano
+	has_been_attacked = false
 
 func _on_attack_finished():
 	anim.play("idle_battle")
 
 func take_damage(body_part_name: String):
 	if can_take_damage:
+		
+		can_take_damage = false
+		
 		anim.play("attack")
 		anim.connect("animation_finished", Callable(self, "_on_attack_finished"), CONNECT_ONE_SHOT)
 		
@@ -74,6 +99,9 @@ func take_damage(body_part_name: String):
 				var hit_quality = CombatCalculator.get_hit_value(player_accuracy, enemy_evasion)
 
 				if hit_quality >= 0:
+					if damage_animations.has(body_part_name):
+						$DamageAnimationPlayer.play(damage_animations[body_part_name])
+						await $DamageAnimationPlayer.animation_finished
 					# Novo cálculo de dano baseado na qualidade do acerto
 					var damage = int(lerp(PlayerHealth.min_damage, PlayerHealth.max_damage, hit_quality))
 					
@@ -93,9 +121,9 @@ func take_damage(body_part_name: String):
 						var sprite = get_node_or_null(body_part_name)
 						if sprite:
 							change_right_leg_texture(sprite)
-							$right_leg/Area2D.hide()
+							$right_leg/right_leg_Area2D.hide()
 							
-						apply_evasion_penalty_to_all(5)
+						apply_evasion_penalty_to_all(7)
 						
 					
 						
@@ -105,13 +133,13 @@ func take_damage(body_part_name: String):
 							sprite.visible = false
 						
 						if body_part_name == "right_arm":
-							apply_evasion_penalty_to_all(5)
+							apply_evasion_penalty_to_all(7)
 						
 						if body_part_name == "left_arm":
-							apply_evasion_penalty_to_all(5)
+							apply_evasion_penalty_to_all(7)
 				break
 
-		can_take_damage = false
+		has_been_attacked = true
 		perform_attack()
 
 func can_use_skill(skill_name: String) -> bool:
@@ -304,15 +332,24 @@ func perform_attack():
 		part_names_pt[attacked_part]
 	]
 	
-	if hit == true: 
+	
+	var final_text = "%s %s" % [ataque_texto, attack_result_text]
+
+	if hit:
+		# Toca a animação e só depois mostra o texto
 		await get_tree().create_timer(0.1).timeout
 		anim.play("attacked")
-		anim.connect("animation_finished", Callable(self, "_on_attack_finished"), CONNECT_ONE_SHOT)
+		await anim.animation_finished
+		anim.play("idle_battle")
+		get_node("/root/Fight").display_text(final_text)
 	else:
-		anim.connect("animation_finished", Callable(self, "_on_attack_finished"), CONNECT_ONE_SHOT)
-	
-	get_node("/root/Fight").display_text("%s %s" % [ataque_texto, attack_result_text])
+		# Sem animação, mostra o texto imediatamente
+		get_node("/root/Fight").display_text(final_text)
+
+	# Espera o jogador fechar a caixa de texto
 	await get_node("/root/Fight").textbox_closed
+
+	# Mostra o painel de ações novamente
 	get_node("/root/Fight/UI/ActionsPanel").show()
 	
 	
@@ -339,3 +376,48 @@ func apply_evasion_penalty_to_all(penalty: int):
 	for p in enemy_data.body_parts:
 		p.evasion = max(0, p.evasion - penalty)
 		print("Reduzida evasão de %s para %d" % [p.name, p.evasion])
+
+
+
+func _on_area_2d_torso_mouse_entered() -> void:
+	if can_take_damage == true:
+		$torso/AnimationPlayer.play("torso_over")
+
+
+func _on_area_2d_torso_mouse_exited() -> void:
+	$torso/AnimationPlayer.stop()
+
+func _on_left_arm_area_2d_mouse_entered() -> void:
+	if can_take_damage == true:
+		$left_arm/AnimationPlayer.play("left_arm_over")
+
+
+func _on_left_arm_area_2d_mouse_exited() -> void:
+	$left_arm/AnimationPlayer.stop()
+
+
+func _on_right_arm_area_2d_mouse_entered() -> void:
+	if can_take_damage == true:
+		$right_arm/AnimationPlayer.play("right_arm_over")
+
+
+func _on_right_arm_area_2d_mouse_exited() -> void:
+	$right_arm/AnimationPlayer.stop()
+
+
+func _on_eye_area_2d_mouse_entered() -> void:
+	if can_take_damage == true:
+		$eye/AnimationPlayer.play("eye_over")
+
+
+func _on_eye_area_2d_mouse_exited() -> void:
+	$eye/AnimationPlayer.stop()
+
+
+func _on_right_leg_area_2d_mouse_entered() -> void:
+	if can_take_damage == true:
+		$right_leg/AnimationPlayer.play("right_leg_over")
+
+
+func _on_right_leg_area_2d_mouse_exited() -> void:
+	$right_leg/AnimationPlayer.stop()

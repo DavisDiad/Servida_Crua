@@ -1,98 +1,37 @@
-[gd_scene load_steps=15 format=3 uid="uid://chfkcms6t6n7p"]
+[gd_scene load_steps=7 format=3 uid="uid://chfkcms6t6n7p"]
 
 [ext_resource type="PackedScene" uid="uid://cyl30kecp6emh" path="res://scenes/player/player.tscn" id="1_80qcc"]
-[ext_resource type="Script" path="res://scenes/dummy.gd" id="1_ho8at"]
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="2_wrc3t"]
 [ext_resource type="Texture2D" uid="uid://c2oqk1rlp518h" path="res://placeholders/487822751_690309623742518_8888194850570010313_n.jpg" id="3_qocxd"]
 [ext_resource type="Texture2D" uid="uid://b3veo2r33xywq" path="res://placeholders/Helena_Cut.png" id="4_h34uh"]
 [ext_resource type="Texture2D" uid="uid://c28ne3v3d54cr" path="res://placeholders/helena_teste_00.png" id="5_tg23r"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vlqnp"]
-size = Vector2(1936, 56)
+[sub_resource type="GDScript" id="GDScript_2twwu"]
+script/source = "extends Node2D
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f4qki"]
-size = Vector2(1936, 78)
+@export var animator:AnimationPlayer;
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6v3q"]
-size = Vector2(1936, 110)
 
-[sub_resource type="Animation" id="Animation_xofm6"]
-resource_name = "00"
-length = 0.5
-capture_included = true
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("player:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"update": 2,
-"values": [Vector2(4, 4)]
-}
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
 
-[sub_resource type="Animation" id="Animation_om1gf"]
-resource_name = "01"
-length = 0.5
-capture_included = true
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("player:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"update": 2,
-"values": [Vector2(4.5, 4.5)]
-}
+func tocaperto(_ingnorar):
+	animator.play(\"00\");
 
-[sub_resource type="Animation" id="Animation_0a8ac"]
-resource_name = "02"
-length = 0.5
-capture_included = true
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("player:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"update": 2,
-"values": [Vector2(5, 5)]
-}
+func tocamedio(_ingnorar):
+	animator.play(\"01\");
 
-[sub_resource type="Animation" id="Animation_yms8a"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("player:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(4, 4)]
-}
+func tocalonge(_ingnorar):
+	animator.play(\"02\");
+	pass # Replace with function body.
+"
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_nat8e"]
-_data = {
-"00": SubResource("Animation_xofm6"),
-"01": SubResource("Animation_om1gf"),
-"02": SubResource("Animation_0a8ac"),
-"RESET": SubResource("Animation_yms8a")
-}
-
-[node name="scene1" type="Node2D" node_paths=PackedStringArray("animator")]
-script = ExtResource("1_ho8at")
-animator = NodePath("animsDepth")
+[node name="scene1" type="Node2D"]
+script = SubResource("GDScript_2twwu")
 
 [node name="player" parent="." instance=ExtResource("1_80qcc")]
 z_index = 1
@@ -117,39 +56,3 @@ texture = ExtResource("4_h34uh")
 visible = false
 position = Vector2(639, 505)
 texture = ExtResource("5_tg23r")
-
-[node name="away" type="Area2D" parent="."]
-position = Vector2(948, 596)
-collision_layer = 4
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="away"]
-position = Vector2(10, -3)
-shape = SubResource("RectangleShape2D_vlqnp")
-
-[node name="away2" type="Area2D" parent="."]
-position = Vector2(948, 662)
-collision_layer = 4
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="away2"]
-position = Vector2(10, 4)
-shape = SubResource("RectangleShape2D_f4qki")
-
-[node name="away3" type="Area2D" parent="."]
-position = Vector2(948, 662)
-collision_layer = 4
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="away3"]
-position = Vector2(10, 100)
-shape = SubResource("RectangleShape2D_b6v3q")
-
-[node name="animsDepth" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_nat8e")
-}
-
-[connection signal="body_entered" from="away" to="." method="tocaperto"]
-[connection signal="body_entered" from="away2" to="." method="tocamedio"]
-[connection signal="body_entered" from="away3" to="." method="tocalonge"]
