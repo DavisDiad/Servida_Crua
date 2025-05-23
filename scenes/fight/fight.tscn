@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cofg4e1bbi23e"]
 
-[ext_resource type="Script" path="res://scenes/fight/fight.gd" id="1_4se71"]
+[ext_resource type="Script" uid="uid://wqm52dtuc1wm" path="res://scenes/fight/fight.gd" id="1_4se71"]
 [ext_resource type="PackedScene" uid="uid://ctls4fuoxikdh" path="res://scenes/enemys/cat/cat.tscn" id="2_cubfr"]
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="3_63nu4"]
 [ext_resource type="Texture2D" uid="uid://b5cyg7hfck87d" path="res://placeholders/rascunho_batalha1.png" id="4_bv1ih"]

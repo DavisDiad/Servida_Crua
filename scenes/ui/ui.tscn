@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bct6pd7l1iui0"]
 
-[ext_resource type="Script" path="res://scenes/ui/ui.gd" id="1_pl2xg"]
-[ext_resource type="Texture2D" uid="uid://cnu38xsogb1qj" path="res://placeholders/ui teste.png" id="2_7onku"]
+[ext_resource type="Script" uid="uid://dclxk0tnopl7n" path="res://scenes/ui/ui.gd" id="1_pl2xg"]
+[ext_resource type="Texture2D" uid="uid://dsd6p23adk0bw" path="res://placeholders/ui teste6.png" id="2_aac20"]
 [ext_resource type="Texture2D" uid="uid://c03eqryi2ma25" path="res://placeholders/portrait_teste.png" id="3_hynxb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_640q4"]
@@ -18,7 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_7onku")
+texture = ExtResource("2_aac20")
 
 [node name="TextBox" type="Panel" parent="TextureRect"]
 visible = false

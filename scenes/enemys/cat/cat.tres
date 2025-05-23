@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=12 format=3 uid="uid://bw1kjdf7raugs"]
 
-[ext_resource type="Script" path="res://resources/BodyPart.gd" id="1_vx0jp"]
-[ext_resource type="Script" path="res://resources/EnemyData.gd" id="2_cy7ws"]
-[ext_resource type="Script" path="res://resources/EnemySkill.gd" id="3_8p06u"]
+[ext_resource type="Script" uid="uid://cnsddtmtp68ht" path="res://resources/BodyPart.gd" id="1_vx0jp"]
+[ext_resource type="Script" uid="uid://dce8g0hra0qc" path="res://resources/EnemyData.gd" id="2_cy7ws"]
+[ext_resource type="Script" uid="uid://58tyn321d3di" path="res://resources/EnemySkill.gd" id="3_8p06u"]
 
 [sub_resource type="Resource" id="Resource_2p7br"]
 resource_name = "torso"
