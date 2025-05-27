@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d3go1lkwhx5mg"]
+[gd_scene load_steps=30 format=3 uid="uid://d3go1lkwhx5mg"]
 
 [ext_resource type="Script" uid="uid://dbh6xcv66mehr" path="res://scenes/enemys/friend/scripts/friend.gd" id="1_i7v2u"]
 [ext_resource type="Texture2D" uid="uid://ckaxa5oggy8hm" path="res://scenes/enemys/friend/sprites/torso_friend.png" id="1_s0kxt"]
@@ -12,16 +12,292 @@
 radius = 44.0
 height = 464.0
 
+[sub_resource type="Animation" id="Animation_t8am6"]
+resource_name = "torso_over"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lmkib"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oaesx"]
+_data = {
+&"RESET": SubResource("Animation_lmkib"),
+&"torso_over": SubResource("Animation_t8am6")
+}
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_yogdj"]
 radius = 35.0
+
+[sub_resource type="Animation" id="Animation_ax7t7"]
+resource_name = "head_over"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_12x7x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1v0u3"]
+_data = {
+&"RESET": SubResource("Animation_12x7x"),
+&"head_over": SubResource("Animation_ax7t7")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i7v2u"]
 radius = 22.1336
 height = 140.33
 
+[sub_resource type="Animation" id="Animation_dxra8"]
+resource_name = "left_arm_over"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.794668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cjy41"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bey75"]
+_data = {
+&"RESET": SubResource("Animation_cjy41"),
+&"left_arm_over": SubResource("Animation_dxra8")
+}
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vlsvc"]
 radius = 21.9318
 height = 146.122
+
+[sub_resource type="Animation" id="Animation_0v2qq"]
+resource_name = "right_arm_over"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nxrxy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dij80"]
+_data = {
+&"RESET": SubResource("Animation_nxrxy"),
+&"right_arm_over": SubResource("Animation_0v2qq")
+}
+
+[sub_resource type="Animation" id="Animation_3mdrn"]
+resource_name = "head_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("head:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wqokj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("head:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("torso:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("left_arm:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("right_arm:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vrjkg"]
+resource_name = "torso_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("torso:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gbmfj"]
+resource_name = "left_arm_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("left_arm:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bvse4"]
+resource_name = "right_arm_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("right_arm:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t8am6"]
+_data = {
+&"RESET": SubResource("Animation_wqokj"),
+&"head_damage": SubResource("Animation_3mdrn"),
+&"left_arm_damage": SubResource("Animation_gbmfj"),
+&"right_arm_damage": SubResource("Animation_bvse4"),
+&"torso_damage": SubResource("Animation_vrjkg")
+}
 
 [node name="Friend" type="Node2D"]
 script = ExtResource("1_i7v2u")
@@ -30,56 +306,87 @@ enemy_data = ExtResource("2_vlsvc")
 [node name="torso" type="Sprite2D" parent="."]
 texture = ExtResource("1_s0kxt")
 
-[node name="Area2D" type="Area2D" parent="torso" node_paths=PackedStringArray("enemy")]
+[node name="torso_Area2D" type="Area2D" parent="torso" node_paths=PackedStringArray("enemy")]
 script = ExtResource("2_i7v2u")
 body_part = "torso"
 enemy = NodePath("../..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="torso/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="torso/torso_Area2D"]
 position = Vector2(1, 18)
 shape = SubResource("CapsuleShape2D_s0kxt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="torso"]
+libraries = {
+&"": SubResource("AnimationLibrary_oaesx")
+}
 
 [node name="head" type="Sprite2D" parent="."]
 texture = ExtResource("2_yogdj")
 
-[node name="Area2D" type="Area2D" parent="head" node_paths=PackedStringArray("enemy")]
+[node name="head_Area2D" type="Area2D" parent="head" node_paths=PackedStringArray("enemy")]
 script = ExtResource("2_i7v2u")
 body_part = "head"
 enemy = NodePath("../..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="head/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="head/head_Area2D"]
 position = Vector2(4, -275)
 shape = SubResource("CircleShape2D_yogdj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="head"]
+libraries = {
+&"": SubResource("AnimationLibrary_1v0u3")
+}
 
 [node name="left_arm" type="Sprite2D" parent="."]
 texture = ExtResource("3_i7v2u")
 
-[node name="Area2D" type="Area2D" parent="left_arm" node_paths=PackedStringArray("enemy")]
+[node name="left_arm_Area2D" type="Area2D" parent="left_arm" node_paths=PackedStringArray("enemy")]
 script = ExtResource("2_i7v2u")
 body_part = "left_arm"
 enemy = NodePath("../..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="left_arm/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left_arm/left_arm_Area2D"]
 position = Vector2(-70, -149)
 rotation = -0.0344213
 shape = SubResource("CapsuleShape2D_i7v2u")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="left_arm"]
+libraries = {
+&"": SubResource("AnimationLibrary_bey75")
+}
+
 [node name="right_arm" type="Sprite2D" parent="."]
 texture = ExtResource("4_vlsvc")
 
-[node name="Area2D" type="Area2D" parent="right_arm" node_paths=PackedStringArray("enemy")]
+[node name="right_armArea2D" type="Area2D" parent="right_arm" node_paths=PackedStringArray("enemy")]
 script = ExtResource("2_i7v2u")
 body_part = "right_arm"
 enemy = NodePath("../..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="right_arm/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_arm/right_armArea2D"]
 position = Vector2(72, -152)
 rotation = 0.0454576
 shape = SubResource("CapsuleShape2D_vlsvc")
 
-[node name="DamageAnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="right_arm"]
+libraries = {
+&"": SubResource("AnimationLibrary_dij80")
+}
 
-[connection signal="input_event" from="torso/Area2D" to="torso/Area2D" method="_on_input_event"]
-[connection signal="input_event" from="head/Area2D" to="head/Area2D" method="_on_input_event"]
-[connection signal="input_event" from="left_arm/Area2D" to="left_arm/Area2D" method="_on_input_event"]
-[connection signal="input_event" from="right_arm/Area2D" to="right_arm/Area2D" method="_on_input_event"]
+[node name="DamageAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_t8am6")
+}
+
+[connection signal="input_event" from="torso/torso_Area2D" to="torso/torso_Area2D" method="_on_input_event"]
+[connection signal="mouse_entered" from="torso/torso_Area2D" to="." method="_on_torso_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="torso/torso_Area2D" to="." method="_on_torso_area_2d_mouse_exited"]
+[connection signal="input_event" from="head/head_Area2D" to="head/head_Area2D" method="_on_input_event"]
+[connection signal="mouse_entered" from="head/head_Area2D" to="." method="_on_head_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="head/head_Area2D" to="." method="_on_head_area_2d_mouse_exited"]
+[connection signal="input_event" from="left_arm/left_arm_Area2D" to="left_arm/left_arm_Area2D" method="_on_input_event"]
+[connection signal="mouse_entered" from="left_arm/left_arm_Area2D" to="." method="_on_left_arm_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="left_arm/left_arm_Area2D" to="." method="_on_left_arm_area_2d_mouse_exited"]
+[connection signal="input_event" from="right_arm/right_armArea2D" to="right_arm/right_armArea2D" method="_on_input_event"]
+[connection signal="mouse_entered" from="right_arm/right_armArea2D" to="." method="_on_right_arm_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="right_arm/right_armArea2D" to="." method="_on_right_arm_area_2d_mouse_exited"]

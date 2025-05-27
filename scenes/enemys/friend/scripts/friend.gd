@@ -12,13 +12,12 @@ var skill_requirements = { #é um dicionário que atribui as haabilidaades às p
 	"heavy_punch": ["right_arm"]
 }
 
-#var damage_animations = {
-	#"torso": "torso_damage",
-	#"left_arm": "left_arm_damage",
-	#"right_arm": "right_arm_damage",
-	#"right_leg": "right_leg_damage",
-	#"eye": "eye_damage"
-#}
+var damage_animations = {
+	"torso": "torso_damage",
+	"left_arm": "left_arm_damage",
+	"right_arm": "right_arm_damage",
+	"head": "head_damage"
+}
 
 var wounds = {} #um dicionário que serve para armazenar o número de feridas do inimigo. ele será definido usando enemy_data.body_parts
 
@@ -43,14 +42,13 @@ func _ready():
 	for part in enemy_data.body_parts: #"part" é uma variavel temporaria criada automaticamente pelo loop for. ela percorre cada body_part dentro do enemy_data
 		wounds[part.name] = 0
 		
-#func _process(delta: float) -> void:
-	#if has_been_attacked == true and can_take_damage == false:
-		#$DamageAnimationPlayer.stop()
-		#$eye/AnimationPlayer.stop()
-		#$right_arm/AnimationPlayer.stop()
-		#$left_arm/AnimationPlayer.stop()
-		#$torso/AnimationPlayer.stop()
-		#$right_leg/AnimationPlayer.stop()
+func _process(delta: float) -> void:
+	if has_been_attacked == true and can_take_damage == false:
+		$DamageAnimationPlayer.stop()
+		$head/AnimationPlayer.stop()
+		$right_arm/AnimationPlayer.stop()
+		$left_arm/AnimationPlayer.stop()
+		$torso/AnimationPlayer.stop()
 
 
 func _input(event: InputEvent) -> void:
@@ -104,9 +102,9 @@ func take_damage(body_part_name: String):
 				var hit_quality = CombatCalculator.get_hit_value(player_accuracy, enemy_evasion)
 
 				if hit_quality >= 0:
-					#if damage_animations.has(body_part_name):
-						#$DamageAnimationPlayer.play(damage_animations[body_part_name])
-						#await $DamageAnimationPlayer.animation_finished
+					if damage_animations.has(body_part_name):
+						$DamageAnimationPlayer.play(damage_animations[body_part_name])
+						await $DamageAnimationPlayer.animation_finished
 						
 					# Novo cálculo de dano baseado na qualidade do acerto
 					var damage = int(lerp(PlayerHealth.min_damage, PlayerHealth.max_damage, hit_quality))
@@ -368,46 +366,37 @@ func apply_evasion_penalty_to_all(penalty: int):
 		print("Reduzida evasão de %s para %d" % [p.name, p.evasion])
 
 
+func _on_left_arm_area_2d_mouse_entered() -> void:
+	if can_take_damage == true:
+		$left_arm/AnimationPlayer.play("left_arm_over")
 
-#func _on_area_2d_torso_mouse_entered() -> void:
-	#if can_take_damage == true:
-		#$torso/AnimationPlayer.play("torso_over")
-#
-#
-#func _on_area_2d_torso_mouse_exited() -> void:
-	#$torso/AnimationPlayer.stop()
-#
-#func _on_left_arm_area_2d_mouse_entered() -> void:
-	#if can_take_damage == true:
-		#$left_arm/AnimationPlayer.play("left_arm_over")
-#
-#
-#func _on_left_arm_area_2d_mouse_exited() -> void:
-	#$left_arm/AnimationPlayer.stop()
-#
-#
-#func _on_right_arm_area_2d_mouse_entered() -> void:
-	#if can_take_damage == true:
-		#$right_arm/AnimationPlayer.play("right_arm_over")
-#
-#
-#func _on_right_arm_area_2d_mouse_exited() -> void:
-	#$right_arm/AnimationPlayer.stop()
-#
-#
-#func _on_eye_area_2d_mouse_entered() -> void:
-	#if can_take_damage == true:
-		#$eye/AnimationPlayer.play("eye_over")
-#
-#
-#func _on_eye_area_2d_mouse_exited() -> void:
-	#$eye/AnimationPlayer.stop()
-#
-#
-#func _on_right_leg_area_2d_mouse_entered() -> void:
-	#if can_take_damage == true:
-		#$right_leg/AnimationPlayer.play("right_leg_over")
-#
-#
-#func _on_right_leg_area_2d_mouse_exited() -> void:
-	#$right_leg/AnimationPlayer.stop()
+
+func _on_left_arm_area_2d_mouse_exited() -> void:
+	$left_arm/AnimationPlayer.stop()
+
+
+func _on_right_arm_area_2d_mouse_entered() -> void:
+	if can_take_damage == true:
+		$right_arm/AnimationPlayer.play("right_arm_over")
+
+
+func _on_right_arm_area_2d_mouse_exited() -> void:
+	$right_arm/AnimationPlayer.stop()
+
+
+func _on_head_area_2d_mouse_entered() -> void:
+	if can_take_damage == true:
+		$head/AnimationPlayer.play("head_over")
+
+
+func _on_head_area_2d_mouse_exited() -> void:
+	$head/AnimationPlayer.stop()
+
+
+func _on_torso_area_2d_mouse_entered() -> void:
+	if can_take_damage == true:
+		$torso/AnimationPlayer.play("torso_over")
+
+
+func _on_torso_area_2d_mouse_exited() -> void:
+	$torso/AnimationPlayer.stop()
