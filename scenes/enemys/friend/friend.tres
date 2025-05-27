@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=11 format=3 uid="uid://dufxfnrwj5go1"]
+
+[ext_resource type="Script" uid="uid://cnsddtmtp68ht" path="res://resources/BodyPart.gd" id="1_eqb6k"]
+[ext_resource type="Script" uid="uid://dce8g0hra0qc" path="res://resources/EnemyData.gd" id="2_f7epl"]
+[ext_resource type="Script" uid="uid://58tyn321d3di" path="res://resources/EnemySkill.gd" id="3_pfxvj"]
+
+[sub_resource type="Resource" id="Resource_7cr5w"]
+resource_name = "torso"
+script = ExtResource("1_eqb6k")
+name = "torso"
+max_wounds = 4
+evasion = 10
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_beg5f"]
+resource_name = "head"
+script = ExtResource("1_eqb6k")
+name = "head"
+max_wounds = 3
+evasion = 15
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_bfeko"]
+resource_name = "left_arm"
+script = ExtResource("1_eqb6k")
+name = "left_arm"
+max_wounds = 1
+evasion = 10
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_6rber"]
+resource_name = "right_arm"
+script = ExtResource("1_eqb6k")
+name = "right_arm"
+max_wounds = 2
+evasion = 10
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_75xpg"]
+resource_name = "punch"
+script = ExtResource("3_pfxvj")
+name = "punch"
+min_damage = 1
+max_damage = 2
+accuracy = 50
+metadata/_custom_type_script = "uid://58tyn321d3di"
+
+[sub_resource type="Resource" id="Resource_ukgx1"]
+resource_name = "heavy_punch"
+script = ExtResource("3_pfxvj")
+name = "heavy_punch"
+min_damage = 2
+max_damage = 2
+accuracy = 55
+metadata/_custom_type_script = "uid://58tyn321d3di"
+
+[sub_resource type="Resource" id="Resource_l6rxe"]
+resource_name = "scream"
+script = ExtResource("3_pfxvj")
+name = "scream"
+min_damage = 2
+max_damage = 3
+accuracy = 70
+metadata/_custom_type_script = "uid://58tyn321d3di"
+
+[resource]
+script = ExtResource("2_f7epl")
+name = "Friend"
+damage = 1
+body_parts = Array[ExtResource("1_eqb6k")]([SubResource("Resource_7cr5w"), SubResource("Resource_beg5f"), SubResource("Resource_bfeko"), SubResource("Resource_6rber")])
+skills = Array[ExtResource("3_pfxvj")]([SubResource("Resource_75xpg"), SubResource("Resource_ukgx1"), SubResource("Resource_l6rxe")])

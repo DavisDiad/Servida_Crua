@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://d3go1lkwhx5mg"]
+
+[ext_resource type="Script" uid="uid://dbh6xcv66mehr" path="res://scenes/enemys/friend/scripts/friend.gd" id="1_i7v2u"]
+[ext_resource type="Texture2D" uid="uid://ckaxa5oggy8hm" path="res://scenes/enemys/friend/sprites/torso_friend.png" id="1_s0kxt"]
+[ext_resource type="Script" uid="uid://bfe5cj8mvm2ua" path="res://scenes/enemys/cat/scripts/member.gd" id="2_i7v2u"]
+[ext_resource type="Resource" uid="uid://dufxfnrwj5go1" path="res://scenes/enemys/friend/friend.tres" id="2_vlsvc"]
+[ext_resource type="Texture2D" uid="uid://ch31s37or6bjo" path="res://scenes/enemys/friend/sprites/head_friend.png" id="2_yogdj"]
+[ext_resource type="Texture2D" uid="uid://dayaw0rin7w67" path="res://scenes/enemys/friend/sprites/left_arm_friend.png" id="3_i7v2u"]
+[ext_resource type="Texture2D" uid="uid://b1wky47iqlcbd" path="res://scenes/enemys/friend/sprites/right_arm_friend.png" id="4_vlsvc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s0kxt"]
+radius = 44.0
+height = 464.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yogdj"]
+radius = 35.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i7v2u"]
+radius = 22.1336
+height = 140.33
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vlsvc"]
+radius = 21.9318
+height = 146.122
+
+[node name="Friend" type="Node2D"]
+script = ExtResource("1_i7v2u")
+enemy_data = ExtResource("2_vlsvc")
+
+[node name="torso" type="Sprite2D" parent="."]
+texture = ExtResource("1_s0kxt")
+
+[node name="Area2D" type="Area2D" parent="torso" node_paths=PackedStringArray("enemy")]
+script = ExtResource("2_i7v2u")
+body_part = "torso"
+enemy = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="torso/Area2D"]
+position = Vector2(1, 18)
+shape = SubResource("CapsuleShape2D_s0kxt")
+
+[node name="head" type="Sprite2D" parent="."]
+texture = ExtResource("2_yogdj")
+
+[node name="Area2D" type="Area2D" parent="head" node_paths=PackedStringArray("enemy")]
+script = ExtResource("2_i7v2u")
+body_part = "head"
+enemy = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="head/Area2D"]
+position = Vector2(4, -275)
+shape = SubResource("CircleShape2D_yogdj")
+
+[node name="left_arm" type="Sprite2D" parent="."]
+texture = ExtResource("3_i7v2u")
+
+[node name="Area2D" type="Area2D" parent="left_arm" node_paths=PackedStringArray("enemy")]
+script = ExtResource("2_i7v2u")
+body_part = "left_arm"
+enemy = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left_arm/Area2D"]
+position = Vector2(-70, -149)
+rotation = -0.0344213
+shape = SubResource("CapsuleShape2D_i7v2u")
+
+[node name="right_arm" type="Sprite2D" parent="."]
+texture = ExtResource("4_vlsvc")
+
+[node name="Area2D" type="Area2D" parent="right_arm" node_paths=PackedStringArray("enemy")]
+script = ExtResource("2_i7v2u")
+body_part = "right_arm"
+enemy = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_arm/Area2D"]
+position = Vector2(72, -152)
+rotation = 0.0454576
+shape = SubResource("CapsuleShape2D_vlsvc")
+
+[node name="DamageAnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="input_event" from="torso/Area2D" to="torso/Area2D" method="_on_input_event"]
+[connection signal="input_event" from="head/Area2D" to="head/Area2D" method="_on_input_event"]
+[connection signal="input_event" from="left_arm/Area2D" to="left_arm/Area2D" method="_on_input_event"]
+[connection signal="input_event" from="right_arm/Area2D" to="right_arm/Area2D" method="_on_input_event"]

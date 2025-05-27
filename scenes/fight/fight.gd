@@ -10,8 +10,10 @@ var talking = false
 
 var enemy_data: EnemyData
 
+var is_cat_dead = false #usar esta função para definir que quando o gato morre e esta cena sai, é armazenado num script global que ele ta morto e ao abrir novament esta cena, ou seja na função ready, isto vai estar verdadeiro e vai aprecer a amiga em vez dele.
+
+
 func _ready() -> void:
-	
 	PlayerHealth.can_move = false
 	var player = get_node("player")
 	var anim = player.get_node("AnimatedSprite2D")
@@ -24,13 +26,6 @@ func _ready() -> void:
 	await textbox_closed
 	$UI/ActionsPanel.show()
 	
-	load_enemy("res://scenes/enemys/cat/cat.tres") #pode ser usado em qualquer lugar para chamar um inimigo diferente
-	
-
-func load_enemy(enemy_path: String) -> void: #função usada para carregar o inimigo quando load_enemy() é chamado
-	var loaded_enemy = load(enemy_path)
-	if loaded_enemy:
-		enemy_data = loaded_enemy # Cria uma instância do resource EnemyData
 
 
 func _input(event: InputEvent) -> void:
