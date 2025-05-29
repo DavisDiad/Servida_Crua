@@ -1,0 +1,95 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=14 format=3 uid="uid://ccalmb61uens2"]
+
+[ext_resource type="Script" uid="uid://cnsddtmtp68ht" path="res://resources/BodyPart.gd" id="1_uj863"]
+[ext_resource type="Script" uid="uid://dce8g0hra0qc" path="res://resources/EnemyData.gd" id="2_nxofr"]
+[ext_resource type="Script" uid="uid://58tyn321d3di" path="res://resources/EnemySkill.gd" id="3_0pjs7"]
+
+[sub_resource type="Resource" id="Resource_uj863"]
+resource_name = "torso"
+script = ExtResource("1_uj863")
+name = "torso"
+max_wounds = 6
+evasion = 10
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_nxofr"]
+resource_name = "tumor"
+script = ExtResource("1_uj863")
+name = "tumor"
+max_wounds = 2
+evasion = 5
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_0pjs7"]
+resource_name = "pencil"
+script = ExtResource("1_uj863")
+name = "pencil"
+max_wounds = 3
+evasion = 15
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_84f7k"]
+resource_name = "left_arm"
+script = ExtResource("1_uj863")
+name = "left_arm"
+max_wounds = 2
+evasion = 10
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_dqqd7"]
+resource_name = "right_arm"
+script = ExtResource("1_uj863")
+name = "right_arm"
+max_wounds = 1
+evasion = 10
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_um51t"]
+resource_name = "left_leg"
+script = ExtResource("1_uj863")
+name = "right_leg"
+max_wounds = 2
+evasion = 5
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_7bj2v"]
+resource_name = "meat_brush"
+script = ExtResource("3_0pjs7")
+name = "meat_brush"
+min_damage = 2
+max_damage = 4
+accuracy = 60
+metadata/_custom_type_script = "uid://58tyn321d3di"
+
+[sub_resource type="Resource" id="Resource_ehluh"]
+resource_name = "rotten_vomit"
+script = ExtResource("3_0pjs7")
+name = "rotten_vomit"
+min_damage = 2
+max_damage = 3
+accuracy = 50
+metadata/_custom_type_script = "uid://58tyn321d3di"
+
+[sub_resource type="Resource" id="Resource_6nwf2"]
+resource_name = "punch"
+script = ExtResource("3_0pjs7")
+name = "punch"
+min_damage = 2
+max_damage = 3
+accuracy = 50
+metadata/_custom_type_script = "uid://58tyn321d3di"
+
+[sub_resource type="Resource" id="Resource_bknav"]
+resource_name = "tumor_splash"
+script = ExtResource("3_0pjs7")
+name = "tumor_splash"
+min_damage = 2
+max_damage = 2
+accuracy = 65
+metadata/_custom_type_script = "uid://58tyn321d3di"
+
+[resource]
+script = ExtResource("2_nxofr")
+name = "Grandpa"
+body_parts = Array[ExtResource("1_uj863")]([SubResource("Resource_uj863"), SubResource("Resource_nxofr"), SubResource("Resource_0pjs7"), SubResource("Resource_84f7k"), SubResource("Resource_dqqd7"), SubResource("Resource_um51t")])
+skills = Array[ExtResource("3_0pjs7")]([SubResource("Resource_7bj2v"), SubResource("Resource_ehluh"), SubResource("Resource_6nwf2"), SubResource("Resource_bknav")])

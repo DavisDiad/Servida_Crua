@@ -40,7 +40,7 @@ metadata/_custom_type_script = "uid://cnsddtmtp68ht"
 resource_name = "punch"
 script = ExtResource("3_pfxvj")
 name = "punch"
-min_damage = 1
+min_damage = 2
 max_damage = 2
 accuracy = 50
 metadata/_custom_type_script = "uid://58tyn321d3di"
@@ -66,6 +66,5 @@ metadata/_custom_type_script = "uid://58tyn321d3di"
 [resource]
 script = ExtResource("2_f7epl")
 name = "Friend"
-damage = 1
 body_parts = Array[ExtResource("1_eqb6k")]([SubResource("Resource_7cr5w"), SubResource("Resource_beg5f"), SubResource("Resource_bfeko"), SubResource("Resource_6rber")])
 skills = Array[ExtResource("3_pfxvj")]([SubResource("Resource_75xpg"), SubResource("Resource_ukgx1"), SubResource("Resource_l6rxe")])

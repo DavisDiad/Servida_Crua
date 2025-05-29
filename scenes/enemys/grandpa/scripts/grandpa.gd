@@ -1,21 +1,24 @@
 extends Node2D
 
-
+@export var right_leg_wound_texture : Texture #uma textura exportada usada para alterar a aparência da perna direita quando ela atingir o número máximo de feridas
 @export var enemy_data: EnemyData #exporta um tres do inimigo, que neste caso é o cat. esse tres esta conectado com o resource EnemyData, que contem todas as informações do inimigo
 
 var can_take_damage = false #serve para controlar quando o inimigo recebe dano
 var has_been_attacked = false
 
 var skill_requirements = { #é um dicionário que atribui as haabilidaades às partes do corpo necesárias para usá-la.
-	"scream": ["head"],
-	"heavy_punch": ["right_arm"]
+	"punch": ["left_arm","right_arm"],
+	"meat_brush": ["pencil"],
+	"tumor_splash": ["tumor"]
 }
 
 var damage_animations = {
 	"torso": "torso_damage",
 	"left_arm": "left_arm_damage",
 	"right_arm": "right_arm_damage",
-	"head": "head_damage"
+	"right_leg": "right_leg_damage",
+	"tumor": "tumor_damage",
+	"pencil": "pencil_damage"
 }
 
 var wounds = {} #um dicionário que serve para armazenar o número de feridas do inimigo. ele será definido usando enemy_data.body_parts
@@ -29,11 +32,6 @@ var anim : AnimatedSprite2D = null
 
 func _ready():
 	
-	print("Enemy data loaded:")
-	print("Skills: ", enemy_data.skills)
-	print("Body parts: ", enemy_data.body_parts)
-
-	
 	player = get_node("/root/Fight/player")
 	anim = player.get_node("AnimatedSprite2D")
 	
@@ -44,10 +42,12 @@ func _ready():
 func _process(delta: float) -> void:
 	if has_been_attacked == true and can_take_damage == false:
 		$DamageAnimationPlayer.stop()
-		$head/AnimationPlayer.stop()
+		$tumor/AnimationPlayer.stop()
 		$right_arm/AnimationPlayer.stop()
 		$left_arm/AnimationPlayer.stop()
 		$torso/AnimationPlayer.stop()
+		$right_leg/AnimationPlayer.stop()
+		$pencil/AnimationPlayer.stop()
 
 
 func _input(event: InputEvent) -> void:
@@ -120,19 +120,33 @@ func take_damage(body_part_name: String):
 					if body_part_name == "torso":
 						hide_all_body_parts()
 						
+					elif body_part_name == "right_leg":
+						var sprite = get_node_or_null(body_part_name)
+						if sprite:
+							change_right_leg_texture(sprite)
+							$right_leg/right_leg_Area2D.hide()
+							
+						apply_evasion_penalty_to_all(10)
+						
+					
+						
 					else:
 						var sprite = get_node_or_null(body_part_name)
 						if sprite:
 							sprite.visible = false
 						
 						if body_part_name == "right_arm":
-							apply_evasion_penalty_to_all(7)
+							apply_evasion_penalty_to_all(10)
 						
 						if body_part_name == "left_arm":
-							apply_evasion_penalty_to_all(7)
+							apply_evasion_penalty_to_all(10)
 							
-						if body_part_name == "head":
-							apply_evasion_penalty_to_all(7)
+						if body_part_name == "pencil":
+							apply_evasion_penalty_to_all(10)
+						
+						if body_part_name == "tumor":
+							apply_evasion_penalty_to_all(10)
+							
 				break
 
 		has_been_attacked = true
@@ -150,12 +164,14 @@ func can_use_skill(skill_name: String) -> bool:
 
 func perform_attack():
 	# Define partes do corpo
-	var body_parts = ["head", "torso", "left_arm", "right_arm"]
+	var body_parts = ["head", "torso", "left_arm", "right_arm", "left_leg", "right_leg"]
 	var part_names_pt = {
 		"head": "cabeça",
 		"torso": "tronco",
 		"left_arm": "braço esquerdo",
 		"right_arm": "braço direito",
+		"left_leg": "perna esquerda",
+		"right_leg": "perna direita"
 	}
 	
 	var part_articles = {
@@ -163,12 +179,15 @@ func perform_attack():
 		"torso": "o teu",  
 		"left_arm": "o teu",  
 		"right_arm": "o teu",  
+		"left_leg": "a tua",   
+		"right_leg": "a tua"  
 	}
 	
 	var skill_translations = {
-		"punch": "ataque fantasmagórico",
-		"heavy_punch": "soco pesado",
-		"scream": "grito"
+		"meat_brush": "pincel de carne",
+		"rotten_vomit": "vómito podre",
+		"punch": "soco",
+		"tumor_splash": "respingo tumoral"
 	}
 	
 	# Filtra partes do corpo que já atingiram o limite de feridas
@@ -183,8 +202,9 @@ func perform_attack():
 
 	# Lista de habilidades com suas probabilidades de uso
 	var skill_probabilities = [
-		{"name": "heavy_punch", "chance": 0.7},
-		{"name": "scream", "chance": 0.2},
+		{"name": "meat_brush", "chance": 0.6},
+		{"name": "rotten_vomit", "chance": 0.1},
+		{"name": "tumor_splash", "chance": 0.2},
 		{"name": "punch", "chance": 0.1}
 	]
 
@@ -233,20 +253,20 @@ func perform_attack():
 	}
 
 	# Alteração das probabilidades com base na habilidade
-	if selected_skill_name == "heavy_punch":
+	if selected_skill_name == "meat_brush":
 		part_probabilities["head"] = 0.1
-		part_probabilities["torso"] = 0.5
+		part_probabilities["torso"] = 0.1
 		part_probabilities["left_arm"] = 0.1
 		part_probabilities["right_arm"] = 0.1
+		part_probabilities["left_leg"] = 0.3
+		part_probabilities["right_leg"] = 0.3
+	elif selected_skill_name == "rotten_vomit":
+		part_probabilities["head"] = 0.1
+		part_probabilities["torso"] = 0.2
+		part_probabilities["left_arm"] = 0.2
+		part_probabilities["right_arm"] = 0.3
 		part_probabilities["left_leg"] = 0.1
 		part_probabilities["right_leg"] = 0.1
-	elif selected_skill_name == "scream":
-		part_probabilities["head"] = 0.4
-		part_probabilities["torso"] = 0.3
-		part_probabilities["left_arm"] = 0.2
-		part_probabilities["right_arm"] = 0.2
-		part_probabilities["left_leg"] = 0.2
-		part_probabilities["right_leg"] = 0.2
 	elif selected_skill_name == "punch":
 		part_probabilities["head"] = 0.1
 		part_probabilities["torso"] = 0.1
@@ -254,6 +274,13 @@ func perform_attack():
 		part_probabilities["right_arm"] = 0.2
 		part_probabilities["left_leg"] = 0.2
 		part_probabilities["right_leg"] = 0.2
+	elif selected_skill_name == "tumor_splash":
+		part_probabilities["head"] = 0.2
+		part_probabilities["torso"] = 0.2
+		part_probabilities["left_arm"] = 0.2
+		part_probabilities["right_arm"] = 0.2
+		part_probabilities["left_leg"] = 0.1
+		part_probabilities["right_leg"] = 0.1
 
 	for part in body_parts:
 		if not available_parts.has(part):
@@ -351,9 +378,14 @@ func _on_fight_defending() -> void:
 	perform_attack()
 	PlayerHealth.is_defending = true
 
+func change_right_leg_texture(sprite: Sprite2D):
+	if right_leg_wound_texture:
+		sprite.texture = right_leg_wound_texture
+		print("Right leg texture changed!")
+
 # Function to hide all body parts
 func hide_all_body_parts():
-	var parts = ["head", "torso", "left_arm", "right_arm"]
+	var parts = ["tumor", "torso", "left_arm", "right_arm", "right_leg", "pencil"]
 	for part_name in parts:
 		var sprite = get_node_or_null(part_name)
 		if sprite:
@@ -364,6 +396,15 @@ func apply_evasion_penalty_to_all(penalty: int):
 		p.evasion = max(0, p.evasion - penalty)
 		print("Reduzida evasão de %s para %d" % [p.name, p.evasion])
 
+
+
+func _on_area_2d_torso_mouse_entered() -> void:
+	if can_take_damage == true:
+		$torso/AnimationPlayer.play("torso_over")
+
+
+func _on_area_2d_torso_mouse_exited() -> void:
+	$torso/AnimationPlayer.stop()
 
 func _on_left_arm_area_2d_mouse_entered() -> void:
 	if can_take_damage == true:
@@ -383,19 +424,28 @@ func _on_right_arm_area_2d_mouse_exited() -> void:
 	$right_arm/AnimationPlayer.stop()
 
 
-func _on_head_area_2d_mouse_entered() -> void:
+func _on_tumor_area_2d_mouse_entered() -> void:
 	if can_take_damage == true:
-		$head/AnimationPlayer.play("head_over")
+		$tumor/AnimationPlayer.play("tumor_over")
 
 
-func _on_head_area_2d_mouse_exited() -> void:
-	$head/AnimationPlayer.stop()
+func _on_tumor_area_2d_mouse_exited() -> void:
+	$tumor/AnimationPlayer.stop()
 
 
-func _on_torso_area_2d_mouse_entered() -> void:
+func _on_right_leg_area_2d_mouse_entered() -> void:
 	if can_take_damage == true:
-		$torso/AnimationPlayer.play("torso_over")
+		$right_leg/AnimationPlayer.play("right_leg_over")
 
 
-func _on_torso_area_2d_mouse_exited() -> void:
-	$torso/AnimationPlayer.stop()
+func _on_right_leg_area_2d_mouse_exited() -> void:
+	$right_leg/AnimationPlayer.stop()
+
+
+func _on_pencil_area_2d_mouse_entered() -> void:
+	if can_take_damage == true:
+		$pencil/AnimationPlayer.play("pencil_over")
+
+
+func _on_pencil_area_2d_mouse_exited() -> void:
+	$pencil/AnimationPlayer.stop()

@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://bcx668arqij6w"]
 
-[ext_resource type="Script" uid="uid://wqm52dtuc1wm" path="res://scenes/fight/fight.gd" id="1_eigl2"]
-[ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="2_l1apu"]
-[ext_resource type="PackedScene" uid="uid://d3go1lkwhx5mg" path="res://scenes/enemys/friend/friend.tscn" id="2_pm575"]
-[ext_resource type="Texture2D" uid="uid://b5cyg7hfck87d" path="res://placeholders/rascunho_batalha1.png" id="3_pm575"]
-[ext_resource type="Texture2D" uid="uid://pqhpjncq6pjd" path="res://placeholders/personagem_baattle2.png" id="4_0pcxx"]
-[ext_resource type="Texture2D" uid="uid://f2g6dcisimy6" path="res://placeholders/rule-of-third-940x626.png" id="5_tqboj"]
-[ext_resource type="PackedScene" uid="uid://cyl30kecp6emh" path="res://scenes/player/player.tscn" id="6_ub08j"]
+[ext_resource type="Script" uid="uid://wqm52dtuc1wm" path="res://scenes/fight/fight.gd" id="1_xue7f"]
+[ext_resource type="PackedScene" uid="uid://d3go1lkwhx5mg" path="res://scenes/enemys/friend/friend.tscn" id="2_aymwx"]
+[ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="3_42eq8"]
+[ext_resource type="Texture2D" uid="uid://b5cyg7hfck87d" path="res://placeholders/rascunho_batalha1.png" id="4_w2cg2"]
+[ext_resource type="Texture2D" uid="uid://pqhpjncq6pjd" path="res://placeholders/personagem_baattle2.png" id="5_k54k5"]
+[ext_resource type="Texture2D" uid="uid://f2g6dcisimy6" path="res://placeholders/rule-of-third-940x626.png" id="6_fvwo3"]
+[ext_resource type="PackedScene" uid="uid://cyl30kecp6emh" path="res://scenes/player/player.tscn" id="7_fywrc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jmy8o"]
 bg_color = Color(0, 0, 0, 1)
@@ -18,12 +18,12 @@ bg_color = Color(0.639216, 0.607843, 0.27451, 1)
 bg_color = Color(0, 0, 0, 1)
 
 [node name="Fight" type="Node2D"]
-script = ExtResource("1_eigl2")
+script = ExtResource("1_xue7f")
 
-[node name="Friend" parent="." instance=ExtResource("2_pm575")]
+[node name="Friend" parent="." instance=ExtResource("2_aymwx")]
 position = Vector2(960, 454)
 
-[node name="UI" parent="." instance=ExtResource("2_l1apu")]
+[node name="UI" parent="." instance=ExtResource("3_42eq8")]
 
 [node name="ActionsPanel" type="Panel" parent="UI"]
 z_index = 2
@@ -113,22 +113,22 @@ offset_left = 288.0
 offset_top = 39.0
 offset_right = 1637.0
 offset_bottom = 796.0
-texture = ExtResource("3_pm575")
+texture = ExtResource("4_w2cg2")
 
 [node name="BattleRascunho" type="Sprite2D" parent="."]
 visible = false
 z_index = 4
 position = Vector2(481, 628)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_0pcxx")
+texture = ExtResource("5_k54k5")
 
 [node name="Rule-of-third-940x626" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(959, 409)
 scale = Vector2(1.47545, 1.23545)
-texture = ExtResource("5_tqboj")
+texture = ExtResource("6_fvwo3")
 
-[node name="player" parent="." instance=ExtResource("6_ub08j")]
+[node name="player" parent="." instance=ExtResource("7_fywrc")]
 position = Vector2(503, 645)
 
 [connection signal="attacking" from="." to="Friend" method="_on_fight_attacking"]

@@ -1,0 +1,584 @@
+[gd_scene load_steps=43 format=3 uid="uid://bf2twnfk4pm6o"]
+
+[ext_resource type="Script" uid="uid://c1usqhqjyicix" path="res://scenes/enemys/grandpa/scripts/grandpa.gd" id="1_373t3"]
+[ext_resource type="Texture2D" uid="uid://cp8rn2w5eswf2" path="res://scenes/enemys/grandpa/sprites/torso_grand.png" id="1_d0stf"]
+[ext_resource type="Texture2D" uid="uid://bgxqbdwdf1u4x" path="res://scenes/enemys/grandpa/sprites/tumor_grand.png" id="2_2drqe"]
+[ext_resource type="Script" uid="uid://bfe5cj8mvm2ua" path="res://scenes/enemys/cat/scripts/member.gd" id="2_373t3"]
+[ext_resource type="Texture2D" uid="uid://cnsv2pqwiit0" path="res://scenes/enemys/grandpa/sprites/wound_grand.png" id="2_wv4e1"]
+[ext_resource type="Texture2D" uid="uid://cb7hoha704nfq" path="res://scenes/enemys/grandpa/sprites/pencil_grand.png" id="3_373t3"]
+[ext_resource type="Resource" uid="uid://ccalmb61uens2" path="res://scenes/enemys/grandpa/grandpa.tres" id="3_aldha"]
+[ext_resource type="Texture2D" uid="uid://c5xes7gqlg62b" path="res://scenes/enemys/grandpa/sprites/left_hand_grand.png" id="4_nd6ej"]
+[ext_resource type="Texture2D" uid="uid://cqake24sr1uu2" path="res://scenes/enemys/grandpa/sprites/right_hand_grand.png" id="5_wv4e1"]
+[ext_resource type="Texture2D" uid="uid://da5v8tv068ag3" path="res://scenes/enemys/grandpa/sprites/right_leg_grand.png" id="10_aldha"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d0stf"]
+radius = 84.9058
+height = 329.847
+
+[sub_resource type="Animation" id="Animation_aldha"]
+resource_name = "torso_over"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_01bja"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j3bp8"]
+_data = {
+&"RESET": SubResource("Animation_01bja"),
+&"torso_over": SubResource("Animation_aldha")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2drqe"]
+radius = 80.0
+height = 342.055
+
+[sub_resource type="Animation" id="Animation_qhqh5"]
+resource_name = "tumor_over"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tv38q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uh4ln"]
+_data = {
+&"RESET": SubResource("Animation_tv38q"),
+&"tumor_over": SubResource("Animation_qhqh5")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_373t3"]
+radius = 75.7424
+height = 322.75
+
+[sub_resource type="Animation" id="Animation_iymic"]
+resource_name = "pencil_over"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e5ylv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bhhgi"]
+_data = {
+&"RESET": SubResource("Animation_e5ylv"),
+&"pencil_over": SubResource("Animation_iymic")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nd6ej"]
+radius = 28.0
+height = 216.504
+
+[sub_resource type="Animation" id="Animation_dc6fl"]
+resource_name = "left_arm_over"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_abtme"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_twx0d"]
+_data = {
+&"RESET": SubResource("Animation_abtme"),
+&"left_arm_over": SubResource("Animation_dc6fl")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wv4e1"]
+radius = 34.2257
+height = 146.858
+
+[sub_resource type="Animation" id="Animation_5ddcd"]
+resource_name = "right_arm_over"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cc450"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k7nak"]
+_data = {
+&"RESET": SubResource("Animation_cc450"),
+&"right_arm_over": SubResource("Animation_5ddcd")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aldha"]
+radius = 31.0
+height = 264.0
+
+[sub_resource type="Animation" id="Animation_2belh"]
+resource_name = "right_leg_over"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tv3db"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8bpdn"]
+_data = {
+&"RESET": SubResource("Animation_tv3db"),
+&"right_leg_over": SubResource("Animation_2belh")
+}
+
+[sub_resource type="Animation" id="Animation_md6xl"]
+resource_name = "torso_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("torso:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fpg4w"]
+resource_name = "tumor_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tumor:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
+}
+
+[sub_resource type="Animation" id="Animation_sxy1r"]
+resource_name = "pencil_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pencil:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
+}
+
+[sub_resource type="Animation" id="Animation_g80n6"]
+resource_name = "left_arm_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("left_arm:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
+}
+
+[sub_resource type="Animation" id="Animation_t0k12"]
+resource_name = "right_arm_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("right_arm:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
+}
+
+[sub_resource type="Animation" id="Animation_3r235"]
+resource_name = "right_leg_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("right_leg:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
+}
+
+[sub_resource type="Animation" id="Animation_l34p6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("torso:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("tumor:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pencil:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("left_arm:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("right_arm:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("right_leg:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_01bja"]
+_data = {
+&"RESET": SubResource("Animation_l34p6"),
+&"left_arm_damage": SubResource("Animation_g80n6"),
+&"pencil_damage": SubResource("Animation_sxy1r"),
+&"right_arm_damage": SubResource("Animation_t0k12"),
+&"right_leg_damage": SubResource("Animation_3r235"),
+&"torso_damage": SubResource("Animation_md6xl"),
+&"tumor_damage": SubResource("Animation_fpg4w")
+}
+
+[node name="Grandpa" type="Node2D"]
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_373t3")
+right_leg_wound_texture = ExtResource("2_wv4e1")
+enemy_data = ExtResource("3_aldha")
+
+[node name="torso" type="Sprite2D" parent="."]
+texture = ExtResource("1_d0stf")
+
+[node name="Area2D_torso" type="Area2D" parent="torso" node_paths=PackedStringArray("enemy")]
+script = ExtResource("2_373t3")
+body_part = "torso"
+enemy = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="torso/Area2D_torso"]
+position = Vector2(88, -45)
+rotation = 1.32245
+shape = SubResource("CapsuleShape2D_d0stf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="torso"]
+libraries = {
+&"": SubResource("AnimationLibrary_j3bp8")
+}
+
+[node name="tumor" type="Sprite2D" parent="."]
+texture = ExtResource("2_2drqe")
+
+[node name="tumor_Area2D" type="Area2D" parent="tumor" node_paths=PackedStringArray("enemy")]
+script = ExtResource("2_373t3")
+body_part = "tumor"
+enemy = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tumor/tumor_Area2D"]
+position = Vector2(67, -215)
+rotation = 1.32037
+shape = SubResource("CapsuleShape2D_2drqe")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="tumor"]
+libraries = {
+&"": SubResource("AnimationLibrary_uh4ln")
+}
+
+[node name="pencil" type="Sprite2D" parent="."]
+texture = ExtResource("3_373t3")
+
+[node name="pencil_Area2D" type="Area2D" parent="pencil" node_paths=PackedStringArray("enemy")]
+script = ExtResource("2_373t3")
+body_part = "pencil"
+enemy = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pencil/pencil_Area2D"]
+position = Vector2(-106, 184)
+rotation = 0.828162
+shape = SubResource("CapsuleShape2D_373t3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pencil"]
+libraries = {
+&"": SubResource("AnimationLibrary_bhhgi")
+}
+
+[node name="left_arm" type="Sprite2D" parent="."]
+texture = ExtResource("4_nd6ej")
+
+[node name="left_arm_Area2D" type="Area2D" parent="left_arm" node_paths=PackedStringArray("enemy")]
+script = ExtResource("2_373t3")
+body_part = "left_arm"
+enemy = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left_arm/left_arm_Area2D"]
+position = Vector2(-122, -1)
+rotation = 0.30669
+shape = SubResource("CapsuleShape2D_nd6ej")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="left_arm"]
+libraries = {
+&"": SubResource("AnimationLibrary_twx0d")
+}
+
+[node name="right_arm" type="Sprite2D" parent="."]
+texture = ExtResource("5_wv4e1")
+
+[node name="right_arm_Area2D" type="Area2D" parent="right_arm" node_paths=PackedStringArray("enemy")]
+script = ExtResource("2_373t3")
+body_part = "right_arm"
+enemy = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_arm/right_arm_Area2D"]
+position = Vector2(198, 95)
+rotation = -0.0944371
+shape = SubResource("CapsuleShape2D_wv4e1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="right_arm"]
+libraries = {
+&"": SubResource("AnimationLibrary_k7nak")
+}
+
+[node name="right_leg" type="Sprite2D" parent="."]
+texture = ExtResource("10_aldha")
+
+[node name="right_leg_Area2D" type="Area2D" parent="right_leg" node_paths=PackedStringArray("enemy")]
+script = ExtResource("2_373t3")
+body_part = "right_leg"
+enemy = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_leg/right_leg_Area2D"]
+position = Vector2(284, -48)
+rotation = -0.0902651
+shape = SubResource("CapsuleShape2D_aldha")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="right_leg"]
+libraries = {
+&"": SubResource("AnimationLibrary_8bpdn")
+}
+
+[node name="DamageAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_01bja")
+}
+
+[connection signal="input_event" from="torso/Area2D_torso" to="torso/Area2D_torso" method="_on_input_event"]
+[connection signal="mouse_entered" from="torso/Area2D_torso" to="." method="_on_area_2d_torso_mouse_entered"]
+[connection signal="mouse_exited" from="torso/Area2D_torso" to="." method="_on_area_2d_torso_mouse_exited"]
+[connection signal="input_event" from="tumor/tumor_Area2D" to="tumor/tumor_Area2D" method="_on_input_event"]
+[connection signal="mouse_entered" from="tumor/tumor_Area2D" to="." method="_on_tumor_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="tumor/tumor_Area2D" to="." method="_on_tumor_area_2d_mouse_exited"]
+[connection signal="input_event" from="pencil/pencil_Area2D" to="pencil/pencil_Area2D" method="_on_input_event"]
+[connection signal="mouse_entered" from="pencil/pencil_Area2D" to="." method="_on_pencil_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="pencil/pencil_Area2D" to="." method="_on_pencil_area_2d_mouse_exited"]
+[connection signal="input_event" from="left_arm/left_arm_Area2D" to="left_arm/left_arm_Area2D" method="_on_input_event"]
+[connection signal="mouse_entered" from="left_arm/left_arm_Area2D" to="." method="_on_left_arm_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="left_arm/left_arm_Area2D" to="." method="_on_left_arm_area_2d_mouse_exited"]
+[connection signal="input_event" from="right_arm/right_arm_Area2D" to="right_arm/right_arm_Area2D" method="_on_input_event"]
+[connection signal="mouse_entered" from="right_arm/right_arm_Area2D" to="." method="_on_right_arm_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="right_arm/right_arm_Area2D" to="." method="_on_right_arm_area_2d_mouse_exited"]
+[connection signal="input_event" from="right_leg/right_leg_Area2D" to="right_leg/right_leg_Area2D" method="_on_input_event"]
+[connection signal="mouse_entered" from="right_leg/right_leg_Area2D" to="." method="_on_right_leg_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="right_leg/right_leg_Area2D" to="." method="_on_right_leg_area_2d_mouse_exited"]

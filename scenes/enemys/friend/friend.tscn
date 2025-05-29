@@ -12,6 +12,21 @@
 radius = 44.0
 height = 464.0
 
+[sub_resource type="Animation" id="Animation_lmkib"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_t8am6"]
 resource_name = "torso_over"
 length = 0.8
@@ -29,7 +44,16 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_lmkib"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oaesx"]
+_data = {
+&"RESET": SubResource("Animation_lmkib"),
+&"torso_over": SubResource("Animation_t8am6")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yogdj"]
+radius = 35.0
+
+[sub_resource type="Animation" id="Animation_12x7x"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -43,15 +67,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_oaesx"]
-_data = {
-&"RESET": SubResource("Animation_lmkib"),
-&"torso_over": SubResource("Animation_t8am6")
-}
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_yogdj"]
-radius = 35.0
 
 [sub_resource type="Animation" id="Animation_ax7t7"]
 resource_name = "head_over"
@@ -70,7 +85,17 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_12x7x"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1v0u3"]
+_data = {
+&"RESET": SubResource("Animation_12x7x"),
+&"head_over": SubResource("Animation_ax7t7")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i7v2u"]
+radius = 22.1336
+height = 140.33
+
+[sub_resource type="Animation" id="Animation_cjy41"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -84,16 +109,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1v0u3"]
-_data = {
-&"RESET": SubResource("Animation_12x7x"),
-&"head_over": SubResource("Animation_ax7t7")
-}
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i7v2u"]
-radius = 22.1336
-height = 140.33
 
 [sub_resource type="Animation" id="Animation_dxra8"]
 resource_name = "left_arm_over"
@@ -112,7 +127,17 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_cjy41"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bey75"]
+_data = {
+&"RESET": SubResource("Animation_cjy41"),
+&"left_arm_over": SubResource("Animation_dxra8")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vlsvc"]
+radius = 21.9318
+height = 146.122
+
+[sub_resource type="Animation" id="Animation_nxrxy"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -126,16 +151,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_bey75"]
-_data = {
-&"RESET": SubResource("Animation_cjy41"),
-&"left_arm_over": SubResource("Animation_dxra8")
-}
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vlsvc"]
-radius = 21.9318
-height = 146.122
 
 [sub_resource type="Animation" id="Animation_0v2qq"]
 resource_name = "right_arm_over"
@@ -154,41 +169,10 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_nxrxy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dij80"]
 _data = {
 &"RESET": SubResource("Animation_nxrxy"),
 &"right_arm_over": SubResource("Animation_0v2qq")
-}
-
-[sub_resource type="Animation" id="Animation_3mdrn"]
-resource_name = "head_damage"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("head:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_wqokj"]
@@ -242,13 +226,13 @@ tracks/3/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_vrjkg"]
-resource_name = "torso_damage"
+[sub_resource type="Animation" id="Animation_3mdrn"]
+resource_name = "head_damage"
 length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("torso:modulate")
+tracks/0/path = NodePath("head:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -281,6 +265,22 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("right_arm:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vrjkg"]
+resource_name = "torso_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("torso:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
