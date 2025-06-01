@@ -63,6 +63,5 @@ accuracy = 62
 [resource]
 script = ExtResource("2_cy7ws")
 name = "Cat"
-damage = 1
 body_parts = Array[ExtResource("1_vx0jp")]([SubResource("Resource_2p7br"), SubResource("Resource_rdp0s"), SubResource("Resource_am6nm"), SubResource("Resource_yr4ds"), SubResource("Resource_iuujc")])
 skills = Array[ExtResource("3_8p06u")]([SubResource("Resource_jmqqc"), SubResource("Resource_tdjs3"), SubResource("Resource_fph4k")])

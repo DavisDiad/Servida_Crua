@@ -15,6 +15,21 @@
 radius = 84.9058
 height = 329.847
 
+[sub_resource type="Animation" id="Animation_01bja"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_aldha"]
 resource_name = "torso_over"
 length = 0.8
@@ -32,7 +47,17 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_01bja"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j3bp8"]
+_data = {
+&"RESET": SubResource("Animation_01bja"),
+&"torso_over": SubResource("Animation_aldha")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2drqe"]
+radius = 80.0
+height = 342.055
+
+[sub_resource type="Animation" id="Animation_tv38q"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -46,16 +71,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_j3bp8"]
-_data = {
-&"RESET": SubResource("Animation_01bja"),
-&"torso_over": SubResource("Animation_aldha")
-}
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2drqe"]
-radius = 80.0
-height = 342.055
 
 [sub_resource type="Animation" id="Animation_qhqh5"]
 resource_name = "tumor_over"
@@ -74,7 +89,17 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_tv38q"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uh4ln"]
+_data = {
+&"RESET": SubResource("Animation_tv38q"),
+&"tumor_over": SubResource("Animation_qhqh5")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_373t3"]
+radius = 75.7424
+height = 322.75
+
+[sub_resource type="Animation" id="Animation_e5ylv"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -88,16 +113,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_uh4ln"]
-_data = {
-&"RESET": SubResource("Animation_tv38q"),
-&"tumor_over": SubResource("Animation_qhqh5")
-}
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_373t3"]
-radius = 75.7424
-height = 322.75
 
 [sub_resource type="Animation" id="Animation_iymic"]
 resource_name = "pencil_over"
@@ -116,7 +131,17 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_e5ylv"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bhhgi"]
+_data = {
+&"RESET": SubResource("Animation_e5ylv"),
+&"pencil_over": SubResource("Animation_iymic")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nd6ej"]
+radius = 28.0
+height = 216.504
+
+[sub_resource type="Animation" id="Animation_abtme"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -130,16 +155,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_bhhgi"]
-_data = {
-&"RESET": SubResource("Animation_e5ylv"),
-&"pencil_over": SubResource("Animation_iymic")
-}
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nd6ej"]
-radius = 28.0
-height = 216.504
 
 [sub_resource type="Animation" id="Animation_dc6fl"]
 resource_name = "left_arm_over"
@@ -158,7 +173,17 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_abtme"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_twx0d"]
+_data = {
+&"RESET": SubResource("Animation_abtme"),
+&"left_arm_over": SubResource("Animation_dc6fl")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wv4e1"]
+radius = 34.2257
+height = 146.858
+
+[sub_resource type="Animation" id="Animation_cc450"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -172,16 +197,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_twx0d"]
-_data = {
-&"RESET": SubResource("Animation_abtme"),
-&"left_arm_over": SubResource("Animation_dc6fl")
-}
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wv4e1"]
-radius = 34.2257
-height = 146.858
 
 [sub_resource type="Animation" id="Animation_5ddcd"]
 resource_name = "right_arm_over"
@@ -200,7 +215,17 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_cc450"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k7nak"]
+_data = {
+&"RESET": SubResource("Animation_cc450"),
+&"right_arm_over": SubResource("Animation_5ddcd")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aldha"]
+radius = 31.0
+height = 264.0
+
+[sub_resource type="Animation" id="Animation_tv3db"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -214,16 +239,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_k7nak"]
-_data = {
-&"RESET": SubResource("Animation_cc450"),
-&"right_arm_over": SubResource("Animation_5ddcd")
-}
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aldha"]
-radius = 31.0
-height = 264.0
 
 [sub_resource type="Animation" id="Animation_2belh"]
 resource_name = "right_leg_over"
@@ -242,121 +257,10 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.384314, 0.384314, 0.384314, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_tv3db"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8bpdn"]
 _data = {
 &"RESET": SubResource("Animation_tv3db"),
 &"right_leg_over": SubResource("Animation_2belh")
-}
-
-[sub_resource type="Animation" id="Animation_md6xl"]
-resource_name = "torso_damage"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("torso:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_fpg4w"]
-resource_name = "tumor_damage"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("tumor:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
-}
-
-[sub_resource type="Animation" id="Animation_sxy1r"]
-resource_name = "pencil_damage"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("pencil:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
-}
-
-[sub_resource type="Animation" id="Animation_g80n6"]
-resource_name = "left_arm_damage"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("left_arm:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
-}
-
-[sub_resource type="Animation" id="Animation_t0k12"]
-resource_name = "right_arm_damage"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("right_arm:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
-}
-
-[sub_resource type="Animation" id="Animation_3r235"]
-resource_name = "right_leg_damage"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("right_leg:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
 }
 
 [sub_resource type="Animation" id="Animation_l34p6"]
@@ -432,6 +336,102 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_g80n6"]
+resource_name = "left_arm_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("left_arm:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
+}
+
+[sub_resource type="Animation" id="Animation_sxy1r"]
+resource_name = "pencil_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pencil:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
+}
+
+[sub_resource type="Animation" id="Animation_t0k12"]
+resource_name = "right_arm_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("right_arm:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
+}
+
+[sub_resource type="Animation" id="Animation_3r235"]
+resource_name = "right_leg_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("right_leg:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
+}
+
+[sub_resource type="Animation" id="Animation_md6xl"]
+resource_name = "torso_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("torso:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fpg4w"]
+resource_name = "tumor_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tumor:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_01bja"]

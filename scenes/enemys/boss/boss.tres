@@ -1,0 +1,134 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=19 format=3 uid="uid://bfa2s06w7dt2m"]
+
+[ext_resource type="Script" uid="uid://cnsddtmtp68ht" path="res://resources/BodyPart.gd" id="1_eilqg"]
+[ext_resource type="Script" uid="uid://dce8g0hra0qc" path="res://resources/EnemyData.gd" id="2_fo81u"]
+[ext_resource type="Script" uid="uid://58tyn321d3di" path="res://resources/EnemySkill.gd" id="3_7l4dm"]
+
+[sub_resource type="Resource" id="Resource_0b1hh"]
+script = ExtResource("1_eilqg")
+name = "torso"
+max_wounds = 8
+evasion = 100
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_kj471"]
+resource_name = "head"
+script = ExtResource("1_eilqg")
+name = "head"
+max_wounds = 3
+evasion = 17
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_3dcg4"]
+resource_name = "head_men"
+script = ExtResource("1_eilqg")
+name = "head_men"
+max_wounds = 2
+evasion = 15
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_gdj56"]
+resource_name = "right_hair"
+script = ExtResource("1_eilqg")
+name = "right_hair"
+max_wounds = 2
+evasion = 20
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_iqnki"]
+resource_name = "left_hair"
+script = ExtResource("1_eilqg")
+name = "left_hair"
+max_wounds = 2
+evasion = 20
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_4ix0h"]
+resource_name = "right_arm"
+script = ExtResource("1_eilqg")
+name = "right_arm"
+max_wounds = 1
+evasion = 10
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_bupkv"]
+resource_name = "left_arm"
+script = ExtResource("1_eilqg")
+name = "left_arm"
+max_wounds = 1
+evasion = 10
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_dk47o"]
+resource_name = "right_leg"
+script = ExtResource("1_eilqg")
+name = "right_leg"
+max_wounds = 1
+evasion = 5
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_2rtdw"]
+resource_name = "left_leg"
+script = ExtResource("1_eilqg")
+name = "left_leg"
+max_wounds = 1
+evasion = 5
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_2n13k"]
+resource_name = "right_men"
+script = ExtResource("1_eilqg")
+name = "right_men"
+max_wounds = 3
+evasion = 15
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_ta5we"]
+resource_name = "left_men"
+script = ExtResource("1_eilqg")
+name = "left_men"
+max_wounds = 3
+evasion = 15
+metadata/_custom_type_script = "uid://cnsddtmtp68ht"
+
+[sub_resource type="Resource" id="Resource_64t8o"]
+resource_name = "terrified_cry"
+script = ExtResource("3_7l4dm")
+name = "terrified_cry"
+min_damage = 2
+max_damage = 6
+accuracy = 40
+metadata/_custom_type_script = "uid://58tyn321d3di"
+
+[sub_resource type="Resource" id="Resource_vjmcx"]
+resource_name = "hair_hang"
+script = ExtResource("3_7l4dm")
+name = "hair_strangulation"
+min_damage = 1
+max_damage = 5
+accuracy = 55
+metadata/_custom_type_script = "uid://58tyn321d3di"
+
+[sub_resource type="Resource" id="Resource_vxbgm"]
+resource_name = "silent_scream"
+script = ExtResource("3_7l4dm")
+name = "silent_scream"
+min_damage = 1
+max_damage = 3
+accuracy = 60
+metadata/_custom_type_script = "uid://58tyn321d3di"
+
+[sub_resource type="Resource" id="Resource_1cktn"]
+resource_name = "human_hammer"
+script = ExtResource("3_7l4dm")
+name = "human_hammer"
+min_damage = 4
+max_damage = 5
+accuracy = 50
+metadata/_custom_type_script = "uid://58tyn321d3di"
+
+[resource]
+script = ExtResource("2_fo81u")
+name = "Boss"
+body_parts = Array[ExtResource("1_eilqg")]([SubResource("Resource_0b1hh"), SubResource("Resource_kj471"), SubResource("Resource_3dcg4"), SubResource("Resource_gdj56"), SubResource("Resource_iqnki"), SubResource("Resource_4ix0h"), SubResource("Resource_bupkv"), SubResource("Resource_dk47o"), SubResource("Resource_2rtdw"), SubResource("Resource_2n13k"), SubResource("Resource_ta5we")])
+skills = Array[ExtResource("3_7l4dm")]([SubResource("Resource_64t8o"), SubResource("Resource_vjmcx"), SubResource("Resource_vxbgm"), SubResource("Resource_1cktn")])

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bct6pd7l1iui0"]
+[gd_scene load_steps=7 format=3 uid="uid://bct6pd7l1iui0"]
 
 [ext_resource type="Script" uid="uid://dclxk0tnopl7n" path="res://scenes/ui/ui.gd" id="1_pl2xg"]
-[ext_resource type="Texture2D" uid="uid://dud3huvu7fjov" path="res://placeholders/ui teste8.png" id="2_aac20"]
+[ext_resource type="Texture2D" uid="uid://c6lsv0jvjc82x" path="res://scenes/ui/ui.png" id="2_aac20"]
 [ext_resource type="Texture2D" uid="uid://c03eqryi2ma25" path="res://placeholders/portrait_teste.png" id="3_hynxb"]
+[ext_resource type="Texture2D" uid="uid://be2ud15rxx742" path="res://placeholders/ui_feridas3.png" id="4_g5kmx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_640q4"]
 bg_color = Color(0, 0, 0, 1)
@@ -65,7 +66,7 @@ offset_right = -214.0
 offset_bottom = -724.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.556863, 0.537255, 0.513726, 1)
 theme_override_font_sizes/font_size = 30
 text = "0"
 horizontal_alignment = 1
@@ -82,7 +83,7 @@ offset_right = -28.0
 offset_bottom = -724.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.556863, 0.537255, 0.513726, 1)
 theme_override_font_sizes/font_size = 30
 text = "0"
 horizontal_alignment = 1
@@ -99,7 +100,7 @@ offset_right = -28.0
 offset_bottom = -593.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.556863, 0.537255, 0.513726, 1)
 theme_override_font_sizes/font_size = 30
 text = "0"
 horizontal_alignment = 1
@@ -116,7 +117,7 @@ offset_right = -214.0
 offset_bottom = -593.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.556863, 0.537255, 0.513726, 1)
 theme_override_font_sizes/font_size = 30
 text = "0"
 horizontal_alignment = 1
@@ -133,7 +134,7 @@ offset_right = -214.0
 offset_bottom = -238.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.556863, 0.537255, 0.513726, 1)
 theme_override_font_sizes/font_size = 30
 text = "0"
 horizontal_alignment = 1
@@ -150,7 +151,7 @@ offset_right = -28.0
 offset_bottom = -238.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.556863, 0.537255, 0.513726, 1)
 theme_override_font_sizes/font_size = 30
 text = "0"
 horizontal_alignment = 1
@@ -161,12 +162,19 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 289.0
-offset_top = -255.0
-offset_right = -1420.0
-offset_bottom = -33.0
+offset_left = 292.0
+offset_top = -259.0
+offset_right = -1396.0
+offset_bottom = -37.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
 texture = ExtResource("3_hynxb")
 expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 67.0
+offset_top = 124.0
+offset_right = 220.0
+offset_bottom = 695.0
+texture = ExtResource("4_g5kmx")

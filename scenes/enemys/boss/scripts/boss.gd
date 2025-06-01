@@ -1,21 +1,29 @@
 extends Node2D
 
-
 @export var enemy_data: EnemyData #exporta um tres do inimigo, que neste caso é o cat. esse tres esta conectado com o resource EnemyData, que contem todas as informações do inimigo
 
 var can_take_damage = false #serve para controlar quando o inimigo recebe dano
 var has_been_attacked = false
 
 var skill_requirements = { #é um dicionário que atribui as haabilidaades às partes do corpo necesárias para usá-la.
-	"punch": ["left_arm"],
-	"heavy_punch": ["right_arm"]
+	"terrified_cry": ["head"],
+	"hair_strangulation": ["right_hair","left_hair"],
+	"silent_scream": ["head_men"],
+	"human_hammer": ["right_men","left_men"]
 }
 
 var damage_animations = {
 	"torso": "torso_damage",
 	"left_arm": "left_arm_damage",
 	"right_arm": "right_arm_damage",
-	"head": "head_damage"
+	"right_leg": "right_leg_damage",
+	"left_leg": "left_leg_damage",
+	"head": "head_damage",
+	"head_men": "head_men_damage",
+	"right_hair": "right_hair_damage",
+	"left_hair": "left_hair_damage",
+	"right_men": "right_men_damage",
+	"left_men": "left_men_damage"
 }
 
 var wounds = {} #um dicionário que serve para armazenar o número de feridas do inimigo. ele será definido usando enemy_data.body_parts
@@ -28,11 +36,6 @@ var anim : AnimatedSprite2D = null
 
 
 func _ready():
-	
-	print("Enemy data loaded:")
-	print("Skills: ", enemy_data.skills)
-	print("Body parts: ", enemy_data.body_parts)
-
 	
 	player = get_node("/root/Fight/player")
 	anim = player.get_node("AnimatedSprite2D")
@@ -48,7 +51,13 @@ func _process(delta: float) -> void:
 		$right_arm/AnimationPlayer.stop()
 		$left_arm/AnimationPlayer.stop()
 		$torso/AnimationPlayer.stop()
-
+		$right_leg/AnimationPlayer.stop()
+		$left_leg/AnimationPlayer.stop()
+		$head_men/AnimationPlayer.stop()
+		$right_hair/AnimationPlayer.stop()
+		$left_hair/AnimationPlayer.stop()
+		$right_men/AnimationPlayer.stop()
+		$left_men/AnimationPlayer.stop()
 
 func _input(event: InputEvent) -> void:
 	if is_talking == true and Input.is_action_just_pressed("left_click"): #ao clicar com o botão esquerdo com o texto ativo,
@@ -119,6 +128,7 @@ func take_damage(body_part_name: String):
 					# Desmembramento e aplicação de penalidade de evasão
 					if body_part_name == "torso":
 						hide_all_body_parts()
+					
 						
 					else:
 						var sprite = get_node_or_null(body_part_name)
@@ -126,13 +136,35 @@ func take_damage(body_part_name: String):
 							sprite.visible = false
 						
 						if body_part_name == "right_arm":
-							apply_evasion_penalty_to_all(7)
+							apply_evasion_penalty_to_all(5)
 						
 						if body_part_name == "left_arm":
-							apply_evasion_penalty_to_all(7)
+							apply_evasion_penalty_to_all(5)
+							
+						if body_part_name == "right_leg":
+							apply_evasion_penalty_to_all(5)
+							
+						if body_part_name == "left_leg":
+							apply_evasion_penalty_to_all(5)
 							
 						if body_part_name == "head":
-							apply_evasion_penalty_to_all(7)
+							apply_evasion_penalty_to_all(20)
+						
+						if body_part_name == "head_men":
+							apply_evasion_penalty_to_all(10)
+							
+						if body_part_name == "right_hair":
+							apply_evasion_penalty_to_all(30)
+							
+						if body_part_name == "left_hair":
+							apply_evasion_penalty_to_all(30)
+							
+						if body_part_name == "right_men":
+							apply_evasion_penalty_to_all(20)
+							
+						if body_part_name == "left_men":
+							apply_evasion_penalty_to_all(20)
+							
 				break
 
 		has_been_attacked = true
@@ -147,15 +179,31 @@ func can_use_skill(skill_name: String) -> bool:
 				if wounds.get(part_name, 0) >= part.max_wounds:
 					return false
 	return true
+	
+func all_skills_unavailable() -> bool:
+	for skill_name in skill_requirements.keys():
+		if can_use_skill(skill_name):
+			return false
+	return true
 
 func perform_attack():
+	
+	if all_skills_unavailable():
+		get_node("/root/Fight/UI/TextBox").show()
+		get_node("/root/Fight").display_text("O inimigo está incapacitado e não ataca.")
+		await get_node("/root/Fight").textbox_closed
+		get_node("/root/Fight/UI/ActionsPanel").show()
+		return
+	
 	# Define partes do corpo
-	var body_parts = ["head", "torso", "left_arm", "right_arm"]
+	var body_parts = ["head", "torso", "left_arm", "right_arm", "left_leg", "right_leg"]
 	var part_names_pt = {
 		"head": "cabeça",
 		"torso": "tronco",
 		"left_arm": "braço esquerdo",
 		"right_arm": "braço direito",
+		"left_leg": "perna esquerda",
+		"right_leg": "perna direita"
 	}
 	
 	var part_articles = {
@@ -163,12 +211,15 @@ func perform_attack():
 		"torso": "o teu",  
 		"left_arm": "o teu",  
 		"right_arm": "o teu",  
+		"left_leg": "a tua",   
+		"right_leg": "a tua"  
 	}
 	
 	var skill_translations = {
-		"punch": "ataque fantasmagórico",
-		"heavy_punch": "soco pesado",
-		"scream": "grito"
+		"terrified_cry": "choro agonizante",
+		"hair_strangulation": "estrangulamento com cabelo",
+		"silent_scream": "grito silencioso",
+		"human_hammer": "martelada humana"
 	}
 	
 	# Filtra partes do corpo que já atingiram o limite de feridas
@@ -183,9 +234,10 @@ func perform_attack():
 
 	# Lista de habilidades com suas probabilidades de uso
 	var skill_probabilities = [
-		{"name": "heavy_punch", "chance": 0.5},
-		{"name": "scream", "chance": 0.2},
-		{"name": "punch", "chance": 0.3}
+		{"name": "terrified_cry", "chance": 0.3},
+		{"name": "hair_strangulation", "chance": 0.2},
+		{"name": "silent_scream", "chance": 0.2},
+		{"name": "human_hammer", "chance": 0.3}
 	]
 
 	# Ordena da mais provável pra menos
@@ -233,27 +285,34 @@ func perform_attack():
 	}
 
 	# Alteração das probabilidades com base na habilidade
-	if selected_skill_name == "heavy_punch":
+	if selected_skill_name == "terrified_cry":
 		part_probabilities["head"] = 0.1
-		part_probabilities["torso"] = 0.5
+		part_probabilities["torso"] = 0.2
+		part_probabilities["left_arm"] = 0.1
+		part_probabilities["right_arm"] = 0.2
+		part_probabilities["left_leg"] = 0.2
+		part_probabilities["right_leg"] = 0.2
+	elif selected_skill_name == "hair_strangulation":
+		part_probabilities["head"] = 0.4
+		part_probabilities["torso"] = 0.4
 		part_probabilities["left_arm"] = 0.1
 		part_probabilities["right_arm"] = 0.1
-		part_probabilities["left_leg"] = 0.1
-		part_probabilities["right_leg"] = 0.1
-	elif selected_skill_name == "scream":
-		part_probabilities["head"] = 0.4
-		part_probabilities["torso"] = 0.3
-		part_probabilities["left_arm"] = 0.2
-		part_probabilities["right_arm"] = 0.2
-		part_probabilities["left_leg"] = 0.2
-		part_probabilities["right_leg"] = 0.2
-	elif selected_skill_name == "punch":
-		part_probabilities["head"] = 0.1
+		part_probabilities["left_leg"] = 0.0
+		part_probabilities["right_leg"] = 0.0
+	elif selected_skill_name == "silent_scream":
+		part_probabilities["head"] = 0.2
 		part_probabilities["torso"] = 0.1
 		part_probabilities["left_arm"] = 0.2
-		part_probabilities["right_arm"] = 0.2
+		part_probabilities["right_arm"] = 0.1
 		part_probabilities["left_leg"] = 0.2
 		part_probabilities["right_leg"] = 0.2
+	elif selected_skill_name == "human_hammer":
+		part_probabilities["head"] = 0.0
+		part_probabilities["torso"] = 0.0
+		part_probabilities["left_arm"] = 0.2
+		part_probabilities["right_arm"] = 0.2
+		part_probabilities["left_leg"] = 0.3
+		part_probabilities["right_leg"] = 0.3
 
 	for part in body_parts:
 		if not available_parts.has(part):
@@ -351,9 +410,10 @@ func _on_fight_defending() -> void:
 	perform_attack()
 	PlayerHealth.is_defending = true
 
+
 # Function to hide all body parts
 func hide_all_body_parts():
-	var parts = ["head", "torso", "left_arm", "right_arm"]
+	var parts = ["head", "torso", "left_arm", "right_arm", "right_leg", "left_leg", "right_hair", "left_hair", "head_men", "right_men", "left_men"]
 	for part_name in parts:
 		var sprite = get_node_or_null(part_name)
 		if sprite:
@@ -364,6 +424,15 @@ func apply_evasion_penalty_to_all(penalty: int):
 		p.evasion = max(0, p.evasion - penalty)
 		print("Reduzida evasão de %s para %d" % [p.name, p.evasion])
 
+
+
+func _on_area_2d_torso_mouse_entered() -> void:
+	if can_take_damage == true:
+		$torso/AnimationPlayer.play("torso_over")
+
+
+func _on_area_2d_torso_mouse_exited() -> void:
+	$torso/AnimationPlayer.stop()
 
 func _on_left_arm_area_2d_mouse_entered() -> void:
 	if can_take_damage == true:
@@ -383,6 +452,15 @@ func _on_right_arm_area_2d_mouse_exited() -> void:
 	$right_arm/AnimationPlayer.stop()
 
 
+func _on_right_leg_area_2d_mouse_entered() -> void:
+	if can_take_damage == true:
+		$right_leg/AnimationPlayer.play("right_leg_over")
+
+
+func _on_right_leg_area_2d_mouse_exited() -> void:
+	$right_leg/AnimationPlayer.stop()
+
+
 func _on_head_area_2d_mouse_entered() -> void:
 	if can_take_damage == true:
 		$head/AnimationPlayer.play("head_over")
@@ -392,10 +470,55 @@ func _on_head_area_2d_mouse_exited() -> void:
 	$head/AnimationPlayer.stop()
 
 
-func _on_torso_area_2d_mouse_entered() -> void:
+func _on_head_men_area_2d_mouse_entered() -> void:
 	if can_take_damage == true:
-		$torso/AnimationPlayer.play("torso_over")
+		$head_men/AnimationPlayer.play("head_men_over")
 
 
-func _on_torso_area_2d_mouse_exited() -> void:
-	$torso/AnimationPlayer.stop()
+func _on_head_men_area_2d_mouse_exited() -> void:
+	$head_men/AnimationPlayer.stop()
+
+
+func _on_right_hair_area_2d_mouse_entered() -> void:
+	if can_take_damage == true:
+		$right_hair/AnimationPlayer.play("right_hair_over")
+
+
+func _on_right_hair_area_2d_mouse_exited() -> void:
+	$right_hair/AnimationPlayer.stop()
+
+
+func _on_left_hair_area_2d_mouse_entered() -> void:
+	if can_take_damage == true:
+		$left_hair/AnimationPlayer.play("left_hair_over")
+
+
+func _on_left_hair_area_2d_mouse_exited() -> void:
+	$left_hair/AnimationPlayer.stop()
+
+
+func _on_left_leg_area_2d_mouse_entered() -> void:
+	if can_take_damage == true:
+		$left_leg/AnimationPlayer.play("left_leg_over")
+
+
+func _on_left_leg_area_2d_mouse_exited() -> void:
+	$left_leg/AnimationPlayer.stop()
+
+
+func _on_right_men_area_2d_mouse_entered() -> void:
+	if can_take_damage == true:
+		$right_men/AnimationPlayer.play("right_men_over")
+
+
+func _on_right_men_area_2d_mouse_exited() -> void:
+	$right_men/AnimationPlayer.stop()
+
+
+func _on_left_men_area_2d_mouse_entered() -> void:
+	if can_take_damage == true:
+		$left_men/AnimationPlayer.play("left_men_over")
+
+
+func _on_left_men_area_2d_mouse_exited() -> void:
+	$left_men/AnimationPlayer.stop()
