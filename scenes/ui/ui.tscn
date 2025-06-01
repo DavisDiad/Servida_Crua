@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bct6pd7l1iui0"]
 
 [ext_resource type="Script" uid="uid://dclxk0tnopl7n" path="res://scenes/ui/ui.gd" id="1_pl2xg"]
-[ext_resource type="Texture2D" uid="uid://c6lsv0jvjc82x" path="res://scenes/ui/ui.png" id="2_aac20"]
-[ext_resource type="Texture2D" uid="uid://c03eqryi2ma25" path="res://placeholders/portrait_teste.png" id="3_hynxb"]
+[ext_resource type="Texture2D" uid="uid://c6lsv0jvjc82x" path="res://scenes/ui/sprites/ui.png" id="2_aac20"]
+[ext_resource type="Texture2D" uid="uid://bydku7anhq0li" path="res://scenes/ui/sprites/expressoes_ui1.png" id="3_g5kmx"]
 [ext_resource type="Texture2D" uid="uid://be2ud15rxx742" path="res://placeholders/ui_feridas3.png" id="4_g5kmx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_640q4"]
@@ -162,14 +162,14 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 292.0
-offset_top = -259.0
-offset_right = -1396.0
+offset_left = 298.0
+offset_top = -255.0
+offset_right = -1424.0
 offset_bottom = -37.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
-texture = ExtResource("3_hynxb")
+texture = ExtResource("3_g5kmx")
 expand_mode = 1
 
 [node name="TextureRect2" type="TextureRect" parent="."]
