@@ -4,6 +4,8 @@ extends CharacterBody2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @export var max_scale : float = 1.0
 
+@export var inv: Inv
+
 var target_position: Vector2 = Vector2.ZERO
 var idle_timer := 0.0
 var scared_interval := 15.0
@@ -57,3 +59,6 @@ func _physics_process(delta: float):
 			anim.play("idle")
 
 	move_and_slide()
+
+func collect(item):
+	inv.insert(item)

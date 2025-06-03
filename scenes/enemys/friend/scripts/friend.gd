@@ -358,6 +358,8 @@ func hide_all_body_parts():
 		var sprite = get_node_or_null(part_name)
 		if sprite:
 			sprite.visible = false
+	await get_tree().create_timer(0.1).timeout
+	get_tree().change_scene_to_file("res://scenes/WC/wc.tscn")
 
 func apply_evasion_penalty_to_all(penalty: int):
 	for p in enemy_data.body_parts:

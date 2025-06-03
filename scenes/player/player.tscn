@@ -3547,10 +3547,8 @@ script = ExtResource("1_w1yh1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_jgyhs")
-animation = &"idle_battle_desmemberd"
+animation = &"idle"
 autoplay = "idle"
-frame = 7
-frame_progress = 0.021058
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.03694, 0.516139)

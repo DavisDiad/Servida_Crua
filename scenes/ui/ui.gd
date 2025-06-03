@@ -1,5 +1,19 @@
 extends CanvasLayer
 
+@onready var inv: Inv = preload("res://inventory/playerinv.tres")
+@onready var slots: Array = $GridContainer.get_children()
+
+
+func _ready() -> void:
+	inv.update.connect(update_slots)
+	update_slots()
+
+
+func update_slots():
+	for i in range(min(inv.slots.size(), slots.size())):
+		slots[i].update(inv.slots[i])
+	
+
 func _process(delta: float) -> void:
 	update_wound_display() 
 
