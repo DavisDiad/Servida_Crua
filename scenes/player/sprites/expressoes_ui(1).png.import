@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgdi3enpiusyn"
-path="res://.godot/imported/wc (1).jpg-c63e62ecb77f2277cd288eea06491cba.ctex"
+uid="uid://d275g57odmfvv"
+path="res://.godot/imported/expressoes_ui(1).png-c07b6b2d0f097367c02df1c5ee0de9d7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/WC/sprites/wc (1).jpg"
-dest_files=["res://.godot/imported/wc (1).jpg-c63e62ecb77f2277cd288eea06491cba.ctex"]
+source_file="res://scenes/player/sprites/expressoes_ui(1).png"
+dest_files=["res://.godot/imported/expressoes_ui(1).png-c07b6b2d0f097367c02df1c5ee0de9d7.ctex"]
 
 [params]
 

@@ -12,12 +12,16 @@ var enemy_data: EnemyData
 
 var is_cat_dead = false #usar esta função para definir que quando o gato morre e esta cena sai, é armazenado num script global que ele ta morto e ao abrir novament esta cena, ou seja na função ready, isto vai estar verdadeiro e vai aprecer a amiga em vez dele.
 
+var player : Node = null
+var anim : AnimatedSprite2D = null
 
 func _ready() -> void:
 	PlayerHealth.can_move = false
-	var player = get_node("player")
-	var anim = player.get_node("AnimatedSprite2D")
-	anim.play("idle_battle")
+	
+	player = get_node("/root/Fight/player")
+	anim = player.get_node("AnimatedSprite2D")
+	
+	play_action_animation("idle_battle")
 	
 	$UI/ActionsPanel.hide() #a cena começa com os botoes escondidos
 	$UI/TextBox.show() #a cena começa com o texto a aparecer
@@ -27,6 +31,22 @@ func _ready() -> void:
 	$UI/ActionsPanel.show()
 	
 
+func play_action_animation(action: String):
+	var arm_state = PlayerHealth.get_arm_state()
+	var anim_name = action
+
+	match arm_state:
+		"no_arms":
+			anim_name += "_desmemberd"
+		"left_only":
+			anim_name += "_without_r_a"
+		"right_only":
+			anim_name += "_without_l_a"
+		"both_arms":
+			pass
+
+	anim.play(anim_name)
+	
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("left_click") and talking == true: #ao clicar com o botão esquerdo com o texto ativo,

@@ -6,6 +6,8 @@ extends Node2D
 var can_take_damage = false #serve para controlar quando o inimigo recebe dano
 var has_been_attacked = false
 
+var enemy_dead = false
+
 var skill_requirements = { #é um dicionário que atribui as haabilidaades às partes do corpo necesárias para usá-la.
 	"punch": ["left_arm"],
 	"heavy_punch": ["right_arm"]
@@ -79,15 +81,32 @@ func _on_fight_attacking() -> void: #esta função acontece quando o sinal attac
 	can_take_damage = true #ela permite que o inimigo possa receber dano
 	has_been_attacked = false
 
+func play_action_animation(action: String):
+	var arm_state = PlayerHealth.get_arm_state()
+	var anim_name = action
+
+	match arm_state:
+		"no_arms":
+			anim_name += "_desmemberd"
+		"left_only":
+			anim_name += "_without_r_a"
+		"right_only":
+			anim_name += "_without_l_a"
+		"both_arms":
+			pass
+
+	anim.play(anim_name)
+	
+
 func _on_attack_finished():
-	anim.play("idle_battle")
+	play_action_animation("idle_battle")
 
 func take_damage(body_part_name: String):
 	if can_take_damage:
 		
 		can_take_damage = false
 		
-		anim.play("attack")
+		play_action_animation("attack")
 		anim.connect("animation_finished", Callable(self, "_on_attack_finished"), CONNECT_ONE_SHOT)
 		
 		await anim.animation_finished
@@ -302,7 +321,7 @@ func perform_attack():
 	
 	var hit = true
 	
-	if hit_quality >= 0:
+	if hit_quality >= 0 and enemy_dead == false:
 		hit = true
 		
 		var dano = int(lerp(skill.min_damage, skill.max_damage, hit_quality))
@@ -330,9 +349,9 @@ func perform_attack():
 	if hit:
 		# Toca a animação e só depois mostra o texto
 		await get_tree().create_timer(0.1).timeout
-		anim.play("attacked")
+		play_action_animation("attacked")
 		await anim.animation_finished
-		anim.play("idle_battle")
+		play_action_animation("idle_battle")
 		get_node("/root/Fight").display_text(final_text)
 	else:
 		# Sem animação, mostra o texto imediatamente
@@ -340,9 +359,11 @@ func perform_attack():
 
 	# Espera o jogador fechar a caixa de texto
 	await get_node("/root/Fight").textbox_closed
-
+	if enemy_dead == true: 
+		get_tree().change_scene_to_file("res://scenes/cenários/WC/wc.tscn")
+	else:
 	# Mostra o painel de ações novamente
-	get_node("/root/Fight/UI/ActionsPanel").show()
+		get_node("/root/Fight/UI/ActionsPanel").show()
 	
 	
 
@@ -358,8 +379,9 @@ func hide_all_body_parts():
 		var sprite = get_node_or_null(part_name)
 		if sprite:
 			sprite.visible = false
-	await get_tree().create_timer(0.1).timeout
-	get_tree().change_scene_to_file("res://scenes/WC/wc.tscn")
+			enemy_dead = true
+	GameState.current_battle += 1
+	GameState.emit_signal("battle_completed", GameState.current_battle)
 
 func apply_evasion_penalty_to_all(penalty: int):
 	for p in enemy_data.body_parts:

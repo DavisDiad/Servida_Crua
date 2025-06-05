@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://dk6sl1eb8i6a7"]
+
+[ext_resource type="Script" uid="uid://bbxxdixfowwy8" path="res://scenes/cenários/corredor_espelhos/scripts/corredor_espelhos.gd" id="1_c7mlv"]
+[ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="1_fgrvr"]
+[ext_resource type="Texture2D" uid="uid://x0brbimmdlev" path="res://inventory/sprites/slot1.png" id="2_c7mlv"]
+[ext_resource type="Texture2D" uid="uid://cp7g664dnboeq" path="res://icon.svg" id="3_pu0nm"]
+[ext_resource type="Texture2D" uid="uid://cuckcf74n2vdr" path="res://scenes/cenários/corredor_espelhos/sprites/corredor espelhos.png" id="4_cro7t"]
+[ext_resource type="PackedScene" uid="uid://cyl30kecp6emh" path="res://scenes/player/player.tscn" id="5_1lvai"]
+
+[node name="CorredorEspelhos" type="Node2D"]
+script = ExtResource("1_c7mlv")
+
+[node name="UI" parent="." instance=ExtResource("1_fgrvr")]
+
+[node name="button_corredor" type="TextureButton" parent="UI"]
+z_index = 5
+offset_left = 1513.0
+offset_top = 417.0
+offset_right = 1617.0
+offset_bottom = 515.0
+texture_normal = ExtResource("2_c7mlv")
+texture_hover = ExtResource("3_pu0nm")
+metadata/_edit_use_anchors_ = true
+
+[node name="button_cave" type="TextureButton" parent="UI"]
+z_index = 5
+offset_left = 321.0
+offset_top = 417.0
+offset_right = 425.0
+offset_bottom = 515.0
+texture_normal = ExtResource("2_c7mlv")
+texture_hover = ExtResource("3_pu0nm")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 292.0
+offset_top = 95.0
+offset_right = 1628.0
+offset_bottom = 781.0
+texture = ExtResource("4_cro7t")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="player" parent="." instance=ExtResource("5_1lvai")]
+position = Vector2(974, 559)
+
+[connection signal="pressed" from="UI/button_corredor" to="." method="_on_button_corredor_pressed"]
+[connection signal="pressed" from="UI/button_corredor" to="UI/button_corredor" method="_on_pressed"]
+[connection signal="pressed" from="UI/button_cave" to="." method="_on_button_cave_pressed"]
+[connection signal="pressed" from="UI/button_cave" to="UI/button_cave" method="_on_pressed"]

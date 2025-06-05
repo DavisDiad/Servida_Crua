@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://ccs66pcr3usti"]
+
+[ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="1_c5ear"]
+[ext_resource type="Script" uid="uid://dkoif7eesg1gs" path="res://scenes/cenários/corredor_quartos/scripts/corredor_quartos.gd" id="1_rkj7x"]
+[ext_resource type="Texture2D" uid="uid://x0brbimmdlev" path="res://inventory/sprites/slot1.png" id="2_rkj7x"]
+[ext_resource type="Texture2D" uid="uid://cp7g664dnboeq" path="res://icon.svg" id="3_kcdl0"]
+[ext_resource type="Texture2D" uid="uid://bgt7hbivq6hde" path="res://scenes/cenários/corredor_quartos/sprites/corredor quadros 3.png" id="4_ddv5o"]
+[ext_resource type="PackedScene" uid="uid://cyl30kecp6emh" path="res://scenes/player/player.tscn" id="5_0t7x6"]
+[ext_resource type="Script" uid="uid://ka0uhamnqi7i" path="res://porta_wc.gd" id="7_kcdl0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rkj7x"]
+size = Vector2(245, 372)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kcdl0"]
+size = Vector2(257, 367)
+
+[node name="CorredorQuartos" type="Node2D"]
+script = ExtResource("1_rkj7x")
+
+[node name="UI" parent="." instance=ExtResource("1_c5ear")]
+
+[node name="button_corredor" type="TextureButton" parent="UI"]
+z_index = 5
+offset_left = 1508.0
+offset_top = 417.0
+offset_right = 1612.0
+offset_bottom = 515.0
+texture_normal = ExtResource("2_rkj7x")
+texture_hover = ExtResource("3_kcdl0")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 292.0
+offset_top = 95.0
+offset_right = 1628.0
+offset_bottom = 781.0
+texture = ExtResource("4_ddv5o")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="player" parent="." instance=ExtResource("5_0t7x6")]
+position = Vector2(974, 559)
+
+[node name="quarto_avo" type="Area2D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("7_kcdl0")
+next_scene = "res://scenes/fight/fight3.tscn"
+player = NodePath("../player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="quarto_avo"]
+position = Vector2(1228.5, 361)
+shape = SubResource("RectangleShape2D_rkj7x")
+
+[node name="quarto_mae" type="Area2D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("7_kcdl0")
+next_scene = "res://scenes/cenários/quarto_mae/quarto_mae.tscn"
+player = NodePath("../player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="quarto_mae"]
+position = Vector2(701.5, 357.5)
+shape = SubResource("RectangleShape2D_kcdl0")
+
+[connection signal="pressed" from="UI/button_corredor" to="." method="_on_button_corredor_pressed"]
+[connection signal="body_entered" from="quarto_avo" to="quarto_avo" method="_on_body_entered"]
+[connection signal="body_exited" from="quarto_avo" to="quarto_avo" method="_on_body_exited"]
+[connection signal="input_event" from="quarto_avo" to="quarto_avo" method="_on_input_event"]
+[connection signal="mouse_entered" from="quarto_avo" to="quarto_avo" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="quarto_avo" to="quarto_avo" method="_on_mouse_exited"]
+[connection signal="body_entered" from="quarto_mae" to="quarto_mae" method="_on_body_entered"]
+[connection signal="body_exited" from="quarto_mae" to="quarto_mae" method="_on_body_exited"]
+[connection signal="input_event" from="quarto_mae" to="quarto_mae" method="_on_input_event"]
+[connection signal="mouse_entered" from="quarto_mae" to="quarto_mae" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="quarto_mae" to="quarto_mae" method="_on_mouse_exited"]

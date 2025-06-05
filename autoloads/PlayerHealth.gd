@@ -27,11 +27,11 @@ var wounds = {
 
 var wound_limits = {
 	"head": 6,
-	"torso": 8,
-	"left_arm": 4,
-	"right_arm": 4,
-	"left_leg": 5,
-	"right_leg": 5
+	"torso": 10,
+	"left_arm": 6,
+	"right_arm": 6,
+	"left_leg": 8,
+	"right_leg": 8
 }
 
 # Controle de debuffs aplicados
@@ -44,6 +44,19 @@ var evasion_debuff_applied = {
 	"torso": false,
 	"head": false
 }
+
+func get_arm_state() -> String:
+	var left_gone = wounds["left_arm"] >= wound_limits["left_arm"]
+	var right_gone = wounds["right_arm"] >= wound_limits["right_arm"]
+	
+	if left_gone and right_gone:
+		return "no_arms"
+	elif left_gone:
+		return "right_only"
+	elif right_gone:
+		return "left_only"
+	else:
+		return "both_arms"
 
 func add_wound(body_part: String, amount: int = 1) -> bool:
 	var damage_applied = false

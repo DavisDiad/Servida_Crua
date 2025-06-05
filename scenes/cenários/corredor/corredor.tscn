@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://tkaaeu1c87lo"]
+
+[ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="1_hxfao"]
+[ext_resource type="Texture2D" uid="uid://x0brbimmdlev" path="res://inventory/sprites/slot1.png" id="2_172sl"]
+[ext_resource type="Texture2D" uid="uid://du11j8u0vww25" path="res://scenes/cenários/corredor/sprites/corredor quadros 2.png" id="2_r01pk"]
+[ext_resource type="PackedScene" uid="uid://cyl30kecp6emh" path="res://scenes/player/player.tscn" id="3_g0d3d"]
+[ext_resource type="Texture2D" uid="uid://cp7g664dnboeq" path="res://icon.svg" id="3_il75l"]
+[ext_resource type="Script" uid="uid://dgvhjlq36hdte" path="res://scenes/cenários/corredor/scripts/button_quarto.gd" id="4_172sl"]
+[ext_resource type="Script" uid="uid://bxt8j8mhpcdia" path="res://scenes/cenários/corredor/scripts/button_entrada_principal.gd" id="5_il75l"]
+[ext_resource type="Script" uid="uid://d02itjqwtdghy" path="res://scenes/cenários/corredor/scripts/button_quartos.gd" id="6_c0uoo"]
+
+[node name="Corredor" type="Node2D"]
+
+[node name="UI" parent="." instance=ExtResource("1_hxfao")]
+
+[node name="button_quarto" type="TextureButton" parent="UI"]
+z_index = 5
+offset_left = 1513.0
+offset_top = 417.0
+offset_right = 1617.0
+offset_bottom = 515.0
+texture_normal = ExtResource("2_172sl")
+texture_hover = ExtResource("3_il75l")
+script = ExtResource("4_172sl")
+metadata/_edit_use_anchors_ = true
+
+[node name="button_entrada_principal" type="TextureButton" parent="UI"]
+z_index = 5
+offset_left = 907.0
+offset_top = 658.0
+offset_right = 1011.0
+offset_bottom = 756.0
+texture_normal = ExtResource("2_172sl")
+texture_hover = ExtResource("3_il75l")
+script = ExtResource("5_il75l")
+
+[node name="button_quartos" type="TextureButton" parent="UI"]
+z_index = 5
+offset_left = 321.0
+offset_top = 417.0
+offset_right = 425.0
+offset_bottom = 515.0
+texture_normal = ExtResource("2_172sl")
+texture_hover = ExtResource("3_il75l")
+script = ExtResource("6_c0uoo")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 292.0
+offset_top = 95.0
+offset_right = 1628.0
+offset_bottom = 781.0
+texture = ExtResource("2_r01pk")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="player" parent="." instance=ExtResource("3_g0d3d")]
+position = Vector2(974, 559)
+
+[connection signal="pressed" from="UI/button_quarto" to="UI/button_quarto" method="_on_pressed"]
+[connection signal="pressed" from="UI/button_entrada_principal" to="UI/button_entrada_principal" method="_on_pressed"]
+[connection signal="pressed" from="UI/button_quartos" to="UI/button_quartos" method="_on_pressed"]

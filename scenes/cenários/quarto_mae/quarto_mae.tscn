@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://dup4ftqlwqj2m"]
+
+[ext_resource type="Script" uid="uid://doxu0twyjw0i1" path="res://scenes/cenários/quarto_mae/scripts/quarto_mae.gd" id="1_sunqe"]
+[ext_resource type="Resource" uid="uid://dtway21w3mdw3" path="res://inventory/playerinv.tres" id="2_mkcli"]
+[ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="3_ihlp5"]
+[ext_resource type="Texture2D" uid="uid://x0brbimmdlev" path="res://inventory/sprites/slot1.png" id="4_0flia"]
+[ext_resource type="Texture2D" uid="uid://cp7g664dnboeq" path="res://icon.svg" id="5_1kkck"]
+[ext_resource type="Texture2D" uid="uid://coatx1uy6o62l" path="res://scenes/cenários/quarto_mae/sprites/quarto mae.jpg" id="6_2g60u"]
+
+[node name="QuartoMae" type="Node2D"]
+script = ExtResource("1_sunqe")
+inv = ExtResource("2_mkcli")
+
+[node name="UI" parent="." instance=ExtResource("3_ihlp5")]
+
+[node name="TextureButton" type="TextureButton" parent="UI"]
+z_index = 5
+offset_left = 292.0
+offset_top = 95.0
+offset_right = 396.0
+offset_bottom = 193.0
+texture_normal = ExtResource("4_0flia")
+texture_hover = ExtResource("5_1kkck")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 292.0
+offset_top = 95.0
+offset_right = 1628.0
+offset_bottom = 781.0
+texture = ExtResource("6_2g60u")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="UI/TextureButton" to="." method="_on_texture_button_pressed"]

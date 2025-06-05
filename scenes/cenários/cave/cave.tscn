@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://cw4slk0adjyvc"]
+
+[ext_resource type="Script" uid="uid://d2bnggbe1ij4k" path="res://scenes/cenários/cave/scripts/cave.gd" id="1_q4pxo"]
+[ext_resource type="Resource" uid="uid://dtway21w3mdw3" path="res://inventory/playerinv.tres" id="2_40bv4"]
+[ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="3_b5s0c"]
+[ext_resource type="Texture2D" uid="uid://x0brbimmdlev" path="res://inventory/sprites/slot1.png" id="4_mst6s"]
+[ext_resource type="Texture2D" uid="uid://cp7g664dnboeq" path="res://icon.svg" id="5_4qb7a"]
+[ext_resource type="Texture2D" uid="uid://de3d1d1cw3avq" path="res://scenes/cenários/cave/sprites/cave (1).jpg" id="6_gjked"]
+
+[node name="Cave" type="Node2D"]
+script = ExtResource("1_q4pxo")
+inv = ExtResource("2_40bv4")
+
+[node name="UI" parent="." instance=ExtResource("3_b5s0c")]
+
+[node name="TextureButton" type="TextureButton" parent="UI"]
+z_index = 5
+offset_left = 292.0
+offset_top = 95.0
+offset_right = 396.0
+offset_bottom = 193.0
+texture_normal = ExtResource("4_mst6s")
+texture_hover = ExtResource("5_4qb7a")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 292.0
+offset_top = 95.0
+offset_right = 1628.0
+offset_bottom = 781.0
+texture = ExtResource("6_gjked")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="UI/TextureButton" to="." method="_on_texture_button_pressed"]

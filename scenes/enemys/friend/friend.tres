@@ -40,7 +40,7 @@ metadata/_custom_type_script = "uid://cnsddtmtp68ht"
 resource_name = "punch"
 script = ExtResource("3_pfxvj")
 name = "punch"
-min_damage = 2
+min_damage = 1
 max_damage = 2
 accuracy = 50
 metadata/_custom_type_script = "uid://58tyn321d3di"
@@ -58,9 +58,9 @@ metadata/_custom_type_script = "uid://58tyn321d3di"
 resource_name = "scream"
 script = ExtResource("3_pfxvj")
 name = "scream"
-min_damage = 2
+min_damage = 1
 max_damage = 3
-accuracy = 70
+accuracy = 60
 metadata/_custom_type_script = "uid://58tyn321d3di"
 
 [resource]

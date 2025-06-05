@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bcx668arqij6w"]
 
 [ext_resource type="Script" uid="uid://wqm52dtuc1wm" path="res://scenes/fight/fight.gd" id="1_xue7f"]
-[ext_resource type="Texture2D" uid="uid://dgdi3enpiusyn" path="res://scenes/WC/sprites/wc (1).jpg" id="2_42eq8"]
+[ext_resource type="Texture2D" uid="uid://dgdi3enpiusyn" path="res://scenes/cenários/WC/sprites/wc (1).jpg" id="2_42eq8"]
 [ext_resource type="PackedScene" uid="uid://d3go1lkwhx5mg" path="res://scenes/enemys/friend/friend.tscn" id="2_aymwx"]
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="3_42eq8"]
 [ext_resource type="Texture2D" uid="uid://b5cyg7hfck87d" path="res://placeholders/rascunho_batalha1.png" id="4_w2cg2"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfntc06od6x8o"
-path="res://.godot/imported/entrada principal.png-3634d04c2cba03bb6f9a39f8683d03cb.ctex"
+uid="uid://5g1jxfabg80h"
+path="res://.godot/imported/quarto avo (1).jpg-51bd62a1b94514cb138e6f1547767990.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/entrada_principal/sprites/entrada principal.png"
-dest_files=["res://.godot/imported/entrada principal.png-3634d04c2cba03bb6f9a39f8683d03cb.ctex"]
+source_file="res://scenes/cenários/quarto_avo/sprites/quarto avo (1).jpg"
+dest_files=["res://.godot/imported/quarto avo (1).jpg-51bd62a1b94514cb138e6f1547767990.ctex"]
 
 [params]
 
