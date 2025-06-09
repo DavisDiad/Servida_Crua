@@ -9,13 +9,14 @@
 [ext_resource type="Script" uid="uid://dyr6u1dm2yvjo" path="res://scenes/cenários/entrada_principal/scripts/andar_cima.gd" id="5_i3nrj"]
 [ext_resource type="Texture2D" uid="uid://cp7g664dnboeq" path="res://icon.svg" id="6_i3nrj"]
 [ext_resource type="Script" uid="uid://caxia7lc37vca" path="res://scenes/cenários/entrada_principal/scripts/button_cozinha.gd" id="7_hpoos"]
-[ext_resource type="Resource" uid="uid://dtway21w3mdw3" path="res://inventory/playerinv.tres" id="8_seqkc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3nrj"]
 size = Vector2(145, 246)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpxrv"]
 size = Vector2(456, 378)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_seqkc"]
 
 [node name="EntradaPrincipal" type="Node2D"]
 
@@ -54,7 +55,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="player" parent="." instance=ExtResource("3_yg2wm")]
 position = Vector2(974, 559)
-inv = ExtResource("8_seqkc")
 
 [node name="porta_wc" type="Area2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("4_bjioa")
@@ -71,6 +71,16 @@ script = ExtResource("5_i3nrj")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="andar_cima"]
 position = Vector2(515, 275)
 shape = SubResource("RectangleShape2D_jpxrv")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0.982175, 0.884682, 0.85272, 1)
+
+[node name="CanvasModulate2" type="CanvasModulate" parent="."]
+color = Color(0.947263, 0.946173, 0.999247, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_seqkc")
 
 [connection signal="pressed" from="UI/button_cozinha" to="UI/button_cozinha" method="_on_pressed"]
 [connection signal="pressed" from="UI/button_corredor" to="UI/button_corredor" method="_on_pressed"]

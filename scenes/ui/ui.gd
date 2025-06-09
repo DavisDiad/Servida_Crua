@@ -62,10 +62,10 @@ func update_wound_display():
 		var right_arm_wounded = PlayerHealth.wounds["right_arm"] >= PlayerHealth.wound_limits["right_arm"]
 		
 		if left_leg_wounded:
-			$torso/left_leg.hide()
+			$left_leg.hide()
 		if right_leg_wounded:
-			$torso/right_leg.hide()
+			$right_leg.hide()
 		if left_arm_wounded:
-			$torso/left_arm.hide()
+			$left_arm.hide()
 		if right_arm_wounded:
-			$torso/right_arm.hide()
+			$right_arm.hide()

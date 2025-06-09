@@ -45,6 +45,17 @@ var evasion_debuff_applied = {
 	"head": false
 }
 
+var body_part_anim_players = {}
+
+func register_animation_players():
+	var base_path = "/root/Fight/UI/DamageAnimationPlayer"
+	body_part_anim_players["head"] = get_node(base_path)
+	body_part_anim_players["torso"] = get_node(base_path)
+	body_part_anim_players["left_arm"] = get_node(base_path)
+	body_part_anim_players["right_arm"] = get_node(base_path)
+	body_part_anim_players["left_leg"] = get_node(base_path)
+	body_part_anim_players["right_leg"] = get_node(base_path)
+
 func get_arm_state() -> String:
 	var left_gone = wounds["left_arm"] >= wound_limits["left_arm"]
 	var right_gone = wounds["right_arm"] >= wound_limits["right_arm"]
@@ -67,6 +78,14 @@ func add_wound(body_part: String, amount: int = 1) -> bool:
 			is_defending = false
 		wounds[body_part] += final_amount
 		damage_applied = (final_amount > 0)
+		if damage_applied:
+			var anim_player = body_part_anim_players.get(body_part, null)
+			if anim_player and anim_player.has_animation(body_part + "_damage"):
+				print("encontrado")
+				await get_tree().create_timer(1.0).timeout
+				anim_player.play(body_part + "_damage")
+			else:
+				print("n foi encontrado")
 		
 		if body_part in ["torso", "head"] and wounds[body_part] >= wound_limits[body_part]:
 			await get_tree().create_timer(1.0).timeout

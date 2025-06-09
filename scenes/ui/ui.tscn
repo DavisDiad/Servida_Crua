@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bct6pd7l1iui0"]
+[gd_scene load_steps=22 format=3 uid="uid://bct6pd7l1iui0"]
 
 [ext_resource type="Script" uid="uid://dclxk0tnopl7n" path="res://scenes/ui/ui.gd" id="1_pl2xg"]
 [ext_resource type="Texture2D" uid="uid://c6lsv0jvjc82x" path="res://scenes/ui/sprites/ui.png" id="2_aac20"]
 [ext_resource type="Texture2D" uid="uid://d275g57odmfvv" path="res://scenes/player/sprites/expressoes_ui(1).png" id="3_uegxj"]
+[ext_resource type="FontFile" uid="uid://c8iee8aecq2q" path="res://fonts/Courier New.ttf" id="3_y220t"]
 [ext_resource type="Texture2D" uid="uid://hmc2x3ho46v5" path="res://scenes/ui/sprites/torso_feridas.png" id="4_jcn1r"]
+[ext_resource type="Texture2D" uid="uid://cydeafug7x1lr" path="res://scenes/ui/sprites/head_feridas.png" id="5_4kltc"]
 [ext_resource type="Texture2D" uid="uid://xr7ut1yq5hr5" path="res://scenes/ui/sprites/left_arm_feridas.png" id="5_uegxj"]
 [ext_resource type="Texture2D" uid="uid://db7abm5twk5gi" path="res://scenes/ui/sprites/left_leg_feridas.png" id="6_y220t"]
 [ext_resource type="Texture2D" uid="uid://bw6lxerpxatrn" path="res://scenes/ui/sprites/right_arm_feridas.png" id="7_4kltc"]
@@ -14,6 +16,188 @@
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tew5a"]
+
+[sub_resource type="Animation" id="Animation_hl07w"]
+resource_name = "torso_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
+}
+
+[sub_resource type="Animation" id="Animation_swkix"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../head:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../left_arm:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../left_leg:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../right_arm:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../right_leg:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hc5d0"]
+resource_name = "head_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../head:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
+}
+
+[sub_resource type="Animation" id="Animation_n3vwu"]
+resource_name = "left_leg_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../left_leg:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
+}
+
+[sub_resource type="Animation" id="Animation_0i47d"]
+resource_name = "left_arm_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../left_arm:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
+}
+
+[sub_resource type="Animation" id="Animation_mgwkc"]
+resource_name = "right_arm_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../right_arm:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
+}
+
+[sub_resource type="Animation" id="Animation_4w2x3"]
+resource_name = "right_leg_damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../right_leg:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_svq4k"]
+_data = {
+&"RESET": SubResource("Animation_swkix"),
+&"head_damage": SubResource("Animation_hc5d0"),
+&"left_arm_damage": SubResource("Animation_0i47d"),
+&"left_leg_damage": SubResource("Animation_n3vwu"),
+&"right_arm_damage": SubResource("Animation_mgwkc"),
+&"right_leg_damage": SubResource("Animation_4w2x3"),
+&"torso_damage": SubResource("Animation_hl07w")
+}
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_pl2xg")
@@ -51,6 +235,7 @@ offset_left = 20.0
 offset_top = 20.0
 offset_right = -20.0
 offset_bottom = -20.0
+theme_override_fonts/normal_font = ExtResource("3_y220t")
 theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
 text = "texto vai aqui"
@@ -177,6 +362,13 @@ size_flags_vertical = 8
 texture = ExtResource("3_uegxj")
 expand_mode = 1
 
+[node name="head" type="TextureRect" parent="."]
+offset_left = 67.0
+offset_top = 126.0
+offset_right = 220.0
+offset_bottom = 697.0
+texture = ExtResource("5_4kltc")
+
 [node name="torso" type="TextureRect" parent="."]
 offset_left = 67.0
 offset_top = 126.0
@@ -184,29 +376,39 @@ offset_right = 220.0
 offset_bottom = 697.0
 texture = ExtResource("4_jcn1r")
 
-[node name="left_arm" type="TextureRect" parent="torso"]
-layout_mode = 0
-offset_right = 153.0
-offset_bottom = 571.0
+[node name="left_arm" type="TextureRect" parent="."]
+offset_left = 67.0
+offset_top = 126.0
+offset_right = 220.0
+offset_bottom = 697.0
 texture = ExtResource("5_uegxj")
 
-[node name="left_leg" type="TextureRect" parent="torso"]
-layout_mode = 0
-offset_right = 153.0
-offset_bottom = 571.0
+[node name="left_leg" type="TextureRect" parent="."]
+offset_left = 67.0
+offset_top = 126.0
+offset_right = 220.0
+offset_bottom = 697.0
 texture = ExtResource("6_y220t")
 
-[node name="right_arm" type="TextureRect" parent="torso"]
-layout_mode = 0
-offset_right = 153.0
-offset_bottom = 571.0
+[node name="right_arm" type="TextureRect" parent="."]
+offset_left = 67.0
+offset_top = 126.0
+offset_right = 220.0
+offset_bottom = 697.0
 texture = ExtResource("7_4kltc")
 
-[node name="right_leg" type="TextureRect" parent="torso"]
-layout_mode = 0
-offset_right = 153.0
-offset_bottom = 571.0
+[node name="right_leg" type="TextureRect" parent="."]
+offset_left = 67.0
+offset_top = 126.0
+offset_right = 220.0
+offset_bottom = 697.0
 texture = ExtResource("8_hl07w")
+
+[node name="DamageAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../torso")
+libraries = {
+&"": SubResource("AnimationLibrary_svq4k")
+}
 
 [node name="GridContainer" type="GridContainer" parent="."]
 anchors_preset = 1

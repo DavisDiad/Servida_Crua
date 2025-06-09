@@ -1,11 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://cofg4e1bbi23e"]
+[gd_scene load_steps=16 format=3 uid="uid://cofg4e1bbi23e"]
 
 [ext_resource type="Script" uid="uid://wqm52dtuc1wm" path="res://scenes/fight/fight.gd" id="1_4se71"]
 [ext_resource type="PackedScene" uid="uid://ctls4fuoxikdh" path="res://scenes/enemys/cat/cat.tscn" id="2_cubfr"]
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="3_63nu4"]
 [ext_resource type="Texture2D" uid="uid://x0brbimmdlev" path="res://inventory/sprites/slot1.png" id="4_fohwn"]
+[ext_resource type="FontFile" uid="uid://droskw7yhnkiv" path="res://fonts/Timeless.ttf" id="4_yisul"]
 [ext_resource type="Texture2D" uid="uid://cp7g664dnboeq" path="res://icon.svg" id="5_4d60p"]
 [ext_resource type="Texture2D" uid="uid://pqhpjncq6pjd" path="res://placeholders/personagem_baattle2.png" id="5_8ew2v"]
+[ext_resource type="FontFile" uid="uid://bxc233e1vrt5q" path="res://fonts/Timeless-Bold.ttf" id="5_op15a"]
 [ext_resource type="Texture2D" uid="uid://f2g6dcisimy6" path="res://placeholders/rule-of-third-940x626.png" id="6_aml7f"]
 [ext_resource type="Script" uid="uid://bvej62d2nancr" path="res://scenes/fight/button_corredor_principal.gd" id="6_yisul"]
 [ext_resource type="Texture2D" uid="uid://dvmo73glk8ok" path="res://scenes/cenários/cozinha/sprites/cozinha.jpg" id="7_fohwn"]
@@ -22,6 +24,7 @@ bg_color = Color(0, 0, 0, 1)
 
 [node name="Fight" type="Node2D"]
 script = ExtResource("1_4se71")
+enemy_name = "gato"
 
 [node name="Cat" parent="." instance=ExtResource("2_cubfr")]
 position = Vector2(948, 492)
@@ -61,7 +64,8 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 45
+theme_override_fonts/font = ExtResource("5_op15a")
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_i5lci")
 text = "Atacar"
 
@@ -69,7 +73,8 @@ text = "Atacar"
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 45
+theme_override_fonts/font = ExtResource("5_op15a")
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_i5lci")
 text = "Proteger"
 
@@ -77,7 +82,8 @@ text = "Proteger"
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 45
+theme_override_fonts/font = ExtResource("5_op15a")
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_i5lci")
 text = "Falar"
 
@@ -105,8 +111,10 @@ offset_left = 20.0
 offset_top = 20.0
 offset_right = -20.0
 offset_bottom = -20.0
-theme_override_font_sizes/normal_font_size = 35
-theme_override_font_sizes/bold_font_size = 35
+theme_override_fonts/normal_font = ExtResource("4_yisul")
+theme_override_fonts/bold_font = ExtResource("5_op15a")
+theme_override_font_sizes/normal_font_size = 45
+theme_override_font_sizes/bold_font_size = 45
 bbcode_enabled = true
 text = "texto vai aqui"
 
@@ -143,6 +151,9 @@ texture = ExtResource("6_aml7f")
 
 [node name="player" parent="." instance=ExtResource("7_ij3gj")]
 position = Vector2(503, 645)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.982175, 0.884682, 0.85272, 1)
 
 [connection signal="attacking" from="." to="Cat" method="_on_fight_attacking"]
 [connection signal="defending" from="." to="Cat" method="_on_fight_defending"]

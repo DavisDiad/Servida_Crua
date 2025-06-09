@@ -44,6 +44,9 @@ metadata/_edit_use_anchors_ = true
 [node name="player" parent="." instance=ExtResource("5_1lvai")]
 position = Vector2(974, 559)
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.982175, 0.884682, 0.85272, 1)
+
 [connection signal="pressed" from="UI/button_corredor" to="." method="_on_button_corredor_pressed"]
 [connection signal="pressed" from="UI/button_corredor" to="UI/button_corredor" method="_on_pressed"]
 [connection signal="pressed" from="UI/button_cave" to="." method="_on_button_cave_pressed"]

@@ -334,31 +334,13 @@ func perform_attack():
 	else:
 		hit = false
 		
-		attack_result_text = "mas o ataque errou!"
-		print("Attack missed, quality:", hit_quality)
-	
-	var ataque_texto = "O gato usou [b]%s[/b] n%s [b]%s[/b]" % [
-		skill_translations.get(skill.name, skill.name),
-		part_articles[attacked_part],
-		part_names_pt[attacked_part]
-	]
-	
-	
-	var final_text = "%s %s" % [ataque_texto, attack_result_text]
-
 	if hit:
 		# Toca a animação e só depois mostra o texto
 		await get_tree().create_timer(0.1).timeout
 		play_action_animation("attacked")
 		await anim.animation_finished
 		play_action_animation("idle_battle")
-		get_node("/root/Fight").display_text(final_text)
-	else:
-		# Sem animação, mostra o texto imediatamente
-		get_node("/root/Fight").display_text(final_text)
-
-	# Espera o jogador fechar a caixa de texto
-	await get_node("/root/Fight").textbox_closed
+		
 	if enemy_dead == true: 
 		get_tree().change_scene_to_file("res://scenes/cenários/WC/wc.tscn")
 	else:

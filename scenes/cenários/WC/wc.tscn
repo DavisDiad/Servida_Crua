@@ -48,5 +48,8 @@ item = ExtResource("5_11iek")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Laminas/Area2D"]
 shape = SubResource("CircleShape2D_ndsf8")
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.904658, 0.901997, 0.998668, 1)
+
 [connection signal="pressed" from="UI/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="input_event" from="Laminas/Area2D" to="Laminas/Area2D" method="_on_input_event"]

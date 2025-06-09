@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dup4ftqlwqj2m"]
+[gd_scene load_steps=14 format=3 uid="uid://dup4ftqlwqj2m"]
 
 [ext_resource type="Script" uid="uid://doxu0twyjw0i1" path="res://scenes/cenários/quarto_mae/scripts/quarto_mae.gd" id="1_sunqe"]
 [ext_resource type="Resource" uid="uid://dtway21w3mdw3" path="res://inventory/playerinv.tres" id="2_mkcli"]
@@ -6,6 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://x0brbimmdlev" path="res://inventory/sprites/slot1.png" id="4_0flia"]
 [ext_resource type="Texture2D" uid="uid://cp7g664dnboeq" path="res://icon.svg" id="5_1kkck"]
 [ext_resource type="Texture2D" uid="uid://coatx1uy6o62l" path="res://scenes/cenários/quarto_mae/sprites/quarto mae.jpg" id="6_2g60u"]
+[ext_resource type="FontFile" uid="uid://droskw7yhnkiv" path="res://fonts/Timeless.ttf" id="6_sdxya"]
+[ext_resource type="Texture2D" uid="uid://c6f643nce1tip" path="res://inventory/sprites/perfume.png" id="7_0flia"]
+[ext_resource type="Script" uid="uid://caj3q3eym4sc" path="res://inventory/items/perfume.gd" id="7_ihlp5"]
+[ext_resource type="FontFile" uid="uid://bxc233e1vrt5q" path="res://fonts/Timeless-Bold.ttf" id="7_ili7i"]
+[ext_resource type="Resource" uid="uid://orkuk7slib0r" path="res://inventory/items/perfume.tres" id="8_0flia"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_um7ux"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1kkck"]
+radius = 40.1123
 
 [node name="QuartoMae" type="Node2D"]
 script = ExtResource("1_sunqe")
@@ -22,6 +33,38 @@ offset_bottom = 193.0
 texture_normal = ExtResource("4_0flia")
 texture_hover = ExtResource("5_1kkck")
 
+[node name="TextBox" type="Panel" parent="UI"]
+visible = false
+z_index = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 538.0
+offset_top = -255.0
+offset_right = -295.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_um7ux")
+
+[node name="Label" type="RichTextLabel" parent="UI/TextBox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+theme_override_fonts/normal_font = ExtResource("6_sdxya")
+theme_override_fonts/bold_font = ExtResource("7_ili7i")
+theme_override_font_sizes/normal_font_size = 45
+theme_override_font_sizes/bold_font_size = 45
+bbcode_enabled = true
+text = "texto vai aqui"
+
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 292.0
 offset_top = 95.0
@@ -31,4 +74,23 @@ texture = ExtResource("6_2g60u")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="CanvasModulate2" type="CanvasModulate" parent="."]
+color = Color(0.947263, 0.946173, 0.999247, 1)
+
+[node name="Perfume" type="Sprite2D" parent="."]
+position = Vector2(1138, 233)
+scale = Vector2(0.642606, 0.642606)
+texture = ExtResource("7_0flia")
+
+[node name="Area2D" type="Area2D" parent="Perfume"]
+position = Vector2(-1770.91, -362.586)
+scale = Vector2(1.55616, 1.55616)
+script = ExtResource("7_ihlp5")
+item = ExtResource("8_0flia")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Perfume/Area2D"]
+position = Vector2(1145, 232)
+shape = SubResource("CircleShape2D_1kkck")
+
 [connection signal="pressed" from="UI/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="input_event" from="Perfume/Area2D" to="Perfume/Area2D" method="_on_input_event"]

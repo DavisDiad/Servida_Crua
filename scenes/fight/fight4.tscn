@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dpnin6mvhtw5x"]
+[gd_scene load_steps=14 format=3 uid="uid://dpnin6mvhtw5x"]
 
 [ext_resource type="Script" uid="uid://wqm52dtuc1wm" path="res://scenes/fight/fight.gd" id="1_vx3si"]
 [ext_resource type="Texture2D" uid="uid://de3d1d1cw3avq" path="res://scenes/cenários/cave/sprites/cave (1).jpg" id="2_1w13y"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="2_m0m14"]
 [ext_resource type="Texture2D" uid="uid://b5cyg7hfck87d" path="res://placeholders/rascunho_batalha1.png" id="3_cl8gk"]
 [ext_resource type="Texture2D" uid="uid://pqhpjncq6pjd" path="res://placeholders/personagem_baattle2.png" id="4_1w13y"]
+[ext_resource type="FontFile" uid="uid://bxc233e1vrt5q" path="res://fonts/Timeless-Bold.ttf" id="5_1w13y"]
 [ext_resource type="Texture2D" uid="uid://f2g6dcisimy6" path="res://placeholders/rule-of-third-940x626.png" id="5_al7ku"]
+[ext_resource type="FontFile" uid="uid://droskw7yhnkiv" path="res://fonts/Timeless.ttf" id="6_al7ku"]
 [ext_resource type="PackedScene" uid="uid://cyl30kecp6emh" path="res://scenes/player/player.tscn" id="6_tgb44"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jmy8o"]
@@ -20,6 +22,7 @@ bg_color = Color(0, 0, 0, 1)
 
 [node name="Fight" type="Node2D"]
 script = ExtResource("1_vx3si")
+enemy_name = "boss"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 292.0
@@ -68,7 +71,8 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 45
+theme_override_fonts/font = ExtResource("5_1w13y")
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_i5lci")
 text = "Atacar"
 
@@ -76,7 +80,8 @@ text = "Atacar"
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 45
+theme_override_fonts/font = ExtResource("5_1w13y")
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_i5lci")
 text = "Proteger"
 
@@ -84,7 +89,8 @@ text = "Proteger"
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 45
+theme_override_fonts/font = ExtResource("5_1w13y")
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_i5lci")
 text = "Falar"
 
@@ -112,8 +118,10 @@ offset_left = 20.0
 offset_top = 20.0
 offset_right = -20.0
 offset_bottom = -20.0
-theme_override_font_sizes/normal_font_size = 35
-theme_override_font_sizes/bold_font_size = 35
+theme_override_fonts/normal_font = ExtResource("6_al7ku")
+theme_override_fonts/bold_font = ExtResource("5_1w13y")
+theme_override_font_sizes/normal_font_size = 45
+theme_override_font_sizes/bold_font_size = 45
 bbcode_enabled = true
 text = "texto vai aqui"
 
@@ -140,6 +148,9 @@ texture = ExtResource("5_al7ku")
 
 [node name="player" parent="." instance=ExtResource("6_tgb44")]
 position = Vector2(503, 645)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.982175, 0.884682, 0.85272, 1)
 
 [connection signal="attacking" from="." to="Boss" method="_on_fight_attacking"]
 [connection signal="defending" from="." to="Boss" method="_on_fight_defending"]

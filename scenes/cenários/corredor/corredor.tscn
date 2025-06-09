@@ -57,6 +57,9 @@ metadata/_edit_use_anchors_ = true
 [node name="player" parent="." instance=ExtResource("3_g0d3d")]
 position = Vector2(974, 559)
 
+[node name="CanvasModulate2" type="CanvasModulate" parent="."]
+color = Color(0.947263, 0.946173, 0.999247, 1)
+
 [connection signal="pressed" from="UI/button_quarto" to="UI/button_quarto" method="_on_pressed"]
 [connection signal="pressed" from="UI/button_entrada_principal" to="UI/button_entrada_principal" method="_on_pressed"]
 [connection signal="pressed" from="UI/button_quartos" to="UI/button_quartos" method="_on_pressed"]

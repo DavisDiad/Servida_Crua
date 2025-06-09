@@ -43,4 +43,7 @@ position = Vector2(510, 547)
 position = Vector2(1049.5, 379)
 shape = SubResource("RectangleShape2D_k6o8l")
 
+[node name="CanvasModulate2" type="CanvasModulate" parent="."]
+color = Color(0.947263, 0.946173, 0.999247, 1)
+
 [connection signal="pressed" from="UI/button_corredor" to="UI/button_corredor" method="_on_pressed"]

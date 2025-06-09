@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var enemy_name: String = "default"
+
 signal textbox_closed #sinal que é emitido sempre que o texto é fechado
 signal attacking
 signal defending
@@ -17,6 +19,8 @@ var anim : AnimatedSprite2D = null
 
 func _ready() -> void:
 	PlayerHealth.can_move = false
+	PlayerHealth.register_animation_players()
+	
 	
 	player = get_node("/root/Fight/player")
 	anim = player.get_node("AnimatedSprite2D")
@@ -26,8 +30,15 @@ func _ready() -> void:
 	$UI/ActionsPanel.hide() #a cena começa com os botoes escondidos
 	$UI/TextBox.show() #a cena começa com o texto a aparecer
 	
-	display_text("Um gato estranho bufa ao sentir a tua presença.") #chama a função que mostra texto
-	await textbox_closed
+	match enemy_name:
+		"gato":
+			await display_text("(Um gato estranho bufa ao sentir a tua presença.)")
+		"amiga":
+			await display_text("(Uma figura fantasmagórica aparece diante de ti.)")
+		"avô":
+			await display_text("(Uma criatura grotesca urra desesperadamente.)")
+		"boss":
+			await display_text("(É como se estivesses a olhar para o teu verdadeiro eu.)")
 	$UI/ActionsPanel.show()
 	
 

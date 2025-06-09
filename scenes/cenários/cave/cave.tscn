@@ -31,4 +31,7 @@ texture = ExtResource("6_gjked")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.982175, 0.884682, 0.85272, 1)
+
 [connection signal="pressed" from="UI/TextureButton" to="." method="_on_texture_button_pressed"]

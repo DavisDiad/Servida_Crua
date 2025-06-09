@@ -1,6 +1,7 @@
-[gd_scene load_steps=512 format=3 uid="uid://cyl30kecp6emh"]
+[gd_scene load_steps=513 format=3 uid="uid://cyl30kecp6emh"]
 
 [ext_resource type="Script" uid="uid://dka3ls7v8wx5d" path="res://scenes/player/player.gd" id="1_w1yh1"]
+[ext_resource type="Resource" uid="uid://dtway21w3mdw3" path="res://inventory/playerinv.tres" id="2_iqsei"]
 [ext_resource type="Texture2D" uid="uid://drxv2mg4xxu10" path="res://scenes/player/sprites/idle.png" id="2_lw8du"]
 [ext_resource type="Texture2D" uid="uid://chjbrvovgvyxx" path="res://scenes/player/sprites/atacar.png" id="2_ylwci"]
 [ext_resource type="Texture2D" uid="uid://c24dck05eetwp" path="res://scenes/player/sprites/idle_batalha.png" id="3_fd3jx"]
@@ -3543,6 +3544,7 @@ height = 120.5
 [node name="player" type="CharacterBody2D"]
 scale = Vector2(3.5, 3.5)
 script = ExtResource("1_w1yh1")
+inv = ExtResource("2_iqsei")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.25, 0.25)

@@ -59,6 +59,9 @@ player = NodePath("../player")
 position = Vector2(701.5, 357.5)
 shape = SubResource("RectangleShape2D_kcdl0")
 
+[node name="CanvasModulate2" type="CanvasModulate" parent="."]
+color = Color(0.947263, 0.946173, 0.999247, 1)
+
 [connection signal="pressed" from="UI/button_corredor" to="." method="_on_button_corredor_pressed"]
 [connection signal="body_entered" from="quarto_avo" to="quarto_avo" method="_on_body_entered"]
 [connection signal="body_exited" from="quarto_avo" to="quarto_avo" method="_on_body_exited"]
