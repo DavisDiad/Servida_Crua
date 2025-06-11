@@ -365,6 +365,10 @@ func hide_all_body_parts():
 		if sprite:
 			sprite.visible = false
 	$"../UI/button_corredor_principal".visible = true
+	$"../player".visible = false
+	$"../UI/ActionsPanel/Actions".visible = false
+	
+	
 	GameState.current_battle += 1
 	GameState.emit_signal("battle_completed", GameState.current_battle)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cofg4e1bbi23e"]
+[gd_scene load_steps=22 format=3 uid="uid://cofg4e1bbi23e"]
 
 [ext_resource type="Script" uid="uid://wqm52dtuc1wm" path="res://scenes/fight/fight.gd" id="1_4se71"]
 [ext_resource type="PackedScene" uid="uid://ctls4fuoxikdh" path="res://scenes/enemys/cat/cat.tscn" id="2_cubfr"]
@@ -12,6 +12,10 @@
 [ext_resource type="Script" uid="uid://bvej62d2nancr" path="res://scenes/fight/button_corredor_principal.gd" id="6_yisul"]
 [ext_resource type="Texture2D" uid="uid://dvmo73glk8ok" path="res://scenes/cenários/cozinha/sprites/cozinha.jpg" id="7_fohwn"]
 [ext_resource type="PackedScene" uid="uid://cyl30kecp6emh" path="res://scenes/player/player.tscn" id="7_ij3gj"]
+[ext_resource type="Script" uid="uid://csjd2svlnq0my" path="res://inventory/items/frigideira.gd" id="13_i672t"]
+[ext_resource type="Resource" uid="uid://cxcwhqiwg7ntv" path="res://inventory/items/frigideira.tres" id="14_rscwf"]
+[ext_resource type="Script" uid="uid://d4hx07u5bdhti" path="res://inventory/items/po_arsenico.gd" id="15_rscwf"]
+[ext_resource type="Resource" uid="uid://cr4xodumbvt0s" path="res://inventory/items/po_arsenico.tres" id="16_4ho4n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jmy8o"]
 bg_color = Color(0, 0, 0, 1)
@@ -21,6 +25,12 @@ bg_color = Color(0.639216, 0.607843, 0.27451, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kobb"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ho4n"]
+radius = 64.0078
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_boutc"]
+radius = 66.0984
 
 [node name="Fight" type="Node2D"]
 script = ExtResource("1_4se71")
@@ -155,6 +165,22 @@ position = Vector2(503, 645)
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.982175, 0.884682, 0.85272, 1)
 
+[node name="frigideira" type="Area2D" parent="."]
+position = Vector2(674, 282)
+script = ExtResource("13_i672t")
+item = ExtResource("14_rscwf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="frigideira"]
+shape = SubResource("CircleShape2D_4ho4n")
+
+[node name="po_arsenico" type="Area2D" parent="."]
+position = Vector2(407, 190)
+script = ExtResource("15_rscwf")
+item = ExtResource("16_4ho4n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="po_arsenico"]
+shape = SubResource("CircleShape2D_boutc")
+
 [connection signal="attacking" from="." to="Cat" method="_on_fight_attacking"]
 [connection signal="defending" from="." to="Cat" method="_on_fight_defending"]
 [connection signal="talked" from="." to="Cat" method="_on_fight_talked"]
@@ -162,3 +188,5 @@ color = Color(0.982175, 0.884682, 0.85272, 1)
 [connection signal="pressed" from="UI/ActionsPanel/Actions/Defend" to="." method="_on_defend_pressed"]
 [connection signal="pressed" from="UI/ActionsPanel/Actions/Talk" to="." method="_on_talk_pressed"]
 [connection signal="pressed" from="UI/button_corredor_principal" to="UI/button_corredor_principal" method="_on_pressed"]
+[connection signal="input_event" from="frigideira" to="frigideira" method="_on_input_event"]
+[connection signal="input_event" from="po_arsenico" to="po_arsenico" method="_on_input_event"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bua2knj78df8k"]
+[gd_scene load_steps=10 format=3 uid="uid://bua2knj78df8k"]
 
 [ext_resource type="Script" uid="uid://brmutuyti621x" path="res://scenes/cenários/quarto_avo/scripts/quarto_avo.gd" id="1_moa3x"]
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="1_vs0mt"]
@@ -6,6 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://x0brbimmdlev" path="res://inventory/sprites/slot1.png" id="2_moa3x"]
 [ext_resource type="Texture2D" uid="uid://cp7g664dnboeq" path="res://icon.svg" id="3_hurv0"]
 [ext_resource type="Texture2D" uid="uid://5g1jxfabg80h" path="res://scenes/cenários/quarto_avo/sprites/quarto avo (1).jpg" id="4_cmsr1"]
+[ext_resource type="Script" uid="uid://1idp3tp8lgdh" path="res://inventory/items/tumor.gd" id="7_kjpyn"]
+[ext_resource type="Resource" uid="uid://ebks6ljtud7h" path="res://inventory/items/tumor.tres" id="8_6tbgq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xmi4h"]
+radius = 66.1287
 
 [node name="QuartoAvo" type="Node2D"]
 script = ExtResource("1_moa3x")
@@ -34,4 +39,13 @@ metadata/_edit_use_anchors_ = true
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.982175, 0.884682, 0.85272, 1)
 
+[node name="tumor" type="Area2D" parent="."]
+position = Vector2(1241, 557)
+script = ExtResource("7_kjpyn")
+item = ExtResource("8_6tbgq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tumor"]
+shape = SubResource("CircleShape2D_xmi4h")
+
 [connection signal="pressed" from="UI/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="input_event" from="tumor" to="tumor" method="_on_input_event"]

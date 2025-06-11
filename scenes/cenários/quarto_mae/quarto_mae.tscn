@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dup4ftqlwqj2m"]
+[gd_scene load_steps=19 format=3 uid="uid://dup4ftqlwqj2m"]
 
 [ext_resource type="Script" uid="uid://doxu0twyjw0i1" path="res://scenes/cenários/quarto_mae/scripts/quarto_mae.gd" id="1_sunqe"]
 [ext_resource type="Resource" uid="uid://dtway21w3mdw3" path="res://inventory/playerinv.tres" id="2_mkcli"]
@@ -11,12 +11,20 @@
 [ext_resource type="Script" uid="uid://caj3q3eym4sc" path="res://inventory/items/perfume.gd" id="7_ihlp5"]
 [ext_resource type="FontFile" uid="uid://bxc233e1vrt5q" path="res://fonts/Timeless-Bold.ttf" id="7_ili7i"]
 [ext_resource type="Resource" uid="uid://orkuk7slib0r" path="res://inventory/items/perfume.tres" id="8_0flia"]
+[ext_resource type="Script" uid="uid://cgyr8sqwovq86" path="res://scenes/cenários/quarto_mae/scripts/bau.gd" id="12_ebjqe"]
+[ext_resource type="Resource" uid="uid://chrivxksihbut" path="res://inventory/items/anel.tres" id="13_it1qs"]
+[ext_resource type="Resource" uid="uid://bqcbcoa28ig43" path="res://inventory/items/colar.tres" id="14_y4k8y"]
+[ext_resource type="Resource" uid="uid://cpy4u747dnhdt" path="res://inventory/items/olho.tres" id="15_3l7f7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_um7ux"]
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1kkck"]
 radius = 40.1123
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0vhwi"]
+radius = 144.159
+height = 528.165
 
 [node name="QuartoMae" type="Node2D"]
 script = ExtResource("1_sunqe")
@@ -92,5 +100,18 @@ item = ExtResource("8_0flia")
 position = Vector2(1145, 232)
 shape = SubResource("CircleShape2D_1kkck")
 
+[node name="bau" type="Area2D" parent="."]
+position = Vector2(809, 570)
+script = ExtResource("12_ebjqe")
+item1 = ExtResource("13_it1qs")
+item2 = ExtResource("14_y4k8y")
+item3 = ExtResource("15_3l7f7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bau"]
+position = Vector2(73, 66)
+rotation = -0.961341
+shape = SubResource("CapsuleShape2D_0vhwi")
+
 [connection signal="pressed" from="UI/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="input_event" from="Perfume/Area2D" to="Perfume/Area2D" method="_on_input_event"]
+[connection signal="input_event" from="bau" to="bau" method="_on_input_event"]

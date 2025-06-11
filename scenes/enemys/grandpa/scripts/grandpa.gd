@@ -3,6 +3,8 @@ extends Node2D
 @export var right_leg_wound_texture : Texture #uma textura exportada usada para alterar a aparência da perna direita quando ela atingir o número máximo de feridas
 @export var enemy_data: EnemyData #exporta um tres do inimigo, que neste caso é o cat. esse tres esta conectado com o resource EnemyData, que contem todas as informações do inimigo
 
+@export var item: InvItem
+
 var can_take_damage = false #serve para controlar quando o inimigo recebe dano
 var has_been_attacked = false
 
@@ -370,6 +372,8 @@ func perform_attack():
 
 	if enemy_dead == true: 
 		get_tree().change_scene_to_file("res://scenes/cenários/quarto_avo/quarto_avo.tscn")
+		player.collect(item)
+		
 	else:
 	# Mostra o painel de ações novamente
 		get_node("/root/Fight/UI/ActionsPanel").show()

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://chrivxksihbut"]
+
+[ext_resource type="Script" uid="uid://o363fcejit7" path="res://inventory/scripts/inventory_item.gd" id="1_kljyb"]
+[ext_resource type="Texture2D" uid="uid://t8em420afqql" path="res://inventory/sprites/anel.png" id="2_loyqk"]
+
+[resource]
+script = ExtResource("1_kljyb")
+name = "anel"
+texture = ExtResource("2_loyqk")
+metadata/_custom_type_script = "uid://o363fcejit7"
