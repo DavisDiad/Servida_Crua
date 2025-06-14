@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bbxxdixfowwy8" path="res://scenes/cenários/corredor_espelhos/scripts/corredor_espelhos.gd" id="1_c7mlv"]
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="1_fgrvr"]
-[ext_resource type="Texture2D" uid="uid://x0brbimmdlev" path="res://inventory/sprites/slot1.png" id="2_c7mlv"]
-[ext_resource type="Texture2D" uid="uid://cp7g664dnboeq" path="res://icon.svg" id="3_pu0nm"]
+[ext_resource type="Texture2D" uid="uid://uqrppj3kb5p6" path="res://scenes/ui/sprites/botao seta direita.png" id="3_c7mlv"]
 [ext_resource type="Texture2D" uid="uid://cuckcf74n2vdr" path="res://scenes/cenários/corredor_espelhos/sprites/corredor espelhos.png" id="4_cro7t"]
+[ext_resource type="Texture2D" uid="uid://d2deo6s3q37bx" path="res://scenes/ui/sprites/botao seta esquerda.png" id="4_pu0nm"]
 [ext_resource type="PackedScene" uid="uid://cyl30kecp6emh" path="res://scenes/player/player.tscn" id="5_1lvai"]
 
 [node name="CorredorEspelhos" type="Node2D"]
@@ -14,12 +14,13 @@ script = ExtResource("1_c7mlv")
 
 [node name="button_corredor" type="TextureButton" parent="UI"]
 z_index = 5
-offset_left = 1513.0
+offset_left = 1497.0
 offset_top = 417.0
-offset_right = 1617.0
+offset_right = 1601.0
 offset_bottom = 515.0
-texture_normal = ExtResource("2_c7mlv")
-texture_hover = ExtResource("3_pu0nm")
+texture_normal = ExtResource("3_c7mlv")
+ignore_texture_size = true
+stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="button_cave" type="TextureButton" parent="UI"]
@@ -28,8 +29,9 @@ offset_left = 321.0
 offset_top = 417.0
 offset_right = 425.0
 offset_bottom = 515.0
-texture_normal = ExtResource("2_c7mlv")
-texture_hover = ExtResource("3_pu0nm")
+texture_normal = ExtResource("4_pu0nm")
+ignore_texture_size = true
+stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]

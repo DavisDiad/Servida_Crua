@@ -1,10 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://dup4ftqlwqj2m"]
+[gd_scene load_steps=18 format=3 uid="uid://dup4ftqlwqj2m"]
 
 [ext_resource type="Script" uid="uid://doxu0twyjw0i1" path="res://scenes/cenários/quarto_mae/scripts/quarto_mae.gd" id="1_sunqe"]
 [ext_resource type="Resource" uid="uid://dtway21w3mdw3" path="res://inventory/playerinv.tres" id="2_mkcli"]
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="3_ihlp5"]
-[ext_resource type="Texture2D" uid="uid://x0brbimmdlev" path="res://inventory/sprites/slot1.png" id="4_0flia"]
-[ext_resource type="Texture2D" uid="uid://cp7g664dnboeq" path="res://icon.svg" id="5_1kkck"]
+[ext_resource type="Texture2D" uid="uid://vkd65jqccigy" path="res://scenes/ui/sprites/botao seta baixo.png" id="4_um7ux"]
 [ext_resource type="Texture2D" uid="uid://coatx1uy6o62l" path="res://scenes/cenários/quarto_mae/sprites/quarto mae.jpg" id="6_2g60u"]
 [ext_resource type="FontFile" uid="uid://droskw7yhnkiv" path="res://fonts/Timeless.ttf" id="6_sdxya"]
 [ext_resource type="Texture2D" uid="uid://c6f643nce1tip" path="res://inventory/sprites/perfume.png" id="7_0flia"]
@@ -34,12 +33,20 @@ inv = ExtResource("2_mkcli")
 
 [node name="TextureButton" type="TextureButton" parent="UI"]
 z_index = 5
-offset_left = 292.0
-offset_top = 95.0
-offset_right = 396.0
-offset_bottom = 193.0
-texture_normal = ExtResource("4_0flia")
-texture_hover = ExtResource("5_1kkck")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = 118.0
+offset_right = 52.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("4_um7ux")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="TextBox" type="Panel" parent="UI"]
 visible = false

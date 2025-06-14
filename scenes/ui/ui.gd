@@ -14,6 +14,8 @@ extends CanvasLayer
 var portraits: Array[Texture] = []
 
 func _ready() -> void:
+	Transition.fade_in()
+	
 	inv.update.connect(update_slots)
 	update_slots()
 	

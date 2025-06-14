@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://chfkcms6t6n7p"]
+
+[ext_resource type="Script" uid="uid://b06ghggwtfvcc" path="res://scenes/main_menu/scripts/main_menu.gd" id="1_0ebjn"]
+[ext_resource type="Texture2D" uid="uid://cew3d0l5p6js1" path="res://scenes/main_menu/sprites/main menu final.jpg" id="1_fsom3"]
+[ext_resource type="FontFile" uid="uid://1jlb37dauk55" path="res://fonts/Nightmare 5.ttf" id="3_ob46e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcchm"]
+bg_color = Color(0.76997, 6.2209e-05, 0.133104, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ob46e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8di7r"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tuo4m"]
+bg_color = Color(0.768627, 0, 0.133333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqeha"]
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_0ebjn")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_fsom3")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 89.0
+offset_top = 634.0
+offset_right = 459.0
+offset_bottom = 796.0
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_ob46e")
+theme_override_font_sizes/font_size = 180
+theme_override_styles/hover = SubResource("StyleBoxFlat_vcchm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ob46e")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8di7r")
+text = "Jogar"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 89.0
+offset_top = 851.0
+offset_right = 459.0
+offset_bottom = 1013.0
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_ob46e")
+theme_override_font_sizes/font_size = 180
+theme_override_styles/hover = SubResource("StyleBoxFlat_tuo4m")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_uqeha")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8di7r")
+text = "Sair"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="1_qokvn"]
 [ext_resource type="Texture2D" uid="uid://dfntc06od6x8o" path="res://scenes/cenários/entrada_principal/sprites/entrada principal.png" id="2_jpxrv"]
+[ext_resource type="Texture2D" uid="uid://uqrppj3kb5p6" path="res://scenes/ui/sprites/botao seta direita.png" id="2_seqkc"]
 [ext_resource type="PackedScene" uid="uid://cyl30kecp6emh" path="res://scenes/player/player.tscn" id="3_yg2wm"]
 [ext_resource type="Script" uid="uid://ka0uhamnqi7i" path="res://porta_wc.gd" id="4_bjioa"]
-[ext_resource type="Texture2D" uid="uid://x0brbimmdlev" path="res://inventory/sprites/slot1.png" id="5_bjioa"]
+[ext_resource type="Texture2D" uid="uid://d2deo6s3q37bx" path="res://scenes/ui/sprites/botao seta esquerda.png" id="4_ggjdn"]
 [ext_resource type="Script" uid="uid://cqkl11w0140kj" path="res://scenes/cenários/entrada_principal/scripts/button_corredor.gd" id="5_g56wg"]
 [ext_resource type="Script" uid="uid://dyr6u1dm2yvjo" path="res://scenes/cenários/entrada_principal/scripts/andar_cima.gd" id="5_i3nrj"]
-[ext_resource type="Texture2D" uid="uid://cp7g664dnboeq" path="res://icon.svg" id="6_i3nrj"]
 [ext_resource type="Script" uid="uid://caxia7lc37vca" path="res://scenes/cenários/entrada_principal/scripts/button_cozinha.gd" id="7_hpoos"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3nrj"]
@@ -24,12 +24,13 @@ size = Vector2(456, 378)
 
 [node name="button_cozinha" type="TextureButton" parent="UI"]
 z_index = 5
-offset_left = 1513.0
+offset_left = 1503.0
 offset_top = 417.0
-offset_right = 1617.0
+offset_right = 1607.0
 offset_bottom = 515.0
-texture_normal = ExtResource("5_bjioa")
-texture_hover = ExtResource("6_i3nrj")
+texture_normal = ExtResource("2_seqkc")
+ignore_texture_size = true
+stretch_mode = 0
 script = ExtResource("7_hpoos")
 metadata/_edit_use_anchors_ = true
 
@@ -39,8 +40,9 @@ offset_left = 321.0
 offset_top = 417.0
 offset_right = 425.0
 offset_bottom = 515.0
-texture_normal = ExtResource("5_bjioa")
-texture_hover = ExtResource("6_i3nrj")
+texture_normal = ExtResource("4_ggjdn")
+ignore_texture_size = true
+stretch_mode = 0
 script = ExtResource("5_g56wg")
 metadata/_edit_use_anchors_ = true
 

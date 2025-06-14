@@ -1,14 +1,13 @@
-[gd_scene load_steps=22 format=3 uid="uid://cofg4e1bbi23e"]
+[gd_scene load_steps=21 format=3 uid="uid://cofg4e1bbi23e"]
 
 [ext_resource type="Script" uid="uid://wqm52dtuc1wm" path="res://scenes/fight/fight.gd" id="1_4se71"]
 [ext_resource type="PackedScene" uid="uid://ctls4fuoxikdh" path="res://scenes/enemys/cat/cat.tscn" id="2_cubfr"]
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="3_63nu4"]
-[ext_resource type="Texture2D" uid="uid://x0brbimmdlev" path="res://inventory/sprites/slot1.png" id="4_fohwn"]
 [ext_resource type="FontFile" uid="uid://droskw7yhnkiv" path="res://fonts/Timeless.ttf" id="4_yisul"]
-[ext_resource type="Texture2D" uid="uid://cp7g664dnboeq" path="res://icon.svg" id="5_4d60p"]
 [ext_resource type="Texture2D" uid="uid://pqhpjncq6pjd" path="res://placeholders/personagem_baattle2.png" id="5_8ew2v"]
 [ext_resource type="FontFile" uid="uid://bxc233e1vrt5q" path="res://fonts/Timeless-Bold.ttf" id="5_op15a"]
 [ext_resource type="Texture2D" uid="uid://f2g6dcisimy6" path="res://placeholders/rule-of-third-940x626.png" id="6_aml7f"]
+[ext_resource type="Texture2D" uid="uid://vkd65jqccigy" path="res://scenes/ui/sprites/botao seta baixo.png" id="6_rscwf"]
 [ext_resource type="Script" uid="uid://bvej62d2nancr" path="res://scenes/fight/button_corredor_principal.gd" id="6_yisul"]
 [ext_resource type="Texture2D" uid="uid://dvmo73glk8ok" path="res://scenes/cenários/cozinha/sprites/cozinha.jpg" id="7_fohwn"]
 [ext_resource type="PackedScene" uid="uid://cyl30kecp6emh" path="res://scenes/player/player.tscn" id="7_ij3gj"]
@@ -131,12 +130,20 @@ text = "texto vai aqui"
 [node name="button_corredor_principal" type="TextureButton" parent="UI"]
 visible = false
 z_index = 5
-offset_left = 292.0
-offset_top = 95.0
-offset_right = 396.0
-offset_bottom = 193.0
-texture_normal = ExtResource("4_fohwn")
-texture_hover = ExtResource("5_4d60p")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = 125.0
+offset_right = 52.0
+offset_bottom = 223.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_rscwf")
+ignore_texture_size = true
+stretch_mode = 0
 script = ExtResource("6_yisul")
 
 [node name="TextureRect2" type="TextureRect" parent="."]

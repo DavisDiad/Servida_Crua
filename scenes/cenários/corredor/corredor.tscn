@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://tkaaeu1c87lo"]
+[gd_scene load_steps=10 format=3 uid="uid://tkaaeu1c87lo"]
 
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="1_hxfao"]
-[ext_resource type="Texture2D" uid="uid://x0brbimmdlev" path="res://inventory/sprites/slot1.png" id="2_172sl"]
 [ext_resource type="Texture2D" uid="uid://du11j8u0vww25" path="res://scenes/cenários/corredor/sprites/corredor quadros 2.png" id="2_r01pk"]
+[ext_resource type="Texture2D" uid="uid://uqrppj3kb5p6" path="res://scenes/ui/sprites/botao seta direita.png" id="2_ttkoa"]
 [ext_resource type="PackedScene" uid="uid://cyl30kecp6emh" path="res://scenes/player/player.tscn" id="3_g0d3d"]
-[ext_resource type="Texture2D" uid="uid://cp7g664dnboeq" path="res://icon.svg" id="3_il75l"]
+[ext_resource type="Texture2D" uid="uid://vkd65jqccigy" path="res://scenes/ui/sprites/botao seta baixo.png" id="4_6yphs"]
 [ext_resource type="Script" uid="uid://dgvhjlq36hdte" path="res://scenes/cenários/corredor/scripts/button_quarto.gd" id="4_172sl"]
 [ext_resource type="Script" uid="uid://bxt8j8mhpcdia" path="res://scenes/cenários/corredor/scripts/button_entrada_principal.gd" id="5_il75l"]
 [ext_resource type="Script" uid="uid://d02itjqwtdghy" path="res://scenes/cenários/corredor/scripts/button_quartos.gd" id="6_c0uoo"]
+[ext_resource type="Texture2D" uid="uid://d2deo6s3q37bx" path="res://scenes/ui/sprites/botao seta esquerda.png" id="6_fyer1"]
 
 [node name="Corredor" type="Node2D"]
 
@@ -15,12 +16,13 @@
 
 [node name="button_quarto" type="TextureButton" parent="UI"]
 z_index = 5
-offset_left = 1513.0
+offset_left = 1500.0
 offset_top = 417.0
-offset_right = 1617.0
+offset_right = 1604.0
 offset_bottom = 515.0
-texture_normal = ExtResource("2_172sl")
-texture_hover = ExtResource("3_il75l")
+texture_normal = ExtResource("2_ttkoa")
+ignore_texture_size = true
+stretch_mode = 0
 script = ExtResource("4_172sl")
 metadata/_edit_use_anchors_ = true
 
@@ -30,8 +32,9 @@ offset_left = 907.0
 offset_top = 658.0
 offset_right = 1011.0
 offset_bottom = 756.0
-texture_normal = ExtResource("2_172sl")
-texture_hover = ExtResource("3_il75l")
+texture_normal = ExtResource("4_6yphs")
+ignore_texture_size = true
+stretch_mode = 0
 script = ExtResource("5_il75l")
 
 [node name="button_quartos" type="TextureButton" parent="UI"]
@@ -40,8 +43,9 @@ offset_left = 321.0
 offset_top = 417.0
 offset_right = 425.0
 offset_bottom = 515.0
-texture_normal = ExtResource("2_172sl")
-texture_hover = ExtResource("3_il75l")
+texture_normal = ExtResource("6_fyer1")
+ignore_texture_size = true
+stretch_mode = 0
 script = ExtResource("6_c0uoo")
 metadata/_edit_use_anchors_ = true
 

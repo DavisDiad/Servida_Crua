@@ -13,4 +13,6 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if Input.is_action_just_pressed("left_click") and entered == true:
+		Transition.transition()
+		await Transition.on_transition_finished
 		get_tree().change_scene_to_file("res://scenes/cenários/corredor/corredor.tscn")

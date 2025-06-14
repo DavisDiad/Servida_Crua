@@ -342,6 +342,8 @@ func perform_attack():
 		play_action_animation("idle_battle")
 		
 	if enemy_dead == true: 
+		Transition.transition()
+		await Transition.on_transition_finished
 		get_tree().change_scene_to_file("res://scenes/cenários/WC/wc.tscn")
 	else:
 	# Mostra o painel de ações novamente

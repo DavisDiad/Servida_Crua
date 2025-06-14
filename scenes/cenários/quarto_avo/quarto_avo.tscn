@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bua2knj78df8k"]
+[gd_scene load_steps=9 format=3 uid="uid://bua2knj78df8k"]
 
 [ext_resource type="Script" uid="uid://brmutuyti621x" path="res://scenes/cenários/quarto_avo/scripts/quarto_avo.gd" id="1_moa3x"]
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="1_vs0mt"]
 [ext_resource type="Resource" uid="uid://dtway21w3mdw3" path="res://inventory/playerinv.tres" id="2_hurv0"]
-[ext_resource type="Texture2D" uid="uid://x0brbimmdlev" path="res://inventory/sprites/slot1.png" id="2_moa3x"]
-[ext_resource type="Texture2D" uid="uid://cp7g664dnboeq" path="res://icon.svg" id="3_hurv0"]
 [ext_resource type="Texture2D" uid="uid://5g1jxfabg80h" path="res://scenes/cenários/quarto_avo/sprites/quarto avo (1).jpg" id="4_cmsr1"]
+[ext_resource type="Texture2D" uid="uid://vkd65jqccigy" path="res://scenes/ui/sprites/botao seta baixo.png" id="4_kjpyn"]
 [ext_resource type="Script" uid="uid://1idp3tp8lgdh" path="res://inventory/items/tumor.gd" id="7_kjpyn"]
 [ext_resource type="Resource" uid="uid://ebks6ljtud7h" path="res://inventory/items/tumor.tres" id="8_6tbgq"]
 
@@ -20,12 +19,20 @@ inv = ExtResource("2_hurv0")
 
 [node name="TextureButton" type="TextureButton" parent="UI"]
 z_index = 5
-offset_left = 292.0
-offset_top = 95.0
-offset_right = 396.0
-offset_bottom = 193.0
-texture_normal = ExtResource("2_moa3x")
-texture_hover = ExtResource("3_hurv0")
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = -426.0
+offset_right = 52.0
+offset_bottom = -328.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("4_kjpyn")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 292.0

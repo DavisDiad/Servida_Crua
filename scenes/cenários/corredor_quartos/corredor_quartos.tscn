@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccs66pcr3usti"]
+[gd_scene load_steps=9 format=3 uid="uid://ccs66pcr3usti"]
 
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="1_c5ear"]
 [ext_resource type="Script" uid="uid://dkoif7eesg1gs" path="res://scenes/cenários/corredor_quartos/scripts/corredor_quartos.gd" id="1_rkj7x"]
-[ext_resource type="Texture2D" uid="uid://x0brbimmdlev" path="res://inventory/sprites/slot1.png" id="2_rkj7x"]
-[ext_resource type="Texture2D" uid="uid://cp7g664dnboeq" path="res://icon.svg" id="3_kcdl0"]
+[ext_resource type="Texture2D" uid="uid://uqrppj3kb5p6" path="res://scenes/ui/sprites/botao seta direita.png" id="3_rkj7x"]
 [ext_resource type="Texture2D" uid="uid://bgt7hbivq6hde" path="res://scenes/cenários/corredor_quartos/sprites/corredor quadros 3.png" id="4_ddv5o"]
 [ext_resource type="PackedScene" uid="uid://cyl30kecp6emh" path="res://scenes/player/player.tscn" id="5_0t7x6"]
 [ext_resource type="Script" uid="uid://ka0uhamnqi7i" path="res://porta_wc.gd" id="7_kcdl0"]
@@ -25,8 +24,9 @@ offset_left = 1508.0
 offset_top = 417.0
 offset_right = 1612.0
 offset_bottom = 515.0
-texture_normal = ExtResource("2_rkj7x")
-texture_hover = ExtResource("3_kcdl0")
+texture_normal = ExtResource("3_rkj7x")
+ignore_texture_size = true
+stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]

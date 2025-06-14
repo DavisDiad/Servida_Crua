@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://df8bweycwihr7"]
+[gd_scene load_steps=10 format=3 uid="uid://df8bweycwihr7"]
 
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="1_1cc1q"]
 [ext_resource type="Script" uid="uid://d0bj3gc4cbpb5" path="res://scenes/cenários/WC/scripts/wc.gd" id="1_v06s1"]
@@ -6,9 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dgdi3enpiusyn" path="res://scenes/cenários/WC/sprites/wc (1).jpg" id="2_i6856"]
 [ext_resource type="Texture2D" uid="uid://bvbmif7hd73bg" path="res://inventory/sprites/laminas.png" id="3_v06s1"]
 [ext_resource type="Script" uid="uid://dq5407iywluxf" path="res://inventory/items/laminas.gd" id="4_213jw"]
+[ext_resource type="Texture2D" uid="uid://vkd65jqccigy" path="res://scenes/ui/sprites/botao seta baixo.png" id="4_443ac"]
 [ext_resource type="Resource" uid="uid://c5vrp2qsellww" path="res://inventory/items/laminas.tres" id="5_11iek"]
-[ext_resource type="Texture2D" uid="uid://x0brbimmdlev" path="res://inventory/sprites/slot1.png" id="8_213jw"]
-[ext_resource type="Texture2D" uid="uid://cp7g664dnboeq" path="res://icon.svg" id="9_11iek"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ndsf8"]
 radius = 53.7587
@@ -21,12 +20,13 @@ inv = ExtResource("2_213jw")
 
 [node name="TextureButton" type="TextureButton" parent="UI"]
 z_index = 5
-offset_left = 292.0
-offset_top = 95.0
-offset_right = 396.0
-offset_bottom = 193.0
-texture_normal = ExtResource("8_213jw")
-texture_hover = ExtResource("9_11iek")
+offset_left = 936.0
+offset_top = 656.0
+offset_right = 1040.0
+offset_bottom = 754.0
+texture_normal = ExtResource("4_443ac")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 292.0

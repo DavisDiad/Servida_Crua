@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://ymtltel2xewp"]
+[gd_scene load_steps=7 format=3 uid="uid://ymtltel2xewp"]
 
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="1_w1xgv"]
-[ext_resource type="Texture2D" uid="uid://x0brbimmdlev" path="res://inventory/sprites/slot1.png" id="2_4ge74"]
-[ext_resource type="Texture2D" uid="uid://cp7g664dnboeq" path="res://icon.svg" id="3_4oo8y"]
+[ext_resource type="Texture2D" uid="uid://d2deo6s3q37bx" path="res://scenes/ui/sprites/botao seta esquerda.png" id="2_g7rnm"]
 [ext_resource type="Script" uid="uid://irrw8dn2205x" path="res://scenes/cenários/corredor_quarto/scripts/button_corredor.gd" id="4_4ge74"]
 [ext_resource type="Texture2D" uid="uid://yjsc2p6nipwf" path="res://scenes/cenários/corredor_quarto/sprites/corredor quadros 1.png" id="4_dvuqt"]
 [ext_resource type="PackedScene" uid="uid://cyl30kecp6emh" path="res://scenes/player/player.tscn" id="5_wbv2r"]
@@ -20,8 +19,9 @@ offset_left = 321.0
 offset_top = 417.0
 offset_right = 425.0
 offset_bottom = 515.0
-texture_normal = ExtResource("2_4ge74")
-texture_hover = ExtResource("3_4oo8y")
+texture_normal = ExtResource("2_g7rnm")
+ignore_texture_size = true
+stretch_mode = 0
 script = ExtResource("4_4ge74")
 metadata/_edit_use_anchors_ = true
 

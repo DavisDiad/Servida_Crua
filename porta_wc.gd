@@ -4,6 +4,9 @@ extends Area2D
 @export var player: Node
 @onready var anim: AnimatedSprite2D = player.get_node("AnimatedSprite2D")
 
+var mouse_hover = preload("res://placeholders/mouse_hover.png")
+var default = preload("res://placeholders/cursor.png")
+
 var is_hovered := false
 var is_player_inside := false
 var is_transitioning := false
@@ -12,10 +15,12 @@ var is_transitioning := false
 func _on_mouse_entered():
 	is_hovered = true
 	_check_move_lock()
+	Input.set_custom_mouse_cursor(mouse_hover, Input.CURSOR_ARROW)
 
 func _on_mouse_exited():
 	is_hovered = false
 	_check_move_lock()
+	Input.set_custom_mouse_cursor(default, Input.CURSOR_ARROW)
 
 func _on_body_entered(body):
 	if body == player:
@@ -35,7 +40,9 @@ func _on_input_event(viewport, event, shape_idx):
 		is_transitioning = true
 		anim.stop()
 		play_action_animation("interaction")
+		Transition.transition()
 		await anim.animation_finished
+		await Transition.on_transition_finished
 		get_tree().change_scene_to_file(next_scene)
 
 func play_action_animation(action: String):

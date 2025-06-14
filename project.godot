@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Servida_Crua"
-run/main_scene="res://scenes/scene1.tscn"
+run/main_scene="res://scenes/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 PlayerHealth="*res://autoloads/PlayerHealth.gd"
 CombatCalculator="*res://autoloads/CombatCalculator.gd"
 GameState="*res://autoloads/GameState.gd"
+Transition="*res://scenes/transition/transition.tscn"
 
 [display]
 
@@ -27,6 +28,7 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="uid://b121s70vg6s55"
 
 [input]
 
