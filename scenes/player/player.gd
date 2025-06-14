@@ -4,6 +4,8 @@ extends CharacterBody2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @export var max_scale : float = 1.0
 
+@onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
+
 @export var inv: Inv
 
 var target_position: Vector2 = Vector2.ZERO
@@ -12,14 +14,20 @@ var scared_interval := 15.0
 var is_playing_idle_scared := false
 
 func _ready():
+	global_position = PlayerHealth.spawn
+	
 	target_position = position
 	play_action_animation("idle")
 	PlayerHealth.can_move = true
 
+	# Inicializa o NavigationAgent2D
+	navigation_agent_2d.velocity_computed.connect(_on_velocity_computed)
+	navigation_agent_2d.path_desired_distance = 4.0  # distância para considerar como "chegou"
+	navigation_agent_2d.target_desired_distance = 4.0
 
 func _process(delta: float):
 	if is_playing_idle_scared or velocity.length() > 0 or PlayerHealth.can_move == false:
-		return # ignora se estiver assustado OU a mover-se
+		return
 
 	idle_timer += delta
 	if idle_timer >= scared_interval:
@@ -28,17 +36,15 @@ func _process(delta: float):
 		play_action_animation("idle_scared")
 		anim.connect("animation_finished", Callable(self, "_on_idle_scared_finished"), CONNECT_ONE_SHOT)
 
-
 func _on_idle_scared_finished():
 	play_action_animation("idle")
 	is_playing_idle_scared = false
 
-
 func _input(event: InputEvent):
 	if Input.is_action_just_pressed("left_click") and PlayerHealth.can_move == true:
-		target_position = get_global_mouse_position()
+		var click_position = get_global_mouse_position()
+		navigation_agent_2d.set_target_position(click_position)
 		play_action_animation("walkcycle")
-
 
 func _physics_process(delta: float):
 	# Atualizar velocidade com base nas feridas nas pernas
@@ -52,9 +58,14 @@ func _physics_process(delta: float):
 	else:
 		speed = 180
 
-	var direction = target_position - position
-	if direction.length() > 2:
-		direction = direction.normalized()
+	# Movimento via NavigationAgent2D
+	if navigation_agent_2d.is_navigation_finished():
+		velocity = Vector2.ZERO
+		if anim.animation.begins_with("walkcycle"):
+			play_action_animation("idle")
+	else:
+		var next_position = navigation_agent_2d.get_next_path_position()
+		var direction = (next_position - global_position).normalized()
 		velocity = direction * speed
 
 		if direction.x < 0:
@@ -64,17 +75,15 @@ func _physics_process(delta: float):
 
 		if not anim.animation.begins_with("walkcycle"):
 			play_action_animation("walkcycle")
-	else:
-		velocity = Vector2.ZERO
-		if anim.animation.begins_with("walkcycle"):
-			play_action_animation("idle")
 
 	move_and_slide()
 
+func _on_velocity_computed(suggested_velocity: Vector2):
+	# Opcional: usado se quiser usar NavigationAgent2D em modo "autônomo"
+	pass
 
 func collect(item):
 	inv.insert(item)
-
 
 func play_action_animation(action: String):
 	var arm_state = PlayerHealth.get_arm_state()
@@ -91,4 +100,3 @@ func play_action_animation(action: String):
 			pass
 
 	anim.play(anim_name)
-	

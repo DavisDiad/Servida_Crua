@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://tkaaeu1c87lo"]
+[gd_scene load_steps=11 format=3 uid="uid://tkaaeu1c87lo"]
 
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="1_hxfao"]
 [ext_resource type="Texture2D" uid="uid://du11j8u0vww25" path="res://scenes/cenários/corredor/sprites/corredor quadros 2.png" id="2_r01pk"]
@@ -9,6 +9,11 @@
 [ext_resource type="Script" uid="uid://bxt8j8mhpcdia" path="res://scenes/cenários/corredor/scripts/button_entrada_principal.gd" id="5_il75l"]
 [ext_resource type="Script" uid="uid://d02itjqwtdghy" path="res://scenes/cenários/corredor/scripts/button_quartos.gd" id="6_c0uoo"]
 [ext_resource type="Texture2D" uid="uid://d2deo6s3q37bx" path="res://scenes/ui/sprites/botao seta esquerda.png" id="6_fyer1"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ttkoa"]
+vertices = PackedVector2Array(650.047, 482, 650.039, 482, 1431.42, 479.039, 1428.36, 499.969, 236, 496.031, 467.992, 483, 236, 481.078)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(0, 2, 3, 4, 5), PackedInt32Array(5, 4, 6)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(650, 472, 1443, 469, 1437, 510, 226, 506, 226, 471, 468, 473)])
 
 [node name="Corredor" type="Node2D"]
 
@@ -59,10 +64,14 @@ expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="player" parent="." instance=ExtResource("3_g0d3d")]
-position = Vector2(974, 559)
+position = Vector2(513, 476)
 
 [node name="CanvasModulate2" type="CanvasModulate" parent="."]
 color = Color(0.947263, 0.946173, 0.999247, 1)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(118, -15)
+navigation_polygon = SubResource("NavigationPolygon_ttkoa")
 
 [connection signal="pressed" from="UI/button_quarto" to="UI/button_quarto" method="_on_pressed"]
 [connection signal="pressed" from="UI/button_entrada_principal" to="UI/button_entrada_principal" method="_on_pressed"]

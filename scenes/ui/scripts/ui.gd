@@ -13,8 +13,12 @@ extends CanvasLayer
 
 var portraits: Array[Texture] = []
 
+var mouse_default = preload("res://placeholders/cursor.png")
+
 func _ready() -> void:
 	Transition.fade_in()
+	
+	Input.set_custom_mouse_cursor(mouse_default, Input.CURSOR_ARROW)
 	
 	inv.update.connect(update_slots)
 	update_slots()

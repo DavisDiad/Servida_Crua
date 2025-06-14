@@ -364,6 +364,8 @@ func hide_all_body_parts():
 		var sprite = get_node_or_null(part_name)
 		if sprite:
 			sprite.visible = false
+	Transition.transition()
+	await Transition.on_transition_finished
 	$"../UI/button_corredor_principal".visible = true
 	$"../player".visible = false
 	$"../UI/ActionsPanel/Actions".visible = false

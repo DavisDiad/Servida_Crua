@@ -11,6 +11,7 @@ var is_hovered := false
 var is_player_inside := false
 var is_transitioning := false
 
+var next_spawn = Vector2(503.0,645.0)
 
 func _on_mouse_entered():
 	is_hovered = true
@@ -41,6 +42,7 @@ func _on_input_event(viewport, event, shape_idx):
 		anim.stop()
 		play_action_animation("interaction")
 		Transition.transition()
+		PlayerHealth.spawn = next_spawn
 		await anim.animation_finished
 		await Transition.on_transition_finished
 		get_tree().change_scene_to_file(next_scene)

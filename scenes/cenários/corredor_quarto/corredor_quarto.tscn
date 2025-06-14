@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ymtltel2xewp"]
+[gd_scene load_steps=8 format=3 uid="uid://ymtltel2xewp"]
 
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="1_w1xgv"]
 [ext_resource type="Texture2D" uid="uid://d2deo6s3q37bx" path="res://scenes/ui/sprites/botao seta esquerda.png" id="2_g7rnm"]
@@ -8,6 +8,11 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k6o8l"]
 size = Vector2(223, 346)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_g7rnm"]
+vertices = PackedVector2Array(650.047, 482, 650.039, 482, 1431.42, 479.039, 1428.36, 499.969, 236, 496.031, 467.992, 483, 236, 481.078)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(0, 2, 3, 4, 5), PackedInt32Array(5, 4, 6)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(650, 472, 1443, 469, 1437, 510, 226, 506, 226, 471, 468, 473)])
 
 [node name="CorredorQuarto" type="Node2D"]
 
@@ -35,7 +40,7 @@ expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="player" parent="." instance=ExtResource("5_wbv2r")]
-position = Vector2(510, 547)
+position = Vector2(510, 498)
 
 [node name="quarto_helena" type="Area2D" parent="."]
 
@@ -45,5 +50,9 @@ shape = SubResource("RectangleShape2D_k6o8l")
 
 [node name="CanvasModulate2" type="CanvasModulate" parent="."]
 color = Color(0.947263, 0.946173, 0.999247, 1)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(118, -15)
+navigation_polygon = SubResource("NavigationPolygon_g7rnm")
 
 [connection signal="pressed" from="UI/button_corredor" to="UI/button_corredor" method="_on_pressed"]

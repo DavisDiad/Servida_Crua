@@ -1,5 +1,7 @@
 extends Node
 
+var spawn = Vector2(974.0,559.0)
+
 var min_damage = 1
 var max_damage = 2
 var base_accuracy = 65
@@ -88,8 +90,9 @@ func add_wound(body_part: String, amount: int = 1) -> bool:
 				print("n foi encontrado")
 		
 		if body_part in ["torso", "head"] and wounds[body_part] >= wound_limits[body_part]:
-			await get_tree().create_timer(1.0).timeout
-			get_tree().quit()
+			Transition.transition()
+			await Transition.on_transition_finished
+			get_tree().change_scene_to_file("res://scenes/cutscene/cutscene_1.tscn")
 
 		update_evasion_debuffs()
 	return damage_applied

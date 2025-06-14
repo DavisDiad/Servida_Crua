@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c7sxxpmaukljm"]
+[gd_scene load_steps=14 format=3 uid="uid://c7sxxpmaukljm"]
 
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="1_qokvn"]
 [ext_resource type="Texture2D" uid="uid://dfntc06od6x8o" path="res://scenes/cenários/entrada_principal/sprites/entrada principal.png" id="2_jpxrv"]
@@ -14,9 +14,14 @@
 size = Vector2(145, 246)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpxrv"]
-size = Vector2(456, 378)
+size = Vector2(367, 213)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_seqkc"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_g56wg"]
+vertices = PackedVector2Array(482, 484.047, 1431.42, 479.063, 1428.34, 500.094, 234.539, 513.883, 224.469, 297.852, 482, 294.141)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1443, 469, 1437, 510, 225, 524, 214, 288, 492, 284, 492, 474)])
 
 [node name="EntradaPrincipal" type="Node2D"]
 
@@ -56,7 +61,7 @@ expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="player" parent="." instance=ExtResource("3_yg2wm")]
-position = Vector2(974, 559)
+position = Vector2(518, 537)
 
 [node name="porta_wc" type="Area2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("4_bjioa")
@@ -71,7 +76,7 @@ shape = SubResource("RectangleShape2D_i3nrj")
 script = ExtResource("5_i3nrj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="andar_cima"]
-position = Vector2(515, 275)
+position = Vector2(470.5, 192.5)
 shape = SubResource("RectangleShape2D_jpxrv")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -83,6 +88,10 @@ color = Color(0.947263, 0.946173, 0.999247, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_seqkc")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(118, 41)
+navigation_polygon = SubResource("NavigationPolygon_g56wg")
 
 [connection signal="pressed" from="UI/button_cozinha" to="UI/button_cozinha" method="_on_pressed"]
 [connection signal="pressed" from="UI/button_corredor" to="UI/button_corredor" method="_on_pressed"]
