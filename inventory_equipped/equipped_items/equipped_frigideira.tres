@@ -7,9 +7,10 @@
 script = ExtResource("1_lervl")
 name = "frigideira"
 texture = ExtResource("2_x0l12")
-min_damage = 1
-max_damage = 3
+min_damage = 0
+max_damage = 1
 accuracy = 5
 evasion = 0
 max_wounds = 0
+type = "weapon"
 metadata/_custom_type_script = "uid://cg5hqan4p4fr7"

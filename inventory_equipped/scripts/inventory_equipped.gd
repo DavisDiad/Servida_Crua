@@ -22,4 +22,19 @@ func insert(itemeq: InvEquItem):
 			if accessory == null:
 				accessory = InvEquSlot.new()
 			accessory.itemequ = itemeq
-	update.emit()
+
+	# Aplicar os efeitos no player após equipar
+	apply_item_stats(itemeq)
+	
+func apply_item_stats(item: InvEquItem):
+	PlayerHealth.min_damage += item.min_damage
+	PlayerHealth.max_damage += item.max_damage
+	PlayerHealth.base_accuracy += item.accuracy
+	
+	# Adicionar evasão — exemplo genérico (você pode adaptar melhor):
+	for part in PlayerHealth.evasion_per_part.keys():
+		PlayerHealth.evasion_per_part[part] += item.evasion
+	
+	# Adicionar ferimentos máximos:
+	for part in PlayerHealth.wound_limits.keys():
+		PlayerHealth.wound_limits[part] += item.max_wounds

@@ -29,11 +29,11 @@ var wounds = {
 
 var wound_limits = {
 	"head": 6,
-	"torso": 10,
-	"left_arm": 6,
-	"right_arm": 6,
-	"left_leg": 8,
-	"right_leg": 8
+	"torso": 8,
+	"left_arm": 4,
+	"right_arm": 4,
+	"left_leg": 5,
+	"right_leg": 5
 }
 
 # Controle de debuffs aplicados
@@ -121,7 +121,7 @@ func update_evasion_debuffs():
 		evasion_debuff_applied["torso"] = true
 
 	# Print debug
-	print("Evasão atual por parte do corpo:")
+	print("Evasão atual por parte do corpo da protagonista:")
 	for part in evasion_per_part:
 		print(part + ": " + str(evasion_per_part[part]))
 		
