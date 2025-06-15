@@ -74,6 +74,9 @@ func _on_item_clicked(item: InvItem, index: int):
 	selected_slot_index = index
 	print("Item clicado:", item.name)
 	print("Equipável:", item.equipable)
+	var actions_panel := get_node_or_null("ActionsPanel")
+	if actions_panel:
+		actions_panel.visible = false
 
 	if item.equipable != null:
 		print("Painel de equipar visível")
@@ -88,12 +91,15 @@ func _on_equip_pressed():
 		inv_equ.insert(selected_item.equipable)
 
 		# Remover do inventário
-		inv.slots[selected_slot_index] = null
+		inv.slots[selected_slot_index] = InvSlot.new()
 		update_slots()
 		update_equ_slots()
 
 		# Esconder o painel
 		$EquipPanel.visible = false
+		var actions_panel := get_node_or_null("ActionsPanel")
+		if actions_panel:
+			actions_panel.visible = true
 
 		selected_item = null
 		selected_slot_index = -1

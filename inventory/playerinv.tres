@@ -1,12 +1,10 @@
-[gd_resource type="Resource" script_class="Inv" load_steps=16 format=3 uid="uid://dtway21w3mdw3"]
+[gd_resource type="Resource" script_class="Inv" load_steps=15 format=3 uid="uid://dtway21w3mdw3"]
 
 [ext_resource type="Script" uid="uid://bwe42sf2psyme" path="res://Inv_slot.gd" id="2_g8gqn"]
 [ext_resource type="Script" uid="uid://dk5vck322k6fj" path="res://inventory/scripts/inventory.gd" id="3_11wfs"]
-[ext_resource type="Resource" uid="uid://cxcwhqiwg7ntv" path="res://inventory/items/frigideira.tres" id="3_bm6gn"]
 
 [sub_resource type="Resource" id="Resource_g8gqn"]
 script = ExtResource("2_g8gqn")
-item = ExtResource("3_bm6gn")
 amount = 0
 metadata/_custom_type_script = "uid://bwe42sf2psyme"
 
