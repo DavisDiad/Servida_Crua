@@ -3,6 +3,9 @@ extends CanvasLayer
 @onready var inv: Inv = preload("res://inventory/playerinv.tres")
 @onready var slots: Array = $GridContainer.get_children()
 
+@onready var inv_equ: InvEqu = preload("res://inventory_equipped/playerequinv.tres")
+@onready var slots_equ: Array = $Control.get_children()
+
 @onready var portrait_0 = preload("res://scenes/ui/sprites/expressoes_ui(1).png") 
 @onready var portrait_1 = preload("res://scenes/ui/sprites/expressoes_ui2.png") 
 @onready var portrait_2 = preload("res://scenes/ui/sprites/expressoes_ui3.png") 
@@ -15,13 +18,19 @@ var portraits: Array[Texture] = []
 
 var mouse_default = preload("res://placeholders/cursor.png")
 
+var selected_item: InvItem = null
+var selected_slot_index: int = -1
+
 func _ready() -> void:
 	Transition.fade_in()
 	
 	Input.set_custom_mouse_cursor(mouse_default, Input.CURSOR_ARROW)
 	
 	inv.update.connect(update_slots)
+	inv_equ.update.connect(update_equ_slots)
 	update_slots()
+	
+	update_equ_slots()
 	
 	# Preenche a lista com os portraits exportados
 	portraits = [portrait_0, portrait_1, portrait_2, portrait_3, portrait_4]
@@ -43,8 +52,52 @@ func update_portrait(index: int):
 
 func update_slots():
 	for i in range(min(inv.slots.size(), slots.size())):
+		slots[i].index = i
 		slots[i].update(inv.slots[i])
+		if not slots[i].is_connected("item_clicked", Callable(self, "_on_item_clicked")):
+			slots[i].connect("item_clicked", Callable(self, "_on_item_clicked"))
 	
+
+func update_equ_slots():
+	var item_map = {
+		"weapon": inv_equ.weapon,
+		"object": inv_equ.object,
+		"accessory": inv_equ.accessory
+	}
+	
+	for i in range(slots_equ.size()):
+		var key = item_map.keys()[i]
+		slots_equ[i].update(item_map[key])
+		
+func _on_item_clicked(item: InvItem, index: int):
+	selected_item = item
+	selected_slot_index = index
+	print("Item clicado:", item.name)
+	print("Equipável:", item.equipable)
+
+	if item.equipable != null:
+		print("Painel de equipar visível")
+		$EquipPanel.visible = true
+	else:
+		$EquipPanel.visible = false
+		
+func _on_equip_pressed():
+	if selected_item and selected_item.equipable:
+		var type = selected_item.equipable.type
+
+		inv_equ.insert(selected_item.equipable)
+
+		# Remover do inventário
+		inv.slots[selected_slot_index] = null
+		update_slots()
+		update_equ_slots()
+
+		# Esconder o painel
+		$EquipPanel.visible = false
+
+		selected_item = null
+		selected_slot_index = -1
+
 
 func _process(delta: float) -> void:
 	update_wound_display() 

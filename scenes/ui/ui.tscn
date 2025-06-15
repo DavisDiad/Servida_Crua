@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://bct6pd7l1iui0"]
+[gd_scene load_steps=32 format=4 uid="uid://bct6pd7l1iui0"]
 
 [ext_resource type="Script" uid="uid://dclxk0tnopl7n" path="res://scenes/ui/scripts/ui.gd" id="1_pl2xg"]
 [ext_resource type="Texture2D" uid="uid://c6lsv0jvjc82x" path="res://scenes/ui/sprites/ui.png" id="2_aac20"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bw6lxerpxatrn" path="res://scenes/ui/sprites/right_arm_feridas.png" id="7_4kltc"]
 [ext_resource type="Texture2D" uid="uid://dmxeqtqd7mkds" path="res://scenes/ui/sprites/right_leg_feridas.png" id="8_hl07w"]
 [ext_resource type="PackedScene" uid="uid://bx3gvfwo22id0" path="res://inventory/inv_ui_slot.tscn" id="9_uegxj"]
+[ext_resource type="PackedScene" uid="uid://bg3cj34j0h7iw" path="res://inventory_equipped/inv_equ_ui_slot.tscn" id="14_hc5d0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_640q4"]
 bg_color = Color(0, 0, 0, 1)
@@ -289,6 +290,12 @@ _data = {
 &"right_leg_damage": SubResource("Animation_4w2x3"),
 &"torso_damage": SubResource("Animation_hl07w")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n3vwu"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0i47d"]
+bg_color = Color(0.639216, 0.607843, 0.27451, 1)
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_pl2xg")
@@ -582,5 +589,81 @@ layout_mode = 2
 [node name="inv_UI_slot12" parent="GridContainer" instance=ExtResource("9_uegxj")]
 layout_mode = 2
 
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="weapons" parent="Control" instance=ExtResource("14_hc5d0")]
+layout_mode = 0
+offset_left = 1672.0
+offset_top = 825.0
+offset_right = 1757.0
+offset_bottom = 910.0
+
+[node name="objects" parent="Control" instance=ExtResource("14_hc5d0")]
+layout_mode = 0
+offset_left = 1805.0
+offset_top = 825.0
+offset_right = 1890.0
+offset_bottom = 910.0
+
+[node name="accessory" parent="Control" instance=ExtResource("14_hc5d0")]
+layout_mode = 0
+offset_left = 1738.0
+offset_top = 958.0
+offset_right = 1823.0
+offset_bottom = 1043.0
+
+[node name="EquipPanel" type="Panel" parent="."]
+visible = false
+z_index = 2
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 538.0
+offset_top = -255.0
+offset_right = -295.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_n3vwu")
+
+[node name="Actions" type="HBoxContainer" parent="EquipPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 60.0
+offset_right = -30.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="equip" type="Button" parent="EquipPanel/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_4kltc")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_0i47d")
+text = "Equipar"
+
+[node name="analyze" type="Button" parent="EquipPanel/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_4kltc")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_0i47d")
+text = "Analisar"
+
 [connection signal="pressed" from="TextureRect/menu" to="TextureRect/menu" method="_on_pressed"]
 [connection signal="pressed" from="TextureRect/sair" to="TextureRect/sair" method="_on_pressed"]
+[connection signal="pressed" from="EquipPanel/Actions/equip" to="." method="_on_equip_pressed"]

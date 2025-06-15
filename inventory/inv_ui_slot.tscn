@@ -35,3 +35,5 @@ offset_bottom = 14.0
 scale = Vector2(3, 3)
 text = "99"
 horizontal_alignment = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

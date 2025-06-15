@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 
 @export var inv: Inv
+@export var invequ: InvEqu
 
 var target_position: Vector2 = Vector2.ZERO
 var idle_timer := 0.0
@@ -84,6 +85,9 @@ func _on_velocity_computed(suggested_velocity: Vector2):
 
 func collect(item):
 	inv.insert(item)
+	
+func collect_equ(itemequ):
+	invequ.insert(itemequ)
 
 func play_action_animation(action: String):
 	var arm_state = PlayerHealth.get_arm_state()

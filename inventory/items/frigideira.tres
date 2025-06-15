@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://cxcwhqiwg7ntv"]
+[gd_resource type="Resource" script_class="InvItem" load_steps=4 format=3 uid="uid://cxcwhqiwg7ntv"]
 
 [ext_resource type="Script" uid="uid://o363fcejit7" path="res://inventory/scripts/inventory_item.gd" id="1_03p23"]
+[ext_resource type="Resource" uid="uid://bg1odu848tjyf" path="res://inventory_equipped/equipped_items/equipped_frigideira.tres" id="1_uv65t"]
 [ext_resource type="Texture2D" uid="uid://fae5xkhkovcm" path="res://inventory/sprites/frigideira.png" id="2_uv65t"]
 
 [resource]
 script = ExtResource("1_03p23")
 name = "frigideira"
 texture = ExtResource("2_uv65t")
+equipable = ExtResource("1_uv65t")
 metadata/_custom_type_script = "uid://o363fcejit7"

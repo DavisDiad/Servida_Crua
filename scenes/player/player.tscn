@@ -1,4 +1,4 @@
-[gd_scene load_steps=513 format=3 uid="uid://cyl30kecp6emh"]
+[gd_scene load_steps=514 format=3 uid="uid://cyl30kecp6emh"]
 
 [ext_resource type="Script" uid="uid://dka3ls7v8wx5d" path="res://scenes/player/player.gd" id="1_w1yh1"]
 [ext_resource type="Resource" uid="uid://dtway21w3mdw3" path="res://inventory/playerinv.tres" id="2_iqsei"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c24dck05eetwp" path="res://scenes/player/sprites/idle_batalha.png" id="3_fd3jx"]
 [ext_resource type="Texture2D" uid="uid://djgl11gs2uad7" path="res://scenes/player/sprites/attack_without_r_a.png" id="3_ioxgp"]
 [ext_resource type="Texture2D" uid="uid://2anfr5hbxqc" path="res://scenes/player/sprites/receber_dano.png" id="3_rojbf"]
+[ext_resource type="Resource" uid="uid://cx60xouxevn3g" path="res://inventory_equipped/playerequinv.tres" id="3_tffgl"]
 [ext_resource type="Texture2D" uid="uid://0qt5kux3kafd" path="res://scenes/player/sprites/scared.png" id="3_tw4it"]
 [ext_resource type="Texture2D" uid="uid://4k5umdwmvm6c" path="res://scenes/player/sprites/attack_desmemberd.png" id="3_uniwh"]
 [ext_resource type="Texture2D" uid="uid://baff3026ffdxr" path="res://scenes/player/sprites/interaction.png" id="4_3fuj6"]
@@ -3545,6 +3546,7 @@ height = 232.496
 scale = Vector2(3.5, 3.5)
 script = ExtResource("1_w1yh1")
 inv = ExtResource("2_iqsei")
+invequ = ExtResource("3_tffgl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.25, 0.25)

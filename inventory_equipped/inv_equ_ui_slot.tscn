@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg3cj34j0h7iw"]
+
+[ext_resource type="Texture2D" uid="uid://x0brbimmdlev" path="res://inventory/sprites/slot1.png" id="1_0mnsg"]
+[ext_resource type="Script" uid="uid://d2x0om7bdeou6" path="res://inventory_equipped/scripts/inv_equ_ui_slot.gd" id="1_7dp6s"]
+
+[node name="inv_equ_UI_slot" type="Panel"]
+clip_contents = true
+custom_minimum_size = Vector2(85, 85)
+offset_right = 85.0
+offset_bottom = 85.0
+script = ExtResource("1_7dp6s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.817308, 0.867347)
+texture = ExtResource("1_0mnsg")
+centered = false
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 0
+offset_right = 85.0
+offset_bottom = 85.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="item_equ_display" type="Sprite2D" parent="CenterContainer/Panel"]
