@@ -7,4 +7,11 @@
 script = ExtResource("1_kljyb")
 name = "anel"
 texture = ExtResource("2_loyqk")
+is_equipable = true
+type = "accessory"
+min_damage = 0
+max_damage = 0
+accuracy = 0
+evasion = 0
+max_wounds = 2
 metadata/_custom_type_script = "uid://o363fcejit7"

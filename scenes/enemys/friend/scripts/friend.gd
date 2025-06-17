@@ -145,13 +145,13 @@ func take_damage(body_part_name: String):
 							sprite.visible = false
 						
 						if body_part_name == "right_arm":
-							apply_evasion_penalty_to_all(7)
+							apply_evasion_penalty_to_all(10)
 						
 						if body_part_name == "left_arm":
-							apply_evasion_penalty_to_all(7)
+							apply_evasion_penalty_to_all(10)
 							
 						if body_part_name == "head":
-							apply_evasion_penalty_to_all(7)
+							apply_evasion_penalty_to_all(10)
 				break
 
 		has_been_attacked = true

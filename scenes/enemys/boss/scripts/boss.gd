@@ -324,8 +324,8 @@ func perform_attack():
 		part_probabilities["left_leg"] = 0.2
 		part_probabilities["right_leg"] = 0.2
 	elif selected_skill_name == "human_hammer":
-		part_probabilities["head"] = 0.0
-		part_probabilities["torso"] = 0.0
+		part_probabilities["head"] = 0.1
+		part_probabilities["torso"] = 0.1
 		part_probabilities["left_arm"] = 0.2
 		part_probabilities["right_arm"] = 0.2
 		part_probabilities["left_leg"] = 0.3

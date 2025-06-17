@@ -1,5 +1,7 @@
 extends Node
 
+@onready var inv_equ: InvEqu = preload("res://inventory_equipped/playerequinv.tres")
+
 var spawn = Vector2(974.0,559.0)
 
 var min_damage = 1
@@ -79,11 +81,22 @@ func add_wound(body_part: String, amount: int = 1) -> bool:
 			final_amount = max(0, amount - 1)
 			is_defending = false
 		wounds[body_part] += final_amount
+		
+		if wounds["right_arm"] >= wound_limits["right_arm"]:
+			if inv_equ.weapon and inv_equ.weapon.item:
+				inv_equ.force_unequip_and_return(inv_equ.weapon)
+				print("Braço direito perdido. Arma desequipada.")
+
+		if wounds["left_arm"] >= wound_limits["left_arm"]:
+			if inv_equ.object and inv_equ.object.item:
+				inv_equ.force_unequip_and_return(inv_equ.object)
+				print("Braço esquerdo perdido. Objeto desequipado.")
+		
 		damage_applied = (final_amount > 0)
 		if damage_applied:
 			var anim_player = body_part_anim_players.get(body_part, null)
 			if anim_player and anim_player.has_animation(body_part + "_damage"):
-				print("encontrado")
+				
 				await get_tree().create_timer(1.0).timeout
 				anim_player.play(body_part + "_damage")
 			else:
@@ -125,4 +138,5 @@ func update_evasion_debuffs():
 	for part in evasion_per_part:
 		print(part + ": " + str(evasion_per_part[part]))
 		
-		
+
+	

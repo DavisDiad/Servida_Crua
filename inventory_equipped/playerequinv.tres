@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://ctl7poeo32n8j" path="res://inventory_equipped/scripts/inv_equ_slot.gd" id="1_3vi6g"]
 [ext_resource type="Script" uid="uid://cududw876xwvc" path="res://inventory_equipped/scripts/inventory_equipped.gd" id="1_y87v0"]
 
+[sub_resource type="Resource" id="Resource_3vi6g"]
+script = ExtResource("1_3vi6g")
+metadata/_custom_type_script = "uid://ctl7poeo32n8j"
+
 [sub_resource type="Resource" id="Resource_q64ss"]
 script = ExtResource("1_3vi6g")
 metadata/_custom_type_script = "uid://ctl7poeo32n8j"
@@ -11,13 +15,9 @@ metadata/_custom_type_script = "uid://ctl7poeo32n8j"
 script = ExtResource("1_3vi6g")
 metadata/_custom_type_script = "uid://ctl7poeo32n8j"
 
-[sub_resource type="Resource" id="Resource_x6gtp"]
-script = ExtResource("1_3vi6g")
-metadata/_custom_type_script = "uid://ctl7poeo32n8j"
-
 [resource]
 script = ExtResource("1_y87v0")
-weapon = SubResource("Resource_x6gtp")
-object = SubResource("Resource_xor2w")
-accessory = SubResource("Resource_q64ss")
+weapon = SubResource("Resource_xor2w")
+object = SubResource("Resource_q64ss")
+accessory = SubResource("Resource_3vi6g")
 metadata/_custom_type_script = "uid://cududw876xwvc"

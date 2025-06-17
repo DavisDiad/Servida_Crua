@@ -7,4 +7,11 @@
 script = ExtResource("1_22ahd")
 name = "olho"
 texture = ExtResource("2_7kijr")
+is_equipable = true
+type = "accessory"
+min_damage = 0
+max_damage = 0
+accuracy = 10
+evasion = 0
+max_wounds = 0
 metadata/_custom_type_script = "uid://o363fcejit7"

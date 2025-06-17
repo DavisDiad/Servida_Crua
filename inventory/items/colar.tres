@@ -7,4 +7,11 @@
 script = ExtResource("1_bujp8")
 name = "colar"
 texture = ExtResource("2_hkogs")
+is_equipable = true
+type = "accessory"
+min_damage = 0
+max_damage = 0
+accuracy = 0
+evasion = 5
+max_wounds = 0
 metadata/_custom_type_script = "uid://o363fcejit7"

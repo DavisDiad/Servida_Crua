@@ -7,4 +7,11 @@
 script = ExtResource("1_6atdy")
 name = "laminas"
 texture = ExtResource("2_4j222")
+is_equipable = true
+type = "weapon"
+min_damage = 2
+max_damage = 1
+accuracy = 0
+evasion = 0
+max_wounds = 0
 metadata/_custom_type_script = "uid://o363fcejit7"

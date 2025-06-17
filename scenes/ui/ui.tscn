@@ -664,6 +664,55 @@ theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_0i47d")
 text = "Analisar"
 
+[node name="DesequipPanel" type="Panel" parent="."]
+visible = false
+z_index = 4
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 538.0
+offset_top = -255.0
+offset_right = -295.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_n3vwu")
+
+[node name="Actions" type="HBoxContainer" parent="DesequipPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 60.0
+offset_right = -30.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="desequip" type="Button" parent="DesequipPanel/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_4kltc")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_0i47d")
+text = "Desequipar"
+
+[node name="analyze" type="Button" parent="DesequipPanel/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_4kltc")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_0i47d")
+text = "Analisar"
+
 [connection signal="pressed" from="TextureRect/menu" to="TextureRect/menu" method="_on_pressed"]
 [connection signal="pressed" from="TextureRect/sair" to="TextureRect/sair" method="_on_pressed"]
 [connection signal="pressed" from="EquipPanel/Actions/equip" to="." method="_on_equip_pressed"]
+[connection signal="pressed" from="DesequipPanel/Actions/desequip" to="." method="_on_desequip_pressed"]

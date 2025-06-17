@@ -21,10 +21,15 @@ var mouse_default = preload("res://placeholders/cursor.png")
 var selected_item: InvItem = null
 var selected_slot_index: int = -1
 
+var selected_equ_slot: InvEquSlot = null
+var selected_equ_item: InvItem = null
+
 func _ready() -> void:
 	Transition.fade_in()
 	
 	Input.set_custom_mouse_cursor(mouse_default, Input.CURSOR_ARROW)
+	
+	inv_equ.inv_ref = inv
 	
 	inv.update.connect(update_slots)
 	inv_equ.update.connect(update_equ_slots)
@@ -64,46 +69,83 @@ func update_equ_slots():
 		"object": inv_equ.object,
 		"accessory": inv_equ.accessory
 	}
-	
+
 	for i in range(slots_equ.size()):
 		var key = item_map.keys()[i]
-		slots_equ[i].update(item_map[key])
+		var slot_ui = slots_equ[i]
+		slot_ui.update(item_map[key])
 		
+		if not slot_ui.is_connected("equipment_clicked", Callable(self, "_on_equipment_clicked")):
+			slot_ui.connect("equipment_clicked", Callable(self, "_on_equipment_clicked"))
+
+
 func _on_item_clicked(item: InvItem, index: int):
 	selected_item = item
 	selected_slot_index = index
-	print("Item clicado:", item.name)
-	print("Equipável:", item.equipable)
+
 	var actions_panel := get_node_or_null("ActionsPanel")
 	if actions_panel:
 		actions_panel.visible = false
 
-	if item.equipable != null:
+	if item.is_equipable:
 		print("Painel de equipar visível")
 		$EquipPanel.visible = true
 	else:
 		$EquipPanel.visible = false
-		
+
+
+func _on_equipment_clicked(item: InvItem, slot_ref: InvEquSlot):
+	selected_equ_item = item
+	selected_equ_slot = slot_ref
+
+	var actions_panel := get_node_or_null("ActionsPanel")
+	if actions_panel:
+		actions_panel.visible = false
+
+	$DesequipPanel.visible = true
+
 func _on_equip_pressed():
-	if selected_item and selected_item.equipable:
-		var type = selected_item.equipable.type
+	if selected_item and selected_item.is_equipable:
+		var success := inv_equ.insert(selected_item)
 
-		inv_equ.insert(selected_item.equipable)
+		if success:
+			# Remover do inventário apenas se o item foi realmente equipado
+			inv.slots[selected_slot_index] = InvSlot.new()
+			update_slots()
+			update_equ_slots()
+			$EquipPanel.visible = false
+			var actions_panel := get_node_or_null("ActionsPanel")
+			if actions_panel:
+				actions_panel.visible = true
+		else:
+			print("Não foi possível equipar. Membro ferido.")
 
-		# Remover do inventário
-		inv.slots[selected_slot_index] = InvSlot.new()
-		update_slots()
-		update_equ_slots()
 
-		# Esconder o painel
-		$EquipPanel.visible = false
-		var actions_panel := get_node_or_null("ActionsPanel")
-		if actions_panel:
-			actions_panel.visible = true
+func _on_desequip_pressed():
+	if selected_equ_slot and selected_equ_slot.item:
+		var base_item = selected_equ_slot.item
+		var added = false
 
-		selected_item = null
-		selected_slot_index = -1
+		# Adiciona de volta ao inventário
+		for i in range(inv.slots.size()):
+			if inv.slots[i].item == null:
+				var new_slot = InvSlot.new()
+				new_slot.item = base_item
+				inv.slots[i] = new_slot
+				added = true
+				break
 
+		if added:
+			inv_equ.unequip_item(selected_equ_slot)
+			update_slots()
+			update_equ_slots()
+			$DesequipPanel.visible = false
+			var actions_panel := get_node_or_null("ActionsPanel")
+			if actions_panel:
+				actions_panel.visible = true
+				
+		else:
+			print("Inventário cheio!")
 
 func _process(delta: float) -> void:
 	update_wound_display() 

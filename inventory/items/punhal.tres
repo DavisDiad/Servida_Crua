@@ -7,4 +7,11 @@
 script = ExtResource("1_km6on")
 name = "punhal"
 texture = ExtResource("2_7d1o3")
+is_equipable = true
+type = "weapon"
+min_damage = 3
+max_damage = 0
+accuracy = 0
+evasion = 0
+max_wounds = 0
 metadata/_custom_type_script = "uid://o363fcejit7"

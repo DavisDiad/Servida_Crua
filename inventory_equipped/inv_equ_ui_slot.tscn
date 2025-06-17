@@ -26,3 +26,5 @@ offset_bottom = 85.0
 layout_mode = 2
 
 [node name="item_equ_display" type="Sprite2D" parent="CenterContainer/Panel"]
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

@@ -9,7 +9,7 @@ resource_name = "torso"
 script = ExtResource("1_vx0jp")
 name = "torso"
 max_wounds = 3
-evasion = 20
+evasion = 50
 
 [sub_resource type="Resource" id="Resource_rdp0s"]
 resource_name = "eye"

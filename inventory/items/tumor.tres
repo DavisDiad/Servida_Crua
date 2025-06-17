@@ -7,4 +7,11 @@
 script = ExtResource("1_m4vt1")
 name = "tumor"
 texture = ExtResource("2_0n4hl")
+is_equipable = true
+type = "object"
+min_damage = 0
+max_damage = 3
+accuracy = 0
+evasion = 0
+max_wounds = 0
 metadata/_custom_type_script = "uid://o363fcejit7"
