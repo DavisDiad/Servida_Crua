@@ -16,3 +16,9 @@ func insert(item: InvItem):
 			emptyslots[0].item = item
 			emptyslots[0].amount = 1
 	update.emit()
+
+func reset():
+	for i in range(slots.size()):
+		slots[i].item = null
+		slots[i].amount = 0
+	update.emit()

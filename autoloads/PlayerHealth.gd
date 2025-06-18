@@ -1,11 +1,12 @@
 extends Node
 
 @onready var inv_equ: InvEqu = preload("res://inventory_equipped/playerequinv.tres")
+@onready var inv: Inv = preload("res://inventory/playerinv.tres")
 
 var spawn = Vector2(974.0,559.0)
 
 var min_damage = 1
-var max_damage = 2
+var max_damage = 1
 var base_accuracy = 65
 
 var is_defending = false
@@ -105,6 +106,7 @@ func add_wound(body_part: String, amount: int = 1) -> bool:
 		if body_part in ["torso", "head"] and wounds[body_part] >= wound_limits[body_part]:
 			Transition.transition()
 			await Transition.on_transition_finished
+			GameReset.reset_all()
 			get_tree().change_scene_to_file("res://scenes/cutscene/cutscene_1.tscn")
 
 		update_evasion_debuffs()
@@ -139,4 +141,54 @@ func update_evasion_debuffs():
 		print(part + ": " + str(evasion_per_part[part]))
 		
 
-	
+func reset():
+	# Reseta atributos básicos
+	min_damage = 1
+	max_damage = 2
+	base_accuracy = 65
+	is_defending = false
+	can_move = true
+
+	# Zera ferimentos
+	for part in wounds.keys():
+		wounds[part] = 0
+
+	# Restaura evasões base
+	evasion_per_part = {
+		"head": 15,
+		"torso": 5,
+		"left_arm": 10,
+		"right_arm": 10,
+		"left_leg": 5,
+		"right_leg": 5
+	}
+
+	# Reseta debuffs
+	evasion_debuff_applied = {
+		"left_arm": false,
+		"right_arm": false,
+		"left_leg": false,
+		"right_leg": false,
+		"legs_to_torso": 0,
+		"torso": false,
+		"head": false
+	}
+
+	# Reinstancia os slots equipados, se necessário
+	if inv_equ.weapon == null:
+		inv_equ.weapon = InvEquSlot.new()
+	else:
+		inv_equ.weapon.item = null
+
+	if inv_equ.object == null:
+		inv_equ.object = InvEquSlot.new()
+	else:
+		inv_equ.object.item = null
+
+	if inv_equ.accessory == null:
+		inv_equ.accessory = InvEquSlot.new()
+	else:
+		inv_equ.accessory.item = null
+		
+	inv.reset()
+	spawn = Vector2(974.0,559.0)

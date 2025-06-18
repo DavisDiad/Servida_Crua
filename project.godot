@@ -21,6 +21,7 @@ PlayerHealth="*res://autoloads/PlayerHealth.gd"
 CombatCalculator="*res://autoloads/CombatCalculator.gd"
 GameState="*res://autoloads/GameState.gd"
 Transition="*res://scenes/transition/transition.tscn"
+GameReset="*res://autoloads/GameReset.gd"
 
 [display]
 
