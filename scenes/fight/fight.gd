@@ -78,13 +78,13 @@ func display_text(text): #esta função serve para fazer o texto aparecer
 
 func _on_attack_pressed() -> void:
 	can_attack = true
+	GameState.can_equip = false
 	attack()
 	
 	
 func attack():
 	if can_attack == true:
 		$UI/ActionsPanel.hide()
-		GameState.can_equip = false
 		emit_signal("attacking")
 		
 		

@@ -41,7 +41,7 @@ func _check_move_lock():
 	PlayerHealth.can_move = not (is_hovered and is_player_inside)
 
 func _on_input_event(viewport, event, shape_idx):
-	if Input.is_action_just_pressed("left_click") and is_hovered and is_player_inside and is_transitioning == false and player.velocity == Vector2.ZERO:
+	if Input.is_action_just_pressed("left_click") and is_hovered and is_player_inside and is_transitioning == false and player.velocity == Vector2.ZERO and GameState.bau_collected == true:
 		is_transitioning = true
 		anim.stop()
 		play_action_animation("interaction")

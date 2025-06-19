@@ -12,7 +12,8 @@ func _on_button_corredor_pressed() -> void:
 
 
 func _on_button_cave_pressed() -> void:
-	PlayerHealth.spawn = next_spawn2
-	Transition.transition()
-	await Transition.on_transition_finished
-	get_tree().change_scene_to_file("res://scenes/cenários/cave/cave.tscn")
+	if GameState.tumor_collected == true:
+		PlayerHealth.spawn = next_spawn2
+		Transition.transition()
+		await Transition.on_transition_finished
+		get_tree().change_scene_to_file("res://scenes/cenários/cave/cave.tscn")

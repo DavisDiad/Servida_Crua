@@ -377,7 +377,7 @@ func perform_attack():
 	else:
 	# Mostra o painel de ações novamente
 		get_node("/root/Fight/UI/ActionsPanel").show()
-		GameState.can_equip == true
+		GameState.can_equip = true
 	
 
 

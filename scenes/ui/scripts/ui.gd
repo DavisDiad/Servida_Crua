@@ -91,8 +91,8 @@ func _on_item_clicked(item: InvItem, index: int):
 		actions_panel.visible = false
 
 	if item.is_equipable and GameState.can_equip == true:
-		print("Painel de equipar visível")
 		$EquipPanel.visible = true
+		print("can equip")
 	else:
 		$EquipPanel.visible = false
 
