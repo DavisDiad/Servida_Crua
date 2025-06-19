@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://s2qhv7grrp1j"]
+[gd_scene load_steps=16 format=3 uid="uid://s2qhv7grrp1j"]
 
 [ext_resource type="Script" uid="uid://wqm52dtuc1wm" path="res://scenes/fight/fight.gd" id="1_vo3tm"]
 [ext_resource type="Texture2D" uid="uid://5g1jxfabg80h" path="res://scenes/cenários/quarto_avo/sprites/quarto avo (1).jpg" id="2_1vtn0"]
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="3_snh5r"]
 [ext_resource type="Resource" uid="uid://bdty4m5jc24h2" path="res://inventory/items/punhal.tres" id="4_c607l"]
 [ext_resource type="Texture2D" uid="uid://b5cyg7hfck87d" path="res://placeholders/rascunho_batalha1.png" id="4_uue0l"]
+[ext_resource type="Resource" uid="uid://cggaeh3u6boar" path="res://inventory/items/bandagens.tres" id="5_281hn"]
 [ext_resource type="Texture2D" uid="uid://pqhpjncq6pjd" path="res://placeholders/personagem_baattle2.png" id="5_c607l"]
 [ext_resource type="FontFile" uid="uid://bxc233e1vrt5q" path="res://fonts/Timeless-Bold.ttf" id="5_snh5r"]
 [ext_resource type="Texture2D" uid="uid://f2g6dcisimy6" path="res://placeholders/rule-of-third-940x626.png" id="6_281hn"]
@@ -37,6 +38,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Grandpa" parent="." instance=ExtResource("7_vo3tm")]
 position = Vector2(891, 533)
 item = ExtResource("4_c607l")
+item2 = ExtResource("5_281hn")
 
 [node name="UI" parent="." instance=ExtResource("3_snh5r")]
 

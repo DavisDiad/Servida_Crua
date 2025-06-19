@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://d3c3bajf7cic2"]
+
+[ext_resource type="Texture2D" uid="uid://b2w6305guo4b3" path="res://effects/sprites/punhal.png" id="1_7npmm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yx2gb"]
+atlas = ExtResource("1_7npmm")
+region = Rect2(0, 0, 446, 754)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fryn2"]
+atlas = ExtResource("1_7npmm")
+region = Rect2(446, 0, 446, 754)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64d6p"]
+atlas = ExtResource("1_7npmm")
+region = Rect2(892, 0, 446, 754)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klx63"]
+atlas = ExtResource("1_7npmm")
+region = Rect2(0, 754, 446, 754)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxg0g"]
+atlas = ExtResource("1_7npmm")
+region = Rect2(446, 754, 446, 754)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_muy8p"]
+atlas = ExtResource("1_7npmm")
+region = Rect2(892, 754, 446, 754)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rlhir"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yx2gb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fryn2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64d6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klx63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxg0g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_muy8p")
+}],
+"loop": false,
+"name": &"punhal",
+"speed": 12.0
+}]
+
+[node name="Effects" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rlhir")
+animation = &"punhal"
+frame = 5
+frame_progress = 1.0

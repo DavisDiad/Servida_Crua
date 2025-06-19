@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cgamuuqn0nont"]
 
 [ext_resource type="Script" uid="uid://curi1x4k23gk4" path="res://scenes/cutscene2/scripts/cutscene_2.gd" id="1_t1fwr"]
-[ext_resource type="VideoStream" uid="uid://8ouh6pgyeor5" path="res://scenes/cutscene2/sprites/cutscene corredor espelhos.ogv" id="2_t1fwr"]
+[ext_resource type="VideoStream" uid="uid://dnvg3j0ewaqdi" path="res://scenes/cutscene2/sprites/blackout.ogv" id="2_t1fwr"]
 
 [node name="Cutscene2" type="Control"]
 layout_mode = 3

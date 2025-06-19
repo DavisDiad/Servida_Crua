@@ -92,9 +92,9 @@ func _on_item_clicked(item: InvItem, index: int):
 
 	if item.is_equipable and GameState.can_equip == true:
 		$EquipPanel.visible = true
-		print("can equip")
-	else:
+	elif not item.is_equipable and GameState.can_equip == true:
 		$EquipPanel.visible = false
+		$HealPanel.visible = true
 
 
 func _on_equipment_clicked(item: InvItem, slot_ref: InvEquSlot):
@@ -122,7 +122,10 @@ func _on_equip_pressed():
 			if actions_panel:
 				actions_panel.visible = true
 		else:
-			print("Não foi possível equipar. Membro ferido.")
+			$EquipPanel.visible = false
+			var actions_panel := get_node_or_null("ActionsPanel")
+			if actions_panel:
+				actions_panel.visible = true
 
 
 func _on_desequip_pressed():
@@ -150,6 +153,48 @@ func _on_desequip_pressed():
 				
 		else:
 			print("Inventário cheio!")
+
+func _on_heal_pressed() -> void:
+	for part in PlayerHealth.wounds.keys():
+		var current_wounds = PlayerHealth.wounds[part]
+		var max_wounds = PlayerHealth.wound_limits.get(part, 0)
+		
+		# Só cura se feridas > 0 e feridas < limite máximo (não está "morto"/inutilizável)
+	var any_healed = false
+	
+	for part in PlayerHealth.wounds.keys():
+		var current_wounds = PlayerHealth.wounds[part]
+		var max_wounds = PlayerHealth.wound_limits.get(part, 0)
+		
+		# Só cura se feridas > 0 e feridas < limite máximo (não está "morto"/inutilizável)
+		if current_wounds > 0 and current_wounds < max_wounds:
+			var heal_amount = randi_range(1, 3)
+			PlayerHealth.wounds[part] = max(0, current_wounds - heal_amount)
+			any_healed = true
+	
+	if any_healed:
+		# Atualiza a UI das feridas
+		update_wound_display()
+
+		# Reduz a stack de bandagens
+		inv.slots[selected_slot_index].amount -= 1
+
+		# Remove slot se acabar as bandagens
+		if inv.slots[selected_slot_index].amount <= 0:
+			inv.slots[selected_slot_index] = InvSlot.new()
+
+		# Atualiza UI
+		update_slots()
+		$HealPanel.visible = false
+		var actions_panel := get_node_or_null("ActionsPanel")
+		if actions_panel:
+			actions_panel.visible = true
+
+	else:
+		$HealPanel.visible = false
+		var actions_panel := get_node_or_null("ActionsPanel")
+		if actions_panel:
+			actions_panel.visible = true
 
 func _process(delta: float) -> void:
 	update_wound_display() 

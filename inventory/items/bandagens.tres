@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://cggaeh3u6boar"]
+
+[ext_resource type="Script" uid="uid://o363fcejit7" path="res://inventory/scripts/inventory_item.gd" id="1_6rjo6"]
+[ext_resource type="Texture2D" uid="uid://lxw60c5mrogm" path="res://inventory/sprites/bandagens.png" id="2_hy78r"]
+
+[resource]
+script = ExtResource("1_6rjo6")
+name = "bandagens"
+texture = ExtResource("2_hy78r")
+is_equipable = false
+type = ""
+min_damage = 0
+max_damage = 0
+accuracy = 0
+evasion = 0
+max_wounds = 0
+metadata/_custom_type_script = "uid://o363fcejit7"

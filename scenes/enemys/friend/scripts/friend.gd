@@ -3,6 +3,8 @@ extends Node2D
 
 @export var enemy_data: EnemyData #exporta um tres do inimigo, que neste caso é o cat. esse tres esta conectado com o resource EnemyData, que contem todas as informações do inimigo
 
+@export var item: InvItem
+
 var can_take_damage = false #serve para controlar quando o inimigo recebe dano
 var has_been_attacked = false
 
@@ -343,6 +345,7 @@ func perform_attack():
 		Transition.transition()
 		await Transition.on_transition_finished
 		get_tree().change_scene_to_file("res://scenes/cenários/WC/wc.tscn")
+		player.collect(item)
 		
 	else:
 	# Mostra o painel de ações novamente
