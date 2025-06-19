@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccs66pcr3usti"]
+[gd_scene load_steps=11 format=3 uid="uid://ccs66pcr3usti"]
 
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="1_c5ear"]
 [ext_resource type="Script" uid="uid://dkoif7eesg1gs" path="res://scenes/cenários/corredor_quartos/scripts/corredor_quartos.gd" id="1_rkj7x"]
 [ext_resource type="Texture2D" uid="uid://uqrppj3kb5p6" path="res://scenes/ui/sprites/botao seta direita.png" id="3_rkj7x"]
 [ext_resource type="Texture2D" uid="uid://bgt7hbivq6hde" path="res://scenes/cenários/corredor_quartos/sprites/corredor quadros 3.png" id="4_ddv5o"]
 [ext_resource type="PackedScene" uid="uid://cyl30kecp6emh" path="res://scenes/player/player.tscn" id="5_0t7x6"]
+[ext_resource type="Script" uid="uid://0kswcglyl41s" path="res://scenes/cenários/corredor_quartos/scripts/quarto_avo.gd" id="6_kcdl0"]
 [ext_resource type="Script" uid="uid://ka0uhamnqi7i" path="res://porta_wc.gd" id="7_kcdl0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkj7x"]
@@ -47,8 +48,7 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(708, 502)
 
 [node name="quarto_avo" type="Area2D" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("7_kcdl0")
-next_scene = "res://scenes/fight/fight3.tscn"
+script = ExtResource("6_kcdl0")
 player = NodePath("../player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="quarto_avo"]

@@ -1,0 +1,72 @@
+[gd_scene load_steps=13 format=3 uid="uid://phqlc6wpcp6d"]
+
+[ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="1_24si0"]
+[ext_resource type="Script" uid="uid://dvfhxdcuiwo73" path="res://scenes/cenários/cozinha/scripts/cozinha.gd" id="1_oqtum"]
+[ext_resource type="Resource" uid="uid://dtway21w3mdw3" path="res://inventory/playerinv.tres" id="2_24si0"]
+[ext_resource type="Texture2D" uid="uid://vkd65jqccigy" path="res://scenes/ui/sprites/botao seta baixo.png" id="2_52bvs"]
+[ext_resource type="Script" uid="uid://bvej62d2nancr" path="res://scenes/fight/button_corredor_principal.gd" id="3_f42x3"]
+[ext_resource type="Texture2D" uid="uid://dvmo73glk8ok" path="res://scenes/cenários/cozinha/sprites/cozinha.jpg" id="4_gyr5a"]
+[ext_resource type="Script" uid="uid://druxyd25fa4se" path="res://scenes/cenários/cozinha/scripts/frigideira.gd" id="5_oqtum"]
+[ext_resource type="Resource" uid="uid://cxcwhqiwg7ntv" path="res://inventory/items/frigideira.tres" id="6_r8qak"]
+[ext_resource type="Script" uid="uid://cky0xgrgcwqn8" path="res://scenes/cenários/cozinha/scripts/po_arsenico.gd" id="6_tj3vv"]
+[ext_resource type="Resource" uid="uid://cr4xodumbvt0s" path="res://inventory/items/po_arsenico.tres" id="8_gtyw6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jaql2"]
+radius = 64.0078
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yigdb"]
+radius = 66.0984
+
+[node name="Cozinha" type="Node2D"]
+script = ExtResource("1_oqtum")
+inv = ExtResource("2_24si0")
+
+[node name="UI" parent="." instance=ExtResource("1_24si0")]
+
+[node name="button_corredor_principal" type="TextureButton" parent="UI"]
+z_index = 5
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = 125.0
+offset_right = 52.0
+offset_bottom = 223.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_52bvs")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_f42x3")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 288.0
+offset_top = 39.0
+offset_right = 1644.0
+offset_bottom = 796.0
+texture = ExtResource("4_gyr5a")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.904658, 0.901997, 0.998668, 1)
+
+[node name="frigideira" type="Area2D" parent="."]
+position = Vector2(674, 282)
+script = ExtResource("5_oqtum")
+item = ExtResource("6_r8qak")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="frigideira"]
+shape = SubResource("CircleShape2D_jaql2")
+
+[node name="po_arsenico" type="Area2D" parent="."]
+position = Vector2(407, 190)
+script = ExtResource("6_tj3vv")
+item = ExtResource("8_gtyw6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="po_arsenico"]
+shape = SubResource("CircleShape2D_yigdb")
+
+[connection signal="pressed" from="UI/button_corredor_principal" to="UI/button_corredor_principal" method="_on_pressed"]
+[connection signal="input_event" from="frigideira" to="frigideira" method="_on_input_event"]
+[connection signal="input_event" from="po_arsenico" to="po_arsenico" method="_on_input_event"]

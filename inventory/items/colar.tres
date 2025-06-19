@@ -12,6 +12,6 @@ type = "accessory"
 min_damage = 0
 max_damage = 0
 accuracy = 0
-evasion = 5
+evasion = 10
 max_wounds = 0
 metadata/_custom_type_script = "uid://o363fcejit7"

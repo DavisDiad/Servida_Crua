@@ -1,12 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://cofg4e1bbi23e"]
+[gd_scene load_steps=19 format=3 uid="uid://cofg4e1bbi23e"]
 
 [ext_resource type="Script" uid="uid://wqm52dtuc1wm" path="res://scenes/fight/fight.gd" id="1_4se71"]
 [ext_resource type="PackedScene" uid="uid://ctls4fuoxikdh" path="res://scenes/enemys/cat/cat.tscn" id="2_cubfr"]
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="3_63nu4"]
 [ext_resource type="FontFile" uid="uid://droskw7yhnkiv" path="res://fonts/Timeless.ttf" id="4_yisul"]
-[ext_resource type="Texture2D" uid="uid://pqhpjncq6pjd" path="res://placeholders/personagem_baattle2.png" id="5_8ew2v"]
 [ext_resource type="FontFile" uid="uid://bxc233e1vrt5q" path="res://fonts/Timeless-Bold.ttf" id="5_op15a"]
-[ext_resource type="Texture2D" uid="uid://f2g6dcisimy6" path="res://placeholders/rule-of-third-940x626.png" id="6_aml7f"]
 [ext_resource type="Texture2D" uid="uid://vkd65jqccigy" path="res://scenes/ui/sprites/botao seta baixo.png" id="6_rscwf"]
 [ext_resource type="Script" uid="uid://bvej62d2nancr" path="res://scenes/fight/button_corredor_principal.gd" id="6_yisul"]
 [ext_resource type="Texture2D" uid="uid://dvmo73glk8ok" path="res://scenes/cenários/cozinha/sprites/cozinha.jpg" id="7_fohwn"]
@@ -152,19 +150,6 @@ offset_top = 39.0
 offset_right = 1637.0
 offset_bottom = 796.0
 texture = ExtResource("7_fohwn")
-
-[node name="BattleRascunho" type="Sprite2D" parent="."]
-visible = false
-z_index = 4
-position = Vector2(481, 628)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_8ew2v")
-
-[node name="Rule-of-third-940x626" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(959, 409)
-scale = Vector2(1.47545, 1.23545)
-texture = ExtResource("6_aml7f")
 
 [node name="player" parent="." instance=ExtResource("7_ij3gj")]
 position = Vector2(503, 645)

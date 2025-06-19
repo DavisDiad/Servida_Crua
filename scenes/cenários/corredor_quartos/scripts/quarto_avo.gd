@@ -1,6 +1,5 @@
 extends Area2D
 
-@export var next_scene: String
 @export var player: Node
 @onready var anim: AnimatedSprite2D = player.get_node("AnimatedSprite2D")
 
@@ -47,11 +46,14 @@ func _on_input_event(viewport, event, shape_idx):
 		anim.stop()
 		play_action_animation("interaction")
 		Transition.transition()
+		PlayerHealth.spawn = next_spawn
 		await anim.animation_finished
 		await Transition.on_transition_finished
-		PlayerHealth.spawn = next_spawn
-		get_tree().change_scene_to_file(next_scene)
-
+		if GameState.grandpa_dead == false:
+			get_tree().change_scene_to_file("res://scenes/fight/fight3.tscn")
+		else:
+			get_tree().change_scene_to_file("res://scenes/cenários/quarto_avo/quarto_avo.tscn")
+			
 func play_action_animation(action: String):
 	var arm_state = PlayerHealth.get_arm_state()
 	var anim_name = action

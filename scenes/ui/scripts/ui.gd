@@ -45,6 +45,9 @@ func _ready() -> void:
 
 	# Se necessário, mostra o retrato atual ao entrar numa nova cena
 	update_portrait(GameState.current_battle)
+	
+	GameState.can_equip = true
+	
 
 
 func _on_battle_completed(battle_number: int):
@@ -87,7 +90,7 @@ func _on_item_clicked(item: InvItem, index: int):
 	if actions_panel:
 		actions_panel.visible = false
 
-	if item.is_equipable:
+	if item.is_equipable and GameState.can_equip == true:
 		print("Painel de equipar visível")
 		$EquipPanel.visible = true
 	else:
@@ -101,8 +104,9 @@ func _on_equipment_clicked(item: InvItem, slot_ref: InvEquSlot):
 	var actions_panel := get_node_or_null("ActionsPanel")
 	if actions_panel:
 		actions_panel.visible = false
-
-	$DesequipPanel.visible = true
+	
+	if  GameState.can_equip == true:
+		$DesequipPanel.visible = true
 
 func _on_equip_pressed():
 	if selected_item and selected_item.is_equipable:

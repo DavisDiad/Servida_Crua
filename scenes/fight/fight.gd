@@ -27,6 +27,7 @@ func _ready() -> void:
 	
 	play_action_animation("idle_battle")
 	
+	
 	$UI/ActionsPanel.hide() #a cena começa com os botoes escondidos
 	$UI/TextBox.show() #a cena começa com o texto a aparecer
 	
@@ -83,7 +84,9 @@ func _on_attack_pressed() -> void:
 func attack():
 	if can_attack == true:
 		$UI/ActionsPanel.hide()
+		GameState.can_equip = false
 		emit_signal("attacking")
+		
 		
 	else:
 		can_attack = false
@@ -98,10 +101,12 @@ func _on_defend_pressed() -> void:
 	
 	
 	PlayerHealth.is_defending = true
+	GameState.can_equip = false
 	emit_signal("defending")
 	
 	
 
 
 func _on_talk_pressed() -> void:
+	GameState.can_equip = false
 	emit_signal("talked")

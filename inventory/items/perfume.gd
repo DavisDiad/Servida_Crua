@@ -7,6 +7,9 @@ signal textbox_closed
 
 var talking = false
 
+func _ready() -> void:
+	if GameState.perfume_collected == true:
+		$"..".visible = false
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("left_click") and talking == true: #ao clicar com o botão esquerdo com o texto ativo,
@@ -15,10 +18,11 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if Input.is_action_just_pressed("left_click"):
+	if Input.is_action_just_pressed("left_click") and GameState.perfume_collected == false:
 		if container.has_method("collect"):
 			container.collect(item)
 			$"..".visible = false
+			GameState.perfume_collected = true
 			display_text("(Um perfume que evoca uma nostalgia intensa em ti, como uma memória perdida.)")
 			
 

@@ -29,6 +29,9 @@ var anim : AnimatedSprite2D = null
 
 
 func _ready():
+	if GameState.cat_dead == true:
+		$".".visible = false
+	
 	
 	player = get_node("/root/Fight/player")
 	anim = player.get_node("AnimatedSprite2D")
@@ -151,10 +154,10 @@ func take_damage(body_part_name: String):
 							sprite.visible = false
 						
 						if body_part_name == "right_arm":
-							apply_evasion_penalty_to_all(10)
+							apply_evasion_penalty_to_all(15)
 						
 						if body_part_name == "left_arm":
-							apply_evasion_penalty_to_all(10)
+							apply_evasion_penalty_to_all(15)
 				break
 
 		has_been_attacked = true
@@ -344,6 +347,7 @@ func perform_attack():
 		play_action_animation("idle_battle")
 	# Mostra o painel de ações novamente
 	get_node("/root/Fight/UI/ActionsPanel").show()
+	GameState.can_equip = true
 	
 	
 
@@ -366,6 +370,7 @@ func hide_all_body_parts():
 			sprite.visible = false
 	Transition.transition()
 	await Transition.on_transition_finished
+	GameState.cat_dead = true
 	$"../UI/button_corredor_principal".visible = true
 	$"../player".visible = false
 	$"../UI/ActionsPanel/Actions".visible = false

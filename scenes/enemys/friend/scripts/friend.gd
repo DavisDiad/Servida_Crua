@@ -6,8 +6,6 @@ extends Node2D
 var can_take_damage = false #serve para controlar quando o inimigo recebe dano
 var has_been_attacked = false
 
-var enemy_dead = false
-
 var skill_requirements = { #é um dicionário que atribui as haabilidaades às partes do corpo necesárias para usá-la.
 	"punch": ["left_arm"],
 	"heavy_punch": ["right_arm"]
@@ -145,13 +143,13 @@ func take_damage(body_part_name: String):
 							sprite.visible = false
 						
 						if body_part_name == "right_arm":
-							apply_evasion_penalty_to_all(10)
+							apply_evasion_penalty_to_all(15)
 						
 						if body_part_name == "left_arm":
-							apply_evasion_penalty_to_all(10)
+							apply_evasion_penalty_to_all(15)
 							
 						if body_part_name == "head":
-							apply_evasion_penalty_to_all(10)
+							apply_evasion_penalty_to_all(15)
 				break
 
 		has_been_attacked = true
@@ -321,7 +319,7 @@ func perform_attack():
 	
 	var hit = true
 	
-	if hit_quality >= 0 and enemy_dead == false:
+	if hit_quality >= 0 and GameState.friend_dead == false:
 		hit = true
 		
 		var dano = int(lerp(skill.min_damage, skill.max_damage, hit_quality))
@@ -341,14 +339,15 @@ func perform_attack():
 		await anim.animation_finished
 		play_action_animation("idle_battle")
 		
-	if enemy_dead == true: 
+	if GameState.friend_dead == true: 
 		Transition.transition()
 		await Transition.on_transition_finished
 		get_tree().change_scene_to_file("res://scenes/cenários/WC/wc.tscn")
+		
 	else:
 	# Mostra o painel de ações novamente
 		get_node("/root/Fight/UI/ActionsPanel").show()
-	
+		GameState.can_equip == true
 	
 
 
@@ -363,7 +362,7 @@ func hide_all_body_parts():
 		var sprite = get_node_or_null(part_name)
 		if sprite:
 			sprite.visible = false
-			enemy_dead = true
+			GameState.friend_dead = true
 	GameState.current_battle += 1
 	GameState.emit_signal("battle_completed", GameState.current_battle)
 

@@ -2854,7 +2854,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nssm8")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle_scared_without_l_a",
 "speed": 16.0
 }, {
@@ -3551,7 +3551,7 @@ invequ = ExtResource("3_tffgl")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_jgyhs")
-animation = &"idle"
+animation = &"idle_scared_without_r_a"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

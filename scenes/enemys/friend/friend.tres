@@ -8,7 +8,7 @@
 resource_name = "torso"
 script = ExtResource("1_eqb6k")
 name = "torso"
-max_wounds = 5
+max_wounds = 3
 evasion = 60
 metadata/_custom_type_script = "uid://cnsddtmtp68ht"
 
@@ -16,7 +16,7 @@ metadata/_custom_type_script = "uid://cnsddtmtp68ht"
 resource_name = "head"
 script = ExtResource("1_eqb6k")
 name = "head"
-max_wounds = 3
+max_wounds = 2
 evasion = 15
 metadata/_custom_type_script = "uid://cnsddtmtp68ht"
 
@@ -32,7 +32,7 @@ metadata/_custom_type_script = "uid://cnsddtmtp68ht"
 resource_name = "right_arm"
 script = ExtResource("1_eqb6k")
 name = "right_arm"
-max_wounds = 2
+max_wounds = 1
 evasion = 10
 metadata/_custom_type_script = "uid://cnsddtmtp68ht"
 

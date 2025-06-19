@@ -8,8 +8,6 @@ extends Node2D
 var can_take_damage = false #serve para controlar quando o inimigo recebe dano
 var has_been_attacked = false
 
-var enemy_dead = false
-
 var skill_requirements = { #é um dicionário que atribui as haabilidaades às partes do corpo necesárias para usá-la.
 	"punch": ["left_arm","right_arm"],
 	"meat_brush": ["pencil"],
@@ -350,7 +348,7 @@ func perform_attack():
 	
 	var hit = true
 	
-	if hit_quality >= 0 and enemy_dead == false:
+	if hit_quality >= 0 and GameState.grandpa_dead == false:
 		hit = true
 		
 		var dano = int(lerp(skill.min_damage, skill.max_damage, hit_quality))
@@ -370,7 +368,7 @@ func perform_attack():
 		await anim.animation_finished
 		play_action_animation("idle_battle")
 
-	if enemy_dead == true: 
+	if GameState.grandpa_dead == true: 
 		Transition.transition()
 		await Transition.on_transition_finished
 		get_tree().change_scene_to_file("res://scenes/cenários/quarto_avo/quarto_avo.tscn")
@@ -379,6 +377,7 @@ func perform_attack():
 	else:
 	# Mostra o painel de ações novamente
 		get_node("/root/Fight/UI/ActionsPanel").show()
+		GameState.can_equip == true
 	
 
 
@@ -398,7 +397,7 @@ func hide_all_body_parts():
 		var sprite = get_node_or_null(part_name)
 		if sprite:
 			sprite.visible = false
-			enemy_dead = true
+			GameState.grandpa_dead = true
 	GameState.current_battle += 1
 	GameState.emit_signal("battle_completed", GameState.current_battle)
 

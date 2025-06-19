@@ -27,6 +27,7 @@ offset_bottom = 754.0
 texture_normal = ExtResource("4_443ac")
 ignore_texture_size = true
 stretch_mode = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 292.0

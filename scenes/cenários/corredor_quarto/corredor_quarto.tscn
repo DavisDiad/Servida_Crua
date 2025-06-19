@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://ymtltel2xewp"]
+[gd_scene load_steps=9 format=3 uid="uid://ymtltel2xewp"]
 
+[ext_resource type="Script" uid="uid://c1lpkgeoavhul" path="res://scenes/cenários/corredor_quarto/scripts/corredor_quarto.gd" id="1_8vhs6"]
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="1_w1xgv"]
 [ext_resource type="Texture2D" uid="uid://d2deo6s3q37bx" path="res://scenes/ui/sprites/botao seta esquerda.png" id="2_g7rnm"]
 [ext_resource type="Script" uid="uid://irrw8dn2205x" path="res://scenes/cenários/corredor_quarto/scripts/button_corredor.gd" id="4_4ge74"]
@@ -15,6 +16,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(
 outlines = Array[PackedVector2Array]([PackedVector2Array(650, 472, 1443, 469, 1437, 510, 226, 506, 226, 471, 468, 473)])
 
 [node name="CorredorQuarto" type="Node2D"]
+script = ExtResource("1_8vhs6")
 
 [node name="UI" parent="." instance=ExtResource("1_w1xgv")]
 
