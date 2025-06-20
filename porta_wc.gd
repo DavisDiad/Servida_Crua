@@ -10,6 +10,7 @@ var default = preload("res://placeholders/cursor.png")
 var is_hovered := false
 var is_player_inside := false
 var is_transitioning := false
+var clicked := false
 
 var next_spawn = Vector2(503.0,645.0)
 
@@ -42,10 +43,11 @@ func _check_move_lock():
 	PlayerHealth.can_move = not (is_hovered and is_player_inside)
 
 func _on_input_event(viewport, event, shape_idx):
-	if Input.is_action_just_pressed("left_click") and is_hovered and is_player_inside and is_transitioning == false and player.velocity == Vector2.ZERO:
+	if Input.is_action_just_pressed("left_click") and is_hovered and is_player_inside and is_transitioning == false and clicked == false and player.velocity == Vector2.ZERO:
 		is_transitioning = true
 		anim.stop()
 		play_action_animation("interaction")
+		clicked = true
 		Transition.transition()
 		await anim.animation_finished
 		await Transition.on_transition_finished
