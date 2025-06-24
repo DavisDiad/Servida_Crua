@@ -131,6 +131,15 @@ func _on_equip_pressed():
 func _on_desequip_pressed():
 	if selected_equ_slot and selected_equ_slot.item:
 		var base_item = selected_equ_slot.item
+		
+		if base_item.name == "anel":
+			print("O anel não pode ser removido.")
+			$DesequipPanel.visible = false
+			var actions_panel := get_node_or_null("ActionsPanel")
+			if actions_panel:
+				actions_panel.visible = true
+			return
+		
 		var added = false
 
 		# Adiciona de volta ao inventário
@@ -152,7 +161,10 @@ func _on_desequip_pressed():
 				actions_panel.visible = true
 				
 		else:
-			print("Inventário cheio!")
+			$DesequipPanel.visible = false
+			var actions_panel := get_node_or_null("ActionsPanel")
+			if actions_panel:
+				actions_panel.visible = true
 
 func _on_heal_pressed() -> void:
 	for part in PlayerHealth.wounds.keys():

@@ -6,6 +6,8 @@ extends Node2D
 var can_take_damage = false #serve para controlar quando o inimigo recebe dano
 var has_been_attacked = false
 
+var EffectScene = preload("res://effects/effects.tscn")
+
 var skill_requirements = { #é um dicionário que atribui as haabilidaades às partes do corpo necesárias para usá-la.
 	"claw": ["left_arm"],
 	"infected_claw": ["right_arm"],
@@ -118,11 +120,18 @@ func take_damage(body_part_name: String):
 				var player_accuracy = PlayerHealth.base_accuracy
 
 				var hit_quality = CombatCalculator.get_hit_value(player_accuracy, enemy_evasion)
-
+				
 				if hit_quality >= 0:
+					
+					# Verifica e executa efeitos especiais (como a frigideira)
+					await check_weapon_effects(body_part_name, hit_quality)
+					await check_object_effects(body_part_name, hit_quality)
+					
 					if damage_animations.has(body_part_name):
 						$DamageAnimationPlayer.play(damage_animations[body_part_name])
 						await $DamageAnimationPlayer.animation_finished
+						
+						
 					# Novo cálculo de dano baseado na qualidade do acerto
 					var damage = int(lerp(PlayerHealth.min_damage, PlayerHealth.max_damage, hit_quality))
 					
@@ -343,8 +352,19 @@ func perform_attack():
 		# Toca a animação e só depois mostra o texto
 		await get_tree().create_timer(0.1).timeout
 		play_action_animation("attacked")
+		
+		# Mostra efeito visual de "garra" na posição do jogador
+		var effect_instance = EffectScene.instantiate()
+		add_child(effect_instance)
+		effect_instance.global_position = player.global_position
+		effect_instance.get_node("AnimatedSprite2D").scale = Vector2(0.5, 0.5)
+		var anim_node = effect_instance.get_node("AnimatedSprite2D")
+		anim_node.play("garra")
+		
 		await anim.animation_finished
 		play_action_animation("idle_battle")
+		
+
 	# Mostra o painel de ações novamente
 	get_node("/root/Fight/UI/ActionsPanel").show()
 	GameState.can_equip = true
@@ -384,6 +404,51 @@ func apply_evasion_penalty_to_all(penalty: int):
 		p.evasion = max(0, p.evasion - penalty)
 		print("Reduzida evasão de %s para %d" % [p.name, p.evasion])
 
+func check_weapon_effects(body_part_name: String, hit_quality: float) -> void:
+	var weapon_item = PlayerHealth.inv_equ.weapon.item
+	if not weapon_item:
+		return
+	
+	var effect_anim_name = ""
+	match weapon_item.name:
+		"frigideira": effect_anim_name = "punhal"
+		"laminas": effect_anim_name = "punhal"
+		"punhal": effect_anim_name = "punhal"
+		_: return  # nenhuma animação definida, sai da função
+
+	# Pega o nó da parte do corpo com base no nome
+	var part_node = get_node_or_null(body_part_name)
+	if part_node:
+		var effect_instance = EffectScene.instantiate()
+		add_child(effect_instance)  # Adiciona diretamente ao inimigo, não ao membro
+		effect_instance.global_position = part_node.get_global_position()  # Posição do membro
+		var anim_node = effect_instance.get_node("AnimatedSprite2D")
+		anim_node.play(effect_anim_name)
+		await anim_node.animation_finished
+		effect_instance.queue_free()
+		
+
+func check_object_effects(body_part_name: String, hit_quality: float) -> void:
+	var object_item = PlayerHealth.inv_equ.object.item
+	if not object_item:
+		return
+	
+	var effect_anim_name = ""
+	match object_item.name:
+		"po_arsenico": effect_anim_name = "po_arsenico"
+		"tumor": effect_anim_name = "tumor"
+		"perfume": effect_anim_name = "po_arsenico"
+		_: return  # nenhum efeito definido, sai da função
+	
+	var part_node = get_node_or_null(body_part_name)
+	if part_node:
+		var effect_instance = EffectScene.instantiate()
+		add_child(effect_instance)  # Adiciona diretamente à cena do inimigo
+		effect_instance.global_position = part_node.get_global_position()
+		var anim_node = effect_instance.get_node("AnimatedSprite2D")
+		anim_node.play(effect_anim_name)
+		await anim_node.animation_finished
+		effect_instance.queue_free()
 
 
 func _on_area_2d_torso_mouse_entered() -> void:

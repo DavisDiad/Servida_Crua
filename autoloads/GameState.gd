@@ -18,6 +18,8 @@ var tumor_collected := false
 
 var can_equip:= true
 
+var cutscene_played :=false
+
 func reset():
 	current_battle = 0
 	cat_dead = false
@@ -31,3 +33,4 @@ func reset():
 	perfume_collected = false
 	tumor_collected = false
 	can_equip = true
+	cutscene_played = false

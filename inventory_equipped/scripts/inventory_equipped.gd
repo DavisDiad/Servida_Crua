@@ -45,10 +45,17 @@ func insert(item: InvItem) -> bool:
 		"accessory":
 			if accessory == null:
 				accessory = InvEquSlot.new()
+			
+			# ⚠️ Impede troca se o item atual for o "anel"
+			if accessory.item and accessory.item.name == "anel":
+				print("O anel não pode ser removido. Troca cancelada.")
+				return false
+
 			old_item = accessory.item
 			if old_item:
 				remove_item_stats(old_item)
 				_return_item_to_inventory(old_item)
+			
 			accessory.item = item
 
 	apply_item_stats(item)
