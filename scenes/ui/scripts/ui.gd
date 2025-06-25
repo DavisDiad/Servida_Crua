@@ -27,6 +27,30 @@ var selected_slot_index: int = -1
 var selected_equ_slot: InvEquSlot = null
 var selected_equ_item: InvItem = null
 
+var analyze_sequences := {
+	"anel": [
+		"(Uma herança de sua mãe. Foi deixado para a filha como proteção. Um gesto de amor, de salvação, mesmo depois da morte. Mas este anel não é só memória. É como um abraço apertado da mãe...)",
+		"(Dá +2 de vida a todas as partes do corpo. Além disso, pode recuperar membros perdidos depois de um tempo.)"
+	],
+	"perfume": [
+		"(Cheiro doce, que até abafa as dores vividas… O que era sensação de leveza, oxigenou e virou doença. Há algo neste aroma que já não pertence a este corpo. Nem a este tempo.)",
+		"(Aumenta o dano máximo em +2.)"
+	],
+	"olho": [
+		"(Olho com entranhas de perseguição e culpa. Parecido com o que nascia. Quem o retirou tomou-o como troféu… ou repulsa? O que restou foi um silêncio e uma verdade servida crua.)",
+		"(Aumenta a chance de acerto em +10.)"
+	],
+	"tumor": [
+		"(Pintava com o que sangrava. Chamava-lhe arte. Mas tudo o que criava já nascia podre.)",
+		"(Aumenta o dano máximo em +3.)"
+	]
+	
+}
+
+var current_analyze_sequence: Array = []
+var analyze_index := 0
+var analyzing := false
+
 func _ready() -> void:
 	Transition.fade_in()
 	
@@ -137,6 +161,48 @@ func _on_equip_pressed():
 			var actions_panel := get_node_or_null("ActionsPanel")
 			if actions_panel:
 				actions_panel.visible = true
+
+func _on_analyze_pressed() -> void:
+	print("clicado")
+	if not selected_item:
+		print("Nenhum item selecionado")
+		return
+
+	var item_name = selected_item.name.strip_edges().to_lower()
+	print("Analisando item:", item_name)
+
+	if not analyze_sequences.has(item_name):
+		print("Item NÃO encontrado no dicionário!")
+		return
+
+	# Configura sequência
+	current_analyze_sequence = analyze_sequences[item_name]
+	analyze_index = 0
+	analyzing = true
+
+	# Esconde botões
+	var actions_panel = get_node_or_null("ActionsPanel")
+	if actions_panel:
+		actions_panel.visible = false
+	$EquipPanel.visible = false
+	$HealPanel.visible = false
+	$DesequipPanel.visible = false
+
+	# Mostra textbox e primeira frase
+	$TextureRect/TextBox.show()
+	$TextureRect/TextBox/Label.text = current_analyze_sequence[analyze_index]
+	talking = true
+
+	# Espera que diálogo termine
+	await textbox_closed
+
+	# Ao terminar, reexibe botões
+	analyzing = false
+	talking = false
+	current_analyze_sequence.clear()
+
+	if actions_panel:
+		actions_panel.visible = true
 
 
 func _on_desequip_pressed():
@@ -258,7 +324,18 @@ func display_text(text: String) -> void:
 	talking = true
 	
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("left_click") and talking:
-		$TextureRect/TextBox.hide()
-		talking = false
-		emit_signal("textbox_closed")
+	if Input.is_action_just_pressed("left_click"):
+		if talking and not analyzing:
+			$TextureRect/TextBox.hide()
+			talking = false
+			emit_signal("textbox_closed")
+
+		elif analyzing:
+			analyze_index += 1
+			if analyze_index < current_analyze_sequence.size():
+				$TextureRect/TextBox/Label.text = current_analyze_sequence[analyze_index]
+			else:
+				$TextureRect/TextBox.hide()
+				analyzing = false
+				talking = false
+				current_analyze_sequence = []

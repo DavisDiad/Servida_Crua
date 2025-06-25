@@ -687,5 +687,7 @@ text = "Analisar"
 [connection signal="pressed" from="TextureRect/menu" to="TextureRect/menu" method="_on_pressed"]
 [connection signal="pressed" from="TextureRect/sair" to="TextureRect/sair" method="_on_pressed"]
 [connection signal="pressed" from="EquipPanel/Actions/equip" to="." method="_on_equip_pressed"]
+[connection signal="pressed" from="EquipPanel/Actions/analyze" to="." method="_on_analyze_pressed"]
 [connection signal="pressed" from="DesequipPanel/Actions/desequip" to="." method="_on_desequip_pressed"]
+[connection signal="pressed" from="DesequipPanel/Actions/analyze" to="." method="_on_analyze_pressed"]
 [connection signal="pressed" from="HealPanel/Actions/heal" to="." method="_on_heal_pressed"]
