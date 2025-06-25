@@ -131,7 +131,8 @@ bbcode_enabled = true
 text = "texto vai aqui"
 
 [node name="ChoicePanel" type="Panel" parent="UI"]
-z_index = 2
+visible = false
+z_index = 20
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -160,23 +161,30 @@ theme_override_constants/separation = 30
 alignment = 1
 
 [node name="OptionA" type="Button" parent="UI/ChoicePanel/Choices"]
+clip_contents = true
+custom_minimum_size = Vector2(498, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("5_w2cg2")
+theme_override_colors/font_hover_color = Color(0.685733, 3.10443e-06, 5.77569e-07, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_k54k5")
 theme_override_font_sizes/font_size = 45
 theme_override_styles/normal = SubResource("StyleBoxFlat_i5lci")
-text = "Proteger"
-autowrap_mode = 1
+flat = true
+autowrap_mode = 3
 
 [node name="OptionB" type="Button" parent="UI/ChoicePanel/Choices"]
+clip_contents = true
+custom_minimum_size = Vector2(498, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("5_w2cg2")
+theme_override_colors/font_hover_color = Color(0.686275, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_k54k5")
 theme_override_font_sizes/font_size = 45
 theme_override_styles/normal = SubResource("StyleBoxFlat_i5lci")
-text = "Falar"
+flat = true
+autowrap_mode = 3
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 visible = false
