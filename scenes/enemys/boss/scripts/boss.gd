@@ -75,28 +75,46 @@ func _on_fight_talked() -> void:
 		0:
 			get_node("/root/Fight/UI/ActionsPanel").hide()
 			get_node("/root/Fight/UI/TextBox").show()
-			get_node("/root/Fight/UI/TextBox/Label").text = "(Tentas falar com o que um dia foi a tua amiga... Mas ela interrompe-te com um choro ensurdecedor)"
+			get_node("/root/Fight/UI/TextBox/Label").text = "(A criatura abre a boca e tu ouves a tua própria voz entre soluços e lágrimas. Uma voz sínica e provocadora.)"
 			interaction_step += 1
 
 		1:
-			get_node("/root/Fight/UI/TextBox/Label").text = "'PORQUE NÃO ME SALVASTE?'"
+			get_node("/root/Fight/UI/TextBox/Label").text = "'Vieste acabar com isto...? Que patético. Tu ÉS isto.'"
 			perform_attack()
 			interaction_step += 1
 
 		2:
-			# Mostra escolhas
-			get_node("/root/Fight/UI/TextBox").hide()
-			get_node("/root/Fight/UI/ChoicePanel").show()
-			get_node("/root/Fight/UI/ChoicePanel/Choices/OptionA").text = "Eu tentei. Eu juro que tentei. Mas estava tão partida quanto tu."
-			get_node("/root/Fight/UI/ChoicePanel/Choices/OptionB").text = "Porque não me deixaste. Estavas tão longe… e eu fiquei a gritar sozinha."
-			# Aqui para e espera a função _on_choice_pressed()
-			
+			get_node("/root/Fight/UI/TextBox/Label").text = "Nem sei se vim...Ou se simplesmente nunca consegui sair daqui."
+			interaction_step += 1
+
 		3:
-			# Espera mais um clique para encerrar e voltar ao jogo
-			get_node("/root/Fight/UI/TextBox/Label").text = "(Ela desvia o olhar... Mas ainda está pronta para lutar.)"
+			get_node("/root/Fight/UI/TextBox/Label").text = "'Nunca saíste. Olha bem para mim. Eu sou o que sempre estiveste destinada a ser.'"
 			interaction_step += 1
 
 		4:
+			get_node("/root/Fight/UI/TextBox/Label").text = "''A casa foi feita para ti. Cada parede conhece o teu nome. Vais mesmo sair... ou só fingir que esqueceste outra vez?'"
+			interaction_step += 1
+
+		5:
+			# Mostra escolhas
+			get_node("/root/Fight/UI/TextBox").hide()
+			get_node("/root/Fight/UI/ChoicePanel").show()
+			get_node("/root/Fight/UI/ChoicePanel/Choices/OptionA").text = "Quero lembrar. Mesmo que me destrua. Levo-te comigo. Mas não deixo que me controles."
+			get_node("/root/Fight/UI/ChoicePanel/Choices/OptionB").text = "Quero apagar tudo. Fica aqui. Morre aqui. Se fores eu… então que eu morra contigo"
+			# Aqui para e espera a função _on_choice_pressed()
+			
+		6:
+			# Espera mais um clique para encerrar e voltar ao jogo
+			get_node("/root/Fight/UI/TextBox/Label").text = "Não entendo o porquê do sofrimento ser a minha única companhia. Mas escolho não ser consumida por aquilo que não controlo."
+			interaction_step += 1
+
+		7:
+			# Espera mais um clique para encerrar e voltar ao jogo
+			get_node("/root/Fight/UI/TextBox/Label").text = "(A criatura começa a rir incontrolavelmente.)"
+			perform_attack()
+			interaction_step += 1
+
+		8:
 			get_node("/root/Fight/UI/TextBox").hide()
 			await get_tree().create_timer(0.1).timeout
 			get_node("/root/Fight/UI/ActionsPanel").show()
@@ -108,12 +126,13 @@ func _on_choice_pressed(choice_index: int) -> void:
 	get_node("/root/Fight/UI/TextBox").show()
 
 	if choice_index == 0:
-		get_node("/root/Fight/UI/TextBox/Label").text = "'Mentira! Tudo o que dizes não passam de mentiras! Mas hoje sou eu quem vai te deixar afogar.'"
+		get_node("/root/Fight/UI/TextBox/Label").text = "'És tola. Achas que tens o direito de ser mais forte do que a culpa? Do que a montanha de ossos e arrependimentos que tu geraste?'"
 		perform_attack()
-		interaction_step = 4
+		interaction_step = 6
 	else:
-		get_node("/root/Fight/UI/TextBox/Label").text = "'...Então por que me deixaste tanto tempo sozinha...?'"
-		interaction_step = 3
+		get_node("/root/Fight/UI/TextBox/Label").text = "'Finalmente... Juntas. Apaga-me. E apaga-te. O ciclo continua, a ferida sangra e eu vivo.'"
+		perform_attack()
+		interaction_step = 7
 
 
 func _on_fight_attacking() -> void: #esta função acontece quando o sinal attacking em fight é emitido.
