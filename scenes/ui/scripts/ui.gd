@@ -43,6 +43,10 @@ var analyze_sequences := {
 	"tumor": [
 		"(Pintava com o que sangrava. Chamava-lhe arte. Mas tudo o que criava já nascia podre.)",
 		"(Aumenta o dano máximo em +3.)"
+	],
+	"bandagens": [
+		"(Usado para curar o corpo. Mas e para curar a alma?)",
+		"(Cura entre 1 a 3 feridas em todas as partes do corpo.)"
 	]
 	
 }

@@ -26,7 +26,7 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 			container.collect(item)
 			$"..".visible = false
 			GameState.perfume_collected = true
-			display_text("(Um perfume que evoca uma nostalgia intensa em ti, como uma memória perdida.)")
+			display_text("O cheiro ainda está entranhado. Doce demais para aquilo que se passava ali. Quase me enjoa.")
 			
 
 func display_text(text): #esta função serve para fazer o texto aparecer

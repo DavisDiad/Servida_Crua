@@ -691,3 +691,4 @@ text = "Analisar"
 [connection signal="pressed" from="DesequipPanel/Actions/desequip" to="." method="_on_desequip_pressed"]
 [connection signal="pressed" from="DesequipPanel/Actions/analyze" to="." method="_on_analyze_pressed"]
 [connection signal="pressed" from="HealPanel/Actions/heal" to="." method="_on_heal_pressed"]
+[connection signal="pressed" from="HealPanel/Actions/analyze" to="." method="_on_analyze_pressed"]
