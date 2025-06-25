@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dk6sl1eb8i6a7"]
+[gd_scene load_steps=11 format=3 uid="uid://dk6sl1eb8i6a7"]
 
 [ext_resource type="Script" uid="uid://bbxxdixfowwy8" path="res://scenes/cenários/corredor_espelhos/scripts/corredor_espelhos.gd" id="1_c7mlv"]
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="1_fgrvr"]
@@ -6,6 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://cuckcf74n2vdr" path="res://scenes/cenários/corredor_espelhos/sprites/corredor espelhos.png" id="4_cro7t"]
 [ext_resource type="Texture2D" uid="uid://d2deo6s3q37bx" path="res://scenes/ui/sprites/botao seta esquerda.png" id="4_pu0nm"]
 [ext_resource type="PackedScene" uid="uid://cyl30kecp6emh" path="res://scenes/player/player.tscn" id="5_1lvai"]
+[ext_resource type="FontFile" uid="uid://droskw7yhnkiv" path="res://fonts/Timeless.ttf" id="5_cro7t"]
+[ext_resource type="FontFile" uid="uid://bxc233e1vrt5q" path="res://fonts/Timeless-Bold.ttf" id="6_1lvai"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h8a3f"]
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_c7mlv"]
 vertices = PackedVector2Array(650.047, 482, 650.039, 482, 1431.42, 479.039, 1428.36, 499.969, 236, 496.031, 467.992, 483, 236, 481.078)
@@ -38,6 +43,38 @@ texture_normal = ExtResource("4_pu0nm")
 ignore_texture_size = true
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
+
+[node name="TextBox" type="Panel" parent="UI"]
+visible = false
+z_index = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 538.0
+offset_top = -255.0
+offset_right = -295.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_h8a3f")
+
+[node name="Label" type="RichTextLabel" parent="UI/TextBox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+theme_override_fonts/normal_font = ExtResource("5_cro7t")
+theme_override_fonts/bold_font = ExtResource("6_1lvai")
+theme_override_font_sizes/normal_font_size = 45
+theme_override_font_sizes/bold_font_size = 45
+bbcode_enabled = true
+text = "texto vai aqui"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 292.0

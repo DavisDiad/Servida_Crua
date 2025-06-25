@@ -7,6 +7,8 @@ var has_been_attacked = false
 
 var EffectScene = preload("res://effects/effects.tscn")
 
+var good_end = false
+
 var skill_requirements = { #é um dicionário que atribui as haabilidaades às partes do corpo necesárias para usá-la.
 	"terrified_cry": ["head"],
 	"hair_strangulation": ["right_hair","left_hair"],
@@ -48,6 +50,9 @@ func _ready():
 		
 	$"/root/Fight/UI/ChoicePanel/Choices/OptionA".connect("pressed", Callable(self, "_on_choice_pressed").bind(0))
 	$"/root/Fight/UI/ChoicePanel/Choices/OptionB".connect("pressed", Callable(self, "_on_choice_pressed").bind(1))
+	
+	GameState.current_battle += 1
+	GameState.emit_signal("battle_completed", GameState.current_battle)
 	
 func _process(delta: float) -> void:
 	if has_been_attacked == true and can_take_damage == false:
@@ -127,6 +132,7 @@ func _on_choice_pressed(choice_index: int) -> void:
 
 	if choice_index == 0:
 		get_node("/root/Fight/UI/TextBox/Label").text = "'És tola. Achas que tens o direito de ser mais forte do que a culpa? Do que a montanha de ossos e arrependimentos que tu geraste?'"
+		good_end = true
 		perform_attack()
 		interaction_step = 6
 	else:
@@ -508,8 +514,14 @@ func hide_all_body_parts():
 		var sprite = get_node_or_null(part_name)
 		if sprite:
 			sprite.visible = false
-	GameState.current_battle += 1
-	GameState.emit_signal("battle_completed", GameState.current_battle)
+	if good_end == true:
+		Transition.transition()
+		await Transition.on_transition_finished
+		get_tree().change_scene_to_file("res://scenes/final_bom/final_bom.tscn")
+	else:
+		Transition.transition()
+		await Transition.on_transition_finished
+		get_tree().change_scene_to_file("res://scenes/final_mau/final_mau.tscn")
 
 func apply_evasion_penalty_to_all(penalty: int):
 	for p in enemy_data.body_parts:

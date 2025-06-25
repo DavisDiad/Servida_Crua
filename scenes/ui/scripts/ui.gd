@@ -121,6 +121,9 @@ func _on_item_clicked(item: InvItem, index: int):
 	selected_item = item
 	selected_slot_index = index
 
+	selected_equ_item = null
+	selected_equ_slot = null
+
 	var actions_panel := get_node_or_null("ActionsPanel")
 	if actions_panel:
 		actions_panel.visible = false
@@ -135,6 +138,9 @@ func _on_item_clicked(item: InvItem, index: int):
 func _on_equipment_clicked(item: InvItem, slot_ref: InvEquSlot):
 	selected_equ_item = item
 	selected_equ_slot = slot_ref
+	
+	selected_item = null
+	selected_slot_index = -1
 
 	var actions_panel := get_node_or_null("ActionsPanel")
 	if actions_panel:
@@ -156,24 +162,36 @@ func _on_equip_pressed():
 			var actions_panel := get_node_or_null("ActionsPanel")
 			if actions_panel:
 				actions_panel.visible = true
+
+		elif inv_equ.accessory.item and inv_equ.accessory.item.name == "anel":
+			# Se o anel já está equipado, não permite equipar outro
+			$EquipPanel.visible = false
+			display_text("(Uma força sobrenatural prende o anel a ti.)")
+			await textbox_closed
+			var actions_panel := get_node_or_null("ActionsPanel")
+			if actions_panel:
+				actions_panel.visible = true
+
 		else:
 			$EquipPanel.visible = false
-			
-			display_text("(Braço incapacitado.Não é possível equipar o item.)")
+			display_text("(Braço incapacitado. Não é possível equipar o item.)")
 			await textbox_closed
-			
 			var actions_panel := get_node_or_null("ActionsPanel")
 			if actions_panel:
 				actions_panel.visible = true
 
 func _on_analyze_pressed() -> void:
-	print("clicado")
-	if not selected_item:
+	var item_to_analyze: InvItem = null
+
+	if selected_item:
+		item_to_analyze = selected_item
+	elif selected_equ_item:
+		item_to_analyze = selected_equ_item
+	else:
 		print("Nenhum item selecionado")
 		return
 
-	var item_name = selected_item.name.strip_edges().to_lower()
-	print("Analisando item:", item_name)
+	var item_name = item_to_analyze.name.strip_edges().to_lower()
 
 	if not analyze_sequences.has(item_name):
 		print("Item NÃO encontrado no dicionário!")
@@ -343,3 +361,4 @@ func _input(event: InputEvent) -> void:
 				analyzing = false
 				talking = false
 				current_analyze_sequence = []
+				emit_signal("textbox_closed")
