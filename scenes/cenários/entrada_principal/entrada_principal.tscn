@@ -95,7 +95,11 @@ material = SubResource("CanvasItemMaterial_seqkc")
 position = Vector2(118, 41)
 navigation_polygon = SubResource("NavigationPolygon_g56wg")
 
+[connection signal="mouse_entered" from="UI/button_cozinha" to="UI/button_cozinha" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/button_cozinha" to="UI/button_cozinha" method="_on_mouse_exited"]
 [connection signal="pressed" from="UI/button_cozinha" to="UI/button_cozinha" method="_on_pressed"]
+[connection signal="mouse_entered" from="UI/button_corredor" to="UI/button_corredor" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/button_corredor" to="UI/button_corredor" method="_on_mouse_exited"]
 [connection signal="pressed" from="UI/button_corredor" to="UI/button_corredor" method="_on_pressed"]
 [connection signal="body_entered" from="porta_wc" to="porta_wc" method="_on_body_entered"]
 [connection signal="body_exited" from="porta_wc" to="porta_wc" method="_on_body_exited"]
@@ -105,3 +109,5 @@ navigation_polygon = SubResource("NavigationPolygon_g56wg")
 [connection signal="body_entered" from="andar_cima" to="andar_cima" method="_on_body_entered"]
 [connection signal="body_exited" from="andar_cima" to="andar_cima" method="_on_body_exited"]
 [connection signal="input_event" from="andar_cima" to="andar_cima" method="_on_input_event"]
+[connection signal="mouse_entered" from="andar_cima" to="andar_cima" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="andar_cima" to="andar_cima" method="_on_mouse_exited"]

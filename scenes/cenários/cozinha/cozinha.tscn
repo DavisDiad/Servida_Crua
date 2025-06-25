@@ -67,6 +67,12 @@ item = ExtResource("8_gtyw6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="po_arsenico"]
 shape = SubResource("CircleShape2D_yigdb")
 
+[connection signal="mouse_entered" from="UI/button_corredor_principal" to="UI/button_corredor_principal" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/button_corredor_principal" to="UI/button_corredor_principal" method="_on_mouse_exited"]
 [connection signal="pressed" from="UI/button_corredor_principal" to="UI/button_corredor_principal" method="_on_pressed"]
 [connection signal="input_event" from="frigideira" to="frigideira" method="_on_input_event"]
+[connection signal="mouse_entered" from="frigideira" to="frigideira" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="frigideira" to="frigideira" method="_on_mouse_exited"]
 [connection signal="input_event" from="po_arsenico" to="po_arsenico" method="_on_input_event"]
+[connection signal="mouse_entered" from="po_arsenico" to="po_arsenico" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="po_arsenico" to="po_arsenico" method="_on_mouse_exited"]

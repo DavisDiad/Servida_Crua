@@ -121,6 +121,12 @@ position = Vector2(73, 66)
 rotation = -0.961341
 shape = SubResource("CapsuleShape2D_0vhwi")
 
+[connection signal="mouse_entered" from="UI/TextureButton" to="." method="_on_texture_button_mouse_entered"]
+[connection signal="mouse_exited" from="UI/TextureButton" to="." method="_on_texture_button_mouse_exited"]
 [connection signal="pressed" from="UI/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="input_event" from="Perfume/Area2D" to="Perfume/Area2D" method="_on_input_event"]
+[connection signal="mouse_entered" from="Perfume/Area2D" to="Perfume/Area2D" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Perfume/Area2D" to="Perfume/Area2D" method="_on_mouse_exited"]
 [connection signal="input_event" from="bau" to="bau" method="_on_input_event"]
+[connection signal="mouse_entered" from="bau" to="bau" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="bau" to="bau" method="_on_mouse_exited"]

@@ -14,6 +14,9 @@ extends CanvasLayer
 
 @onready var portrait_sprite: TextureRect = $Portrait
 
+signal textbox_closed
+var talking := false
+
 var portraits: Array[Texture] = []
 
 var mouse_default = preload("res://placeholders/cursor.png")
@@ -48,6 +51,10 @@ func _ready() -> void:
 	
 	GameState.can_equip = true
 	
+	if GameState.text_introduction == false:
+		display_text("(Depois da morte da tua melhor amiga, tiveste de voltar à casa onde tudo começou. Mas algo aqui dentro não te esqueceu.)")
+		await textbox_closed
+		GameState.text_introduction = true
 
 
 func _on_battle_completed(battle_number: int):
@@ -123,6 +130,10 @@ func _on_equip_pressed():
 				actions_panel.visible = true
 		else:
 			$EquipPanel.visible = false
+			
+			display_text("(Braço incapacitado.Não é possível equipar o item.)")
+			await textbox_closed
+			
 			var actions_panel := get_node_or_null("ActionsPanel")
 			if actions_panel:
 				actions_panel.visible = true
@@ -133,8 +144,11 @@ func _on_desequip_pressed():
 		var base_item = selected_equ_slot.item
 		
 		if base_item.name == "anel":
-			print("O anel não pode ser removido.")
 			$DesequipPanel.visible = false
+			
+			display_text("(Uma força sobrenatural prende o anel a ti.)")
+			await textbox_closed
+			
 			var actions_panel := get_node_or_null("ActionsPanel")
 			if actions_panel:
 				actions_panel.visible = true
@@ -237,3 +251,14 @@ func update_wound_display():
 			$left_arm.hide()
 		if right_arm_wounded:
 			$right_arm.hide()
+
+func display_text(text: String) -> void:
+	$TextureRect/TextBox.show()
+	$TextureRect/TextBox/Label.text = text
+	talking = true
+	
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("left_click") and talking:
+		$TextureRect/TextBox.hide()
+		talking = false
+		emit_signal("textbox_closed")

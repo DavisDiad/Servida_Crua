@@ -71,6 +71,8 @@ color = Color(0.947263, 0.946173, 0.999247, 1)
 position = Vector2(118, -15)
 navigation_polygon = SubResource("NavigationPolygon_rkj7x")
 
+[connection signal="mouse_entered" from="UI/button_corredor" to="." method="_on_button_corredor_mouse_entered"]
+[connection signal="mouse_exited" from="UI/button_corredor" to="." method="_on_button_corredor_mouse_exited"]
 [connection signal="pressed" from="UI/button_corredor" to="." method="_on_button_corredor_pressed"]
 [connection signal="body_entered" from="quarto_avo" to="quarto_avo" method="_on_body_entered"]
 [connection signal="body_exited" from="quarto_avo" to="quarto_avo" method="_on_body_exited"]

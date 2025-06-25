@@ -20,6 +20,8 @@ var can_equip:= true
 
 var cutscene_played :=false
 
+var text_introduction := false
+
 func reset():
 	current_battle = 0
 	cat_dead = false
@@ -34,3 +36,4 @@ func reset():
 	tumor_collected = false
 	can_equip = true
 	cutscene_played = false
+	text_introduction = false

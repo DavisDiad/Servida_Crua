@@ -423,7 +423,7 @@ func check_object_effects(body_part_name: String, hit_quality: float) -> void:
 	match object_item.name:
 		"po_arsenico": effect_anim_name = "po_arsenico"
 		"tumor": effect_anim_name = "tumor"
-		"perfume": effect_anim_name = "po_arsenico"
+		"perfume": effect_anim_name = "perfume"
 		_: return  # nenhum efeito definido, sai da função
 	
 	var part_node = get_node_or_null(body_part_name)

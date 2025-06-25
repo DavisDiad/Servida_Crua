@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://d3c3bajf7cic2"]
+[gd_scene load_steps=75 format=3 uid="uid://d3c3bajf7cic2"]
 
 [ext_resource type="Texture2D" uid="uid://b2w6305guo4b3" path="res://effects/sprites/punhal.png" id="1_7npmm"]
 [ext_resource type="Script" uid="uid://bs6wva6eyet52" path="res://effects/scripts/effects.gd" id="1_yx2gb"]
@@ -121,27 +121,31 @@ region = Rect2(2784, 0, 696, 665)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3b6tv"]
 atlas = ExtResource("3_uxg0g")
-region = Rect2(1393, 0, 1393, 1080)
+region = Rect2(889, 0, 889, 712)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sfn0r"]
 atlas = ExtResource("3_uxg0g")
-region = Rect2(2786, 0, 1393, 1080)
+region = Rect2(1778, 0, 889, 712)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4gk0f"]
 atlas = ExtResource("3_uxg0g")
-region = Rect2(4179, 0, 1393, 1080)
+region = Rect2(2667, 0, 889, 712)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lpb41"]
 atlas = ExtResource("3_uxg0g")
-region = Rect2(0, 1080, 1393, 1080)
+region = Rect2(0, 712, 889, 712)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4vf34"]
 atlas = ExtResource("3_uxg0g")
-region = Rect2(1393, 1080, 1393, 1080)
+region = Rect2(889, 712, 889, 712)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8fqgg"]
 atlas = ExtResource("3_uxg0g")
-region = Rect2(2786, 1080, 1393, 1080)
+region = Rect2(1778, 712, 889, 712)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahkf5"]
+atlas = ExtResource("3_uxg0g")
+region = Rect2(2667, 712, 889, 712)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rwesl"]
 atlas = ExtResource("6_u0a6l")
@@ -375,6 +379,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8fqgg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahkf5")
 }],
 "loop": false,
 "name": &"perfume",
@@ -506,6 +513,6 @@ script = ExtResource("1_yx2gb")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.9, 0.9)
 sprite_frames = SubResource("SpriteFrames_rlhir")
-animation = &"sangue"
-frame = 5
+animation = &"perfume"
+frame = 6
 frame_progress = 1.0

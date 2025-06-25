@@ -33,7 +33,7 @@ func _ready() -> void:
 	
 	match enemy_name:
 		"gato":
-			await display_text("(Um gato estranho bufa ao sentir a tua presença.)")
+			await display_text("(Um gato estranho bufa ao sentir a tua presença. Talvez haja algo nesta sala que possas equipar e usar como arma.)")
 		"amiga":
 			await display_text("(Uma figura fantasmagórica aparece diante de ti.)")
 		"avô":
@@ -110,3 +110,5 @@ func _on_defend_pressed() -> void:
 func _on_talk_pressed() -> void:
 	GameState.can_equip = false
 	emit_signal("talked")
+	
+	

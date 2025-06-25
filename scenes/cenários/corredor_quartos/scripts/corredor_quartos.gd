@@ -6,6 +6,9 @@ var entered_avo = false
 
 var next_spawn = Vector2(513.0,476.0)
 
+var mouse_hover = preload("res://placeholders/mouse_hover.png")
+var default = preload("res://placeholders/cursor.png")
+
 func _on_button_corredor_pressed() -> void:
 	PlayerHealth.spawn = next_spawn
 	Transition.transition()
@@ -17,3 +20,11 @@ func _on_button_corredor_pressed() -> void:
 func _ready() -> void:
 	if GameState.grandpa_dead == true:
 		$TextureRect.texture = change_sprite
+
+
+func _on_button_corredor_mouse_entered() -> void:
+	Input.set_custom_mouse_cursor(mouse_hover, Input.CURSOR_ARROW)
+
+
+func _on_button_corredor_mouse_exited() -> void:
+	Input.set_custom_mouse_cursor(default, Input.CURSOR_ARROW)

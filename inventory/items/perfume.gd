@@ -7,6 +7,9 @@ signal textbox_closed
 
 var talking = false
 
+var mouse_hover = preload("res://placeholders/mouse_hover.png")
+var default = preload("res://placeholders/cursor.png")
+
 func _ready() -> void:
 	if GameState.perfume_collected == true:
 		$"..".visible = false
@@ -35,3 +38,12 @@ func display_text(text): #esta função serve para fazer o texto aparecer
 	await textbox_closed #o jogo está a espera que este sinal seja emitido para processar o codigo embaixo
 	 #quando o sinal é emitido, os botoes aparecem
 	talking = false
+
+
+func _on_mouse_entered() -> void:
+	if GameState.perfume_collected == false:
+		Input.set_custom_mouse_cursor(mouse_hover, Input.CURSOR_ARROW)
+
+
+func _on_mouse_exited() -> void:
+	Input.set_custom_mouse_cursor(default, Input.CURSOR_ARROW)
