@@ -9,6 +9,8 @@ var EffectScene = preload("res://effects/effects.tscn")
 
 var good_end = false
 
+var desmemberd = false
+
 var skill_requirements = { #é um dicionário que atribui as haabilidaades às partes do corpo necesárias para usá-la.
 	"terrified_cry": ["head"],
 	"hair_strangulation": ["right_hair","left_hair"],
@@ -116,14 +118,15 @@ func _on_fight_talked() -> void:
 		7:
 			# Espera mais um clique para encerrar e voltar ao jogo
 			get_node("/root/Fight/UI/TextBox/Label").text = "(A criatura começa a rir incontrolavelmente.)"
-			perform_attack()
+			if desmemberd == false:
+				perform_attack()
 			interaction_step += 1
 
 		8:
 			get_node("/root/Fight/UI/TextBox").hide()
-			await get_tree().create_timer(0.1).timeout
-			get_node("/root/Fight/UI/ActionsPanel").show()
 			is_talking = false
+			perform_attack()
+			
 			interaction_step = 0
 
 func _on_choice_pressed(choice_index: int) -> void:
@@ -133,11 +136,13 @@ func _on_choice_pressed(choice_index: int) -> void:
 	if choice_index == 0:
 		get_node("/root/Fight/UI/TextBox/Label").text = "'És tola. Achas que tens o direito de ser mais forte do que a culpa? Do que a montanha de ossos e arrependimentos que tu geraste?'"
 		good_end = true
-		perform_attack()
+		if desmemberd == false:
+			perform_attack()
 		interaction_step = 6
 	else:
 		get_node("/root/Fight/UI/TextBox/Label").text = "'Finalmente... Juntas. Apaga-me. E apaga-te. O ciclo continua, a ferida sangra e eu vivo.'"
-		perform_attack()
+		if desmemberd == false:
+			perform_attack()
 		interaction_step = 7
 
 
@@ -285,8 +290,9 @@ func all_skills_unavailable() -> bool:
 func perform_attack():
 	
 	if all_skills_unavailable():
+		desmemberd = true
 		get_node("/root/Fight/UI/TextBox").show()
-		get_node("/root/Fight").display_text("A criatura está incapacitada e não ataca.")
+		get_node("/root/Fight").display_text("(A criatura está incapacitada e não ataca.)")
 		await get_node("/root/Fight").textbox_closed
 		get_node("/root/Fight/UI/ActionsPanel").show()
 		return

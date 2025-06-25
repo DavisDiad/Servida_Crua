@@ -47,8 +47,27 @@ var analyze_sequences := {
 	"bandagens": [
 		"(Usado para curar o corpo. Mas e para curar a alma?)",
 		"(Cura entre 1 a 3 feridas em todas as partes do corpo.)"
+	],
+	"punhal": [
+		"(Uma lâmina escolhida com calma. Não foi arma de defesa, mas de decisão. Foi com ela que o avô matou o pai, sem hesitar. Depois, limpou-a devagar… e guardou-a como quem guarda um ensinamento.)",
+		"(Aumenta o dano mínimo em +3.)"
+	],
+	"po_arsenico": [
+		"(Não foi servido por engano. Foi medido, misturado, preparado. O avô deu-o ao pai antes do punhal. Para que o corpo fraquejasse, e o castigo entrasse suave. Naquela casa, até o veneno tinha o sabor de família.)",
+		"(Aumenta o dano maximo em +1.)"
+	],
+	"laminas": [
+		"(Alguém pensou em sair por elas. Mas não o fez. As lâminas ficaram ali — quietas, pacientes, à espera. Agora, o reflexo diz que a matei. Talvez tenha razão. Talvez só não queira admitir que ela foi o que eu sempre quis ser.)",
+		"(Aumenta o dano minimo em +2.)"
+	],
+	"colar": [
+		"(Ela passou tanto tempo a fugir da própria imagem que quando olhou de novo… já não sabia se era ela, ou o que restou depois de tudo.)",
+		"(Aumenta a evasão em +10.)"
+	],
+	"frigideira": [
+		"(Restos queimados de carne humana cobrem a frigideira. Ele nunca tentou esconder...)",
+		"(Aumenta o dano minimo em +2.)"
 	]
-	
 }
 
 var current_analyze_sequence: Array = []

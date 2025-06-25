@@ -12,6 +12,24 @@ var is_transitioning := false
 
 var next_spawn = Vector2(503.0,645.0)
 
+signal textbox_closed
+var talking = false
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("left_click") and talking == true: #ao clicar com o botão esquerdo com o texto ativo,
+		$"../UI/TextBox".hide() #ele é escondido
+		emit_signal("textbox_closed") # e o sinal é emitido para fazer os botoes aparecerem
+		
+func display_text(text): #esta função serve para fazer o texto aparecer
+	$"../UI/TextBox".show()
+	$"../UI/TextBox/Label".text = text
+	
+	talking = true
+	
+	await textbox_closed #o jogo está a espera que este sinal seja emitido para processar o codigo embaixo
+	 #quando o sinal é emitido, os botoes aparecem
+	talking = false
+
 func _ready() -> void:
 	var is_hovered := false
 	var is_player_inside := false
@@ -53,7 +71,8 @@ func _on_input_event(viewport, event, shape_idx):
 			get_tree().change_scene_to_file("res://scenes/fight/fight3.tscn")
 		else:
 			get_tree().change_scene_to_file("res://scenes/cenários/quarto_avo/quarto_avo.tscn")
-			
+	elif  Input.is_action_just_pressed("left_click") and is_hovered and is_player_inside and is_transitioning == false and player.velocity == Vector2.ZERO:
+		display_text("Está trancado. Talvez possa encontrar algo para abrir.")
 func play_action_animation(action: String):
 	var arm_state = PlayerHealth.get_arm_state()
 	var anim_name = action

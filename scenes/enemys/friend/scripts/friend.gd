@@ -93,9 +93,8 @@ func _on_fight_talked() -> void:
 
 		4:
 			get_node("/root/Fight/UI/TextBox").hide()
-			await get_tree().create_timer(0.1).timeout
-			get_node("/root/Fight/UI/ActionsPanel").show()
 			is_talking = false
+			perform_attack()
 			interaction_step = 0
 
 func _on_choice_pressed(choice_index: int) -> void:

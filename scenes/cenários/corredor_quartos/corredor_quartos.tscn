@@ -1,12 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://ccs66pcr3usti"]
+[gd_scene load_steps=14 format=3 uid="uid://ccs66pcr3usti"]
 
 [ext_resource type="PackedScene" uid="uid://bct6pd7l1iui0" path="res://scenes/ui/ui.tscn" id="1_c5ear"]
 [ext_resource type="Script" uid="uid://dkoif7eesg1gs" path="res://scenes/cenários/corredor_quartos/scripts/corredor_quartos.gd" id="1_rkj7x"]
 [ext_resource type="Texture2D" uid="uid://uqrppj3kb5p6" path="res://scenes/ui/sprites/botao seta direita.png" id="3_rkj7x"]
+[ext_resource type="FontFile" uid="uid://droskw7yhnkiv" path="res://fonts/Timeless.ttf" id="4_0t7x6"]
 [ext_resource type="Texture2D" uid="uid://bgt7hbivq6hde" path="res://scenes/cenários/corredor_quartos/sprites/corredor quadros 3.png" id="4_ddv5o"]
 [ext_resource type="PackedScene" uid="uid://cyl30kecp6emh" path="res://scenes/player/player.tscn" id="5_0t7x6"]
+[ext_resource type="FontFile" uid="uid://bxc233e1vrt5q" path="res://fonts/Timeless-Bold.ttf" id="5_l3opd"]
 [ext_resource type="Script" uid="uid://0kswcglyl41s" path="res://scenes/cenários/corredor_quartos/scripts/quarto_avo.gd" id="6_kcdl0"]
 [ext_resource type="Script" uid="uid://ka0uhamnqi7i" path="res://porta_wc.gd" id="7_kcdl0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwtpo"]
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkj7x"]
 size = Vector2(245, 372)
@@ -34,6 +39,38 @@ texture_normal = ExtResource("3_rkj7x")
 ignore_texture_size = true
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
+
+[node name="TextBox" type="Panel" parent="UI"]
+visible = false
+z_index = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 538.0
+offset_top = -255.0
+offset_right = -295.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_pwtpo")
+
+[node name="Label" type="RichTextLabel" parent="UI/TextBox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+theme_override_fonts/normal_font = ExtResource("4_0t7x6")
+theme_override_fonts/bold_font = ExtResource("5_l3opd")
+theme_override_font_sizes/normal_font_size = 45
+theme_override_font_sizes/bold_font_size = 45
+bbcode_enabled = true
+text = "texto vai aqui"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 292.0
