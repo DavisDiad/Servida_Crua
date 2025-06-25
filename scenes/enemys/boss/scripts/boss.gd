@@ -46,6 +46,9 @@ func _ready():
 	for part in enemy_data.body_parts: #"part" é uma variavel temporaria criada automaticamente pelo loop for. ela percorre cada body_part dentro do enemy_data
 		wounds[part.name] = 0
 		
+	$"/root/Fight/UI/ChoicePanel/Choices/OptionA".connect("pressed", Callable(self, "_on_choice_pressed").bind(0))
+	$"/root/Fight/UI/ChoicePanel/Choices/OptionB".connect("pressed", Callable(self, "_on_choice_pressed").bind(1))
+	
 func _process(delta: float) -> void:
 	if has_been_attacked == true and can_take_damage == false:
 		$DamageAnimationPlayer.stop()
@@ -67,23 +70,50 @@ func _input(event: InputEvent) -> void:
 
 func _on_fight_talked() -> void:
 	is_talking = true
+
 	match interaction_step:
-		0: 
+		0:
 			get_node("/root/Fight/UI/ActionsPanel").hide()
 			get_node("/root/Fight/UI/TextBox").show()
-			get_node("/root/Fight/UI/TextBox/Label").text = "Tentas comunicar com o gato..."
+			get_node("/root/Fight/UI/TextBox/Label").text = "(Tentas falar com o que um dia foi a tua amiga... Mas ela interrompe-te com um choro ensurdecedor)"
 			interaction_step += 1
 
-		1: 
-			get_node("/root/Fight/UI/TextBox").show()
-			get_node("/root/Fight/UI/TextBox/Label").text = "Mas sem sucesso."
+		1:
+			get_node("/root/Fight/UI/TextBox/Label").text = "'PORQUE NÃO ME SALVASTE?'"
+			perform_attack()
 			interaction_step += 1
 
 		2:
+			# Mostra escolhas
 			get_node("/root/Fight/UI/TextBox").hide()
-			is_talking = false # agora pode voltar a clicar normalmente
-			perform_attack()
+			get_node("/root/Fight/UI/ChoicePanel").show()
+			get_node("/root/Fight/UI/ChoicePanel/Choices/OptionA").text = "Eu tentei. Eu juro que tentei. Mas estava tão partida quanto tu."
+			get_node("/root/Fight/UI/ChoicePanel/Choices/OptionB").text = "Porque não me deixaste. Estavas tão longe… e eu fiquei a gritar sozinha."
+			# Aqui para e espera a função _on_choice_pressed()
+			
+		3:
+			# Espera mais um clique para encerrar e voltar ao jogo
+			get_node("/root/Fight/UI/TextBox/Label").text = "(Ela desvia o olhar... Mas ainda está pronta para lutar.)"
+			interaction_step += 1
+
+		4:
+			get_node("/root/Fight/UI/TextBox").hide()
+			await get_tree().create_timer(0.1).timeout
+			get_node("/root/Fight/UI/ActionsPanel").show()
+			is_talking = false
 			interaction_step = 0
+
+func _on_choice_pressed(choice_index: int) -> void:
+	get_node("/root/Fight/UI/ChoicePanel").hide()
+	get_node("/root/Fight/UI/TextBox").show()
+
+	if choice_index == 0:
+		get_node("/root/Fight/UI/TextBox/Label").text = "'Mentira! Tudo o que dizes não passam de mentiras! Mas hoje sou eu quem vai te deixar afogar.'"
+		perform_attack()
+		interaction_step = 4
+	else:
+		get_node("/root/Fight/UI/TextBox/Label").text = "'...Então por que me deixaste tanto tempo sozinha...?'"
+		interaction_step = 3
 
 
 func _on_fight_attacking() -> void: #esta função acontece quando o sinal attacking em fight é emitido.
@@ -231,7 +261,7 @@ func perform_attack():
 	
 	if all_skills_unavailable():
 		get_node("/root/Fight/UI/TextBox").show()
-		get_node("/root/Fight").display_text("O inimigo está incapacitado e não ataca.")
+		get_node("/root/Fight").display_text("A criatura está incapacitada e não ataca.")
 		await get_node("/root/Fight").textbox_closed
 		get_node("/root/Fight/UI/ActionsPanel").show()
 		return
@@ -439,9 +469,10 @@ func perform_attack():
 		await anim.animation_finished
 		play_action_animation("idle_battle")
 
+	if is_talking == false:
 	# Mostra o painel de ações novamente
-	get_node("/root/Fight/UI/ActionsPanel").show()
-	GameState.can_equip = true
+		get_node("/root/Fight/UI/ActionsPanel").show()
+		GameState.can_equip = true
 	
 	
 

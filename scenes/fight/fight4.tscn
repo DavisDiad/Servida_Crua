@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dpnin6mvhtw5x"]
+[gd_scene load_steps=16 format=3 uid="uid://dpnin6mvhtw5x"]
 
 [ext_resource type="Script" uid="uid://wqm52dtuc1wm" path="res://scenes/fight/fight.gd" id="1_vx3si"]
 [ext_resource type="Texture2D" uid="uid://de3d1d1cw3avq" path="res://scenes/cenários/cave/sprites/cave (1).jpg" id="2_1w13y"]
@@ -19,6 +19,12 @@ bg_color = Color(0.639216, 0.607843, 0.27451, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kobb"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_al7ku"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tgb44"]
+bg_color = Color(0.639216, 0.607843, 0.27451, 1)
 
 [node name="Fight" type="Node2D"]
 script = ExtResource("1_vx3si")
@@ -124,6 +130,62 @@ theme_override_font_sizes/normal_font_size = 45
 theme_override_font_sizes/bold_font_size = 45
 bbcode_enabled = true
 text = "texto vai aqui"
+
+[node name="ChoicePanel" type="Panel" parent="UI"]
+visible = false
+z_index = 20
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 538.0
+offset_top = -255.0
+offset_right = -295.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_al7ku")
+
+[node name="Choices" type="HBoxContainer" parent="UI/ChoicePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 60.0
+offset_right = -30.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="OptionA" type="Button" parent="UI/ChoicePanel/Choices"]
+clip_contents = true
+custom_minimum_size = Vector2(498, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_hover_color = Color(0.685733, 3.10443e-06, 5.77569e-07, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_al7ku")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxFlat_tgb44")
+flat = true
+autowrap_mode = 3
+
+[node name="OptionB" type="Button" parent="UI/ChoicePanel/Choices"]
+clip_contents = true
+custom_minimum_size = Vector2(498, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_hover_color = Color(0.686275, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_al7ku")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxFlat_tgb44")
+flat = true
+autowrap_mode = 3
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 visible = false

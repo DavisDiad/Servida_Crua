@@ -64,15 +64,20 @@ func _on_fight_talked() -> void:
 		0: 
 			get_node("/root/Fight/UI/ActionsPanel").hide()
 			get_node("/root/Fight/UI/TextBox").show()
-			get_node("/root/Fight/UI/TextBox/Label").text = "Tentas comunicar com o gato..."
+			get_node("/root/Fight/UI/TextBox/Label").text = "(Tentas acalmar o gato, aproximando-te dele lentamente...)"
 			interaction_step += 1
 
 		1: 
 			get_node("/root/Fight/UI/TextBox").show()
-			get_node("/root/Fight/UI/TextBox/Label").text = "Mas sem sucesso."
+			get_node("/root/Fight/UI/TextBox/Label").text = "(E reparas no reflexo estranho no seu olho. És tu. Tu quando eras uma criança, feliz e inocente...)"
 			interaction_step += 1
 
-		2:
+		2: 
+			get_node("/root/Fight/UI/TextBox").show()
+			get_node("/root/Fight/UI/TextBox/Label").text = "(Repentinamente, o gato bufa de maneira grotesca.)"
+			interaction_step += 1
+
+		3:
 			get_node("/root/Fight/UI/TextBox").hide()
 			is_talking = false # agora pode voltar a clicar normalmente
 			perform_attack()

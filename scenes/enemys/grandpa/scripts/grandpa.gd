@@ -44,6 +44,9 @@ func _ready():
 	for part in enemy_data.body_parts: #"part" é uma variavel temporaria criada automaticamente pelo loop for. ela percorre cada body_part dentro do enemy_data
 		wounds[part.name] = 0
 		
+	$"/root/Fight/UI/ChoicePanel/Choices/OptionA".connect("pressed", Callable(self, "_on_choice_pressed").bind(0))
+	$"/root/Fight/UI/ChoicePanel/Choices/OptionB".connect("pressed", Callable(self, "_on_choice_pressed").bind(1))
+	
 func _process(delta: float) -> void:
 	if has_been_attacked == true and can_take_damage == false:
 		$DamageAnimationPlayer.stop()
@@ -61,24 +64,64 @@ func _input(event: InputEvent) -> void:
 
 func _on_fight_talked() -> void:
 	is_talking = true
+
 	match interaction_step:
-		0: 
+		0:
 			get_node("/root/Fight/UI/ActionsPanel").hide()
 			get_node("/root/Fight/UI/TextBox").show()
-			get_node("/root/Fight/UI/TextBox/Label").text = "Tentas comunicar com o gato..."
+			get_node("/root/Fight/UI/TextBox/Label").text = "(Tentas comunicar com o horror humanoide perante ti.)"
 			interaction_step += 1
 
-		1: 
-			get_node("/root/Fight/UI/TextBox").show()
-			get_node("/root/Fight/UI/TextBox/Label").text = "Mas sem sucesso."
+		1:
+			get_node("/root/Fight/UI/TextBox/Label").text = "(Com uma voz quase demoníaca, a engasgar-se na sua própria carne, a criatura diz:)"
 			interaction_step += 1
 
 		2:
+			get_node("/root/Fight/UI/TextBox/Label").text = "'Ela era minha obra. Pintei cada traço. Dei-lhe cor, forma e nome. E ele veio manchar tudo com mãos sujas.'"
+			interaction_step += 1
+
+		3:
 			get_node("/root/Fight/UI/TextBox").hide()
-			is_talking = false # agora pode voltar a clicar normalmente
+			get_node("/root/Fight/UI/ChoicePanel").show()
+			get_node("/root/Fight/UI/ChoicePanel/Choices/OptionA").text = "Avô, o que te aconteceu? Falavas da mãe... ou de ti mesmo?"
+			get_node("/root/Fight/UI/ChoicePanel/Choices/OptionB").text = "O que lhe fizeste? Ao meu pai?"
+			# Espera por _on_choice_pressed()
+
+		5:
+			get_node("/root/Fight/UI/TextBox/Label").text = "(A carne da criatura pulsa. A tinta escorre dos olhos. E a raiva toma-lhe a voz.)"
+			interaction_step += 1
+
+		6:
+			get_node("/root/Fight/UI/TextBox/Label").text = "'Devias ter sido TU a morrer! Não ela... Mas nasceste e fizeste-me assim!'"
 			perform_attack()
+			interaction_step += 1
+
+		7:
+			get_node("/root/Fight/UI/TextBox/Label").text = "(A criatura tenta falar, mas tudo o que sai é som de carne a ser mastigada.)"
+			interaction_step += 1
+
+		8:
+			get_node("/root/Fight/UI/TextBox").hide()
+			await get_tree().create_timer(0.1).timeout
+			get_node("/root/Fight/UI/ActionsPanel").show()
+			is_talking = false
 			interaction_step = 0
 
+func _on_choice_pressed(choice_index: int) -> void:
+	get_node("/root/Fight/UI/ChoicePanel").hide()
+	get_node("/root/Fight/UI/TextBox").show()
+
+	if choice_index == 0:
+		get_node("/root/Fight/UI/TextBox/Label").text = "'Ela pertencia-me... Tu não passas de um pedaço de carne podre que herdou nada mais do que sofrimento!'"
+		perform_attack()
+		is_talking = true
+		interaction_step = 6
+
+	elif choice_index == 1:
+		get_node("/root/Fight/UI/TextBox/Label").text = "'Desapareceu... e foi servido. Mas ficou nela, e em ti. Não pelos olhos... mas pelos ossos. E hoje, quem vai ser servida... És tu.'"
+		perform_attack()
+		is_talking = true
+		interaction_step = 7
 
 func _on_fight_attacking() -> void: #esta função acontece quando o sinal attacking em fight é emitido.
 	can_take_damage = true #ela permite que o inimigo possa receber dano
@@ -391,7 +434,7 @@ func perform_attack():
 		player.collect(item)
 		player.collect(item2)
 		
-	else:
+	elif is_talking == false:
 	# Mostra o painel de ações novamente
 		get_node("/root/Fight/UI/ActionsPanel").show()
 		GameState.can_equip = true
@@ -399,8 +442,9 @@ func perform_attack():
 
 
 func _on_fight_defending() -> void:
-	perform_attack()
-	PlayerHealth.is_defending = true
+	if is_talking == false:
+		perform_attack()
+		PlayerHealth.is_defending = true
 
 func change_right_leg_texture(sprite: Sprite2D):
 	if right_leg_wound_texture:

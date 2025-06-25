@@ -216,5 +216,3 @@ position = Vector2(503, 645)
 [connection signal="pressed" from="UI/ActionsPanel/Actions/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="UI/ActionsPanel/Actions/Defend" to="." method="_on_defend_pressed"]
 [connection signal="pressed" from="UI/ActionsPanel/Actions/Talk" to="." method="_on_talk_pressed"]
-[connection signal="pressed" from="UI/ChoicePanel/Choices/OptionA" to="." method="_on_defend_pressed"]
-[connection signal="pressed" from="UI/ChoicePanel/Choices/OptionB" to="." method="_on_talk_pressed"]

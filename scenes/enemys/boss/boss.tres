@@ -97,7 +97,7 @@ script = ExtResource("3_7l4dm")
 name = "terrified_cry"
 min_damage = 2
 max_damage = 6
-accuracy = 40
+accuracy = 45
 metadata/_custom_type_script = "uid://58tyn321d3di"
 
 [sub_resource type="Resource" id="Resource_vjmcx"]
@@ -106,7 +106,7 @@ script = ExtResource("3_7l4dm")
 name = "hair_strangulation"
 min_damage = 1
 max_damage = 5
-accuracy = 55
+accuracy = 60
 metadata/_custom_type_script = "uid://58tyn321d3di"
 
 [sub_resource type="Resource" id="Resource_vxbgm"]
@@ -115,7 +115,7 @@ script = ExtResource("3_7l4dm")
 name = "silent_scream"
 min_damage = 1
 max_damage = 3
-accuracy = 60
+accuracy = 65
 metadata/_custom_type_script = "uid://58tyn321d3di"
 
 [sub_resource type="Resource" id="Resource_1cktn"]
@@ -124,7 +124,7 @@ script = ExtResource("3_7l4dm")
 name = "human_hammer"
 min_damage = 4
 max_damage = 5
-accuracy = 50
+accuracy = 55
 metadata/_custom_type_script = "uid://58tyn321d3di"
 
 [resource]
