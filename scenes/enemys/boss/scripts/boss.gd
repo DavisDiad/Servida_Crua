@@ -87,7 +87,8 @@ func _on_fight_talked() -> void:
 
 		1:
 			get_node("/root/Fight/UI/TextBox/Label").text = "'Vieste acabar com isto...? Que patético. Tu ÉS isto.'"
-			perform_attack()
+			if desmemberd == false:
+				perform_attack()
 			interaction_step += 1
 
 		2:
@@ -126,6 +127,7 @@ func _on_fight_talked() -> void:
 			get_node("/root/Fight/UI/TextBox").hide()
 			is_talking = false
 			perform_attack()
+			GameState.can_equip = true
 			
 			interaction_step = 0
 
