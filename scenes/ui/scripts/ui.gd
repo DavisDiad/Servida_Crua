@@ -41,7 +41,7 @@ var analyze_sequences := {
 		"(Aumenta a chance de acerto em +10.)"
 	],
 	"tumor": [
-		"(Pintava com o que sangrava. Chamava-lhe arte. Mas tudo o que criava já nascia podre.)",
+		"(Foi tirado do corpo dele, mas parece que ficou ligado à casa. Pulsa como se chamasse por ela. Carregado de pus, raiva e história mal digerida)",
 		"(Aumenta o dano máximo em +3.)"
 	],
 	"bandagens": [
